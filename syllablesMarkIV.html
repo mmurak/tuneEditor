@@ -1,0 +1,331 @@
+<html>
+  <head>
+    <title>ぷろとたいぷMk.IV</title>
+  </head>
+  <body onload="initialise();">
+    Sentence input: <input type="text" id="intext" size="120" onInput="sentenceInput();"><br/>
+    <table>
+    <tr><th>Tone</th><th>Stress</th><th>&nbsp;</th><th align="left">Pitch Pattern</th></tr>
+    <tr><td align="center">
+    8</td><td>
+    <input type="button" value="・" onclick="setToneStress(8, weakSize)">
+    <input type="button" value="⚫" onclick="setToneStress(8, midSize)">
+    <input type="button" value="⬤" onclick="setToneStress(8, stressedSize)">
+    </td><td></td><td>
+    <input type="button" value="Low/High-Fall" onclick="fall()">
+    </td></tr>
+    <tr><td align="center">
+    7</td><td>
+    <input type="button" value="・" onclick="setToneStress(7, weakSize)">
+    <input type="button" value="⚫" onclick="setToneStress(7, midSize)">
+    <input type="button" value="⬤" onclick="setToneStress(7, stressedSize)">
+    </td><td></td><td>
+    <input type="button" value="Rise-Fall" onclick="riseFall()">
+    </td></tr>
+    <tr><td align="center">
+    6</td><td>
+    <input type="button" value="・" onclick="setToneStress(6, weakSize)">
+    <input type="button" value="⚫" onclick="setToneStress(6, midSize)">
+    <input type="button" value="⬤" onclick="setToneStress(6, stressedSize)">
+    </td><td></td><td>
+    <input type="button" value="Low/High-Rise" onclick="rise()">
+    </td></tr>
+    <tr><td align="center">
+    5</td><td>
+    <input type="button" value="・" onclick="setToneStress(5, weakSize)">
+    <input type="button" value="⚫" onclick="setToneStress(5, midSize)">
+    <input type="button" value="⬤" onclick="setToneStress(5, stressedSize)">
+    </td><td></td><td>
+    <input type="button" value="Fall-Rise" onclick="fallRise()">
+    </td></tr>
+    <tr><td align="center">
+    4</td><td>
+    <input type="button" value="・" onclick="setToneStress(4, weakSize)">
+    <input type="button" value="⚫" onclick="setToneStress(4, midSize)">
+    <input type="button" value="⬤" onclick="setToneStress(4, stressedSize)">
+    </td><td></td><td>
+    <input type="button" value="Mid-Level" onclick="midLevel()">
+    </td></tr>
+    <tr><td align="center">
+    3</td><td>
+    <input type="button" value="・" onclick="setToneStress(3, weakSize)">
+    <input type="button" value="⚫" onclick="setToneStress(3, midSize)">
+    <input type="button" value="⬤" onclick="setToneStress(3, stressedSize)">
+    </td><td></td><td>
+    <input type="button" value="-cancel pattern-" onclick="notNucleus()">
+    </td></tr>
+    <tr><td align="center">
+    2</td><td>
+    <input type="button" value="・" onclick="setToneStress(2, weakSize)">
+    <input type="button" value="⚫" onclick="setToneStress(2, midSize)">
+    <input type="button" value="⬤" onclick="setToneStress(2, stressedSize)">
+    </td></tr>
+    <tr><td align="center">
+    1</td><td>
+    <input type="button" value="・" onclick="setToneStress(1, weakSize)">
+    <input type="button" value="⚫" onclick="setToneStress(1, midSize)">
+    <input type="button" value="⬤" onclick="setToneStress(1, stressedSize)">
+    </td><td></td><td>
+    <input type="button" value="　◀　" onclick="prevAvailableSyllable();redrawCanvas()">
+    <input type="button" value="　▶　" onclick="nextAvailableSyllable();redrawCanvas()">
+    </td></tr>
+    <tr><td align="center">
+    0</td><td>
+    <input type="button" value="・" onclick="setToneStress(0, weakSize)">
+    <input type="button" value="⚫" onclick="setToneStress(0, midSize)">
+    <input type="button" value="⬤" onclick="setToneStress(0, stressedSize)">
+    </td><td></td><td>
+    <input type="button" value="Not a syllable" onclick="vanishFalseSyllable()">
+    </td></tr>
+    </table>
+
+
+
+
+    <canvas id="canvas" width="1000" height="200" style="border:solid gray 1px;"></canvas>
+
+    <script>
+      const cvPattern = new RegExp("^([^aeiouy]*)([aeiouy]+)(.*)", "i");
+
+      const weakSize = 4;
+      const midSize = 6;
+      const stressedSize = 8;
+      const lineWidth = 2;
+
+      const maxLevel = 9;
+
+      const margin = 20;
+      const upperLimit = 96;
+      const lowerLimit = 150;
+
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var rect = canvas.getBoundingClientRect();
+      ctx.font = "24pt Arial";
+      ctx.strokeStyle = "rgba(0, 0, 0)";
+      ctx.lineWidth = lineWidth;
+      ctx.fillStyle = "rgba(0, 0, 0)";
+
+
+      var intonationArray = [];   // [size, width, tone, nucleusType]
+      var iap = 0;
+
+      var selectionSet = new Set();
+
+      function initialise() {
+        document.getElementById("intext").focus();
+        drawBoundary();
+        canvas.addEventListener("mousedown", function (evt) {
+            document.getElementById("intext").disabled = true;
+            var coordX = evt.clientX - rect.left;
+            var delta = 99999;
+            iap = 0;
+            for (i = 0; i < intonationArray.length; i++) {
+              tempDelta = Math.abs(intonationArray[i][1] - coordX);
+              if (tempDelta < delta) {
+                iap = i;
+                delta = tempDelta;
+              }
+            }
+            if (selectionSet.has(iap)) {
+              selectionSet.clear();
+            } else {
+              selectionSet.clear();
+              selectionSet.add(iap);
+            }
+            redrawCanvas();
+        });
+      }
+
+
+
+
+      function getCVChunks(text) {
+        return text.match(cvPattern);
+      }
+
+      function sentenceInput() {
+        var text = document.getElementById("intext").value;
+        ctx.beginPath();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBoundary();
+        var startPt = margin;
+        intonationArray = [];
+
+        while (text != "")  {
+          var chunks = getCVChunks(text);
+          if (chunks == null) break;
+          var preVowel = chunks[1];
+          var vowel = chunks[2];
+          text = chunks[3];
+          ctx.fillText(preVowel, startPt, 70);
+          startPt += ctx.measureText(preVowel).width;
+          ctx.fillText(vowel, startPt, 70);
+          var width = ctx.measureText(vowel).width;
+          drawCircle(weakSize, startPt + (width / 2), 0);
+          intonationArray.push([weakSize, startPt + (width / 2), 0, 0]);
+          startPt += width;
+        }
+        if (text != "") {
+          ctx.fillText(text, startPt, 70);
+        }
+      }
+
+      function getCircleHeight(size, toneLevel) {
+        var lower = lowerLimit - size - (lineWidth / 2.0);
+        var upper = upperLimit + size + (lineWidth / 2.0);
+        var step = (lower - upper) / (maxLevel - 1);
+        return lower - (step * toneLevel);
+      }
+
+      function drawCircle(size, width, toneLevel, nucleusType) {
+        var h = getCircleHeight(size, toneLevel)
+        ctx.beginPath();
+        ctx.arc(width, h, size, 0, Math.PI * 2, true);
+        ctx.fill();
+        switch (nucleusType) {
+          case 1 :  // Low/High-Fall
+            ctx.moveTo(width, h);
+            ctx.bezierCurveTo(width + (size * 2), h, width + (size * 2), h, width + (size * 2), lowerLimit);
+            break;
+          case 3 :  // Rise-Fall
+            ctx.moveTo(width, h);
+            var cy = Math.max(upperLimit, h - (size * 2));
+            ctx.bezierCurveTo(width + size, cy - size, width + (size * 2), cy, width + (size * 2), lowerLimit);
+            break;
+          case 4 :  // Low/High-Rise
+            ctx.moveTo(width, h);
+            var endPoint = Math.max(upperLimit, h - (size * 2));
+            ctx.bezierCurveTo(width + (size * 2), h, width + (size * 2), h, width + (size * 2), endPoint);
+            break;
+          case 6 :  // Fall-Rise
+            ctx.moveTo(width + size, h);
+            var cy = Math.min(lowerLimit, h + (size * 2));
+            var endPoint = Math.max(upperLimit, h - (size * 2));
+            ctx.bezierCurveTo(width + (size * 1.5), lowerLimit,
+                                       width + (size * 2.5), lowerLimit,
+                                       width + (size * 3),
+                                       (lowerLimit - (lowerLimit - h) / 2));
+            break;
+          case 7 :  // Mid-Level
+            ctx.moveTo(width, h);
+            ctx.lineTo(width + (size * 3), h);
+            break;
+        }
+        ctx.stroke();
+      }
+
+      function redrawCanvas() {
+        ctx.beginPath();
+        ctx.clearRect(0, upperLimit, canvas.width, canvas.height - upperLimit);
+        drawBoundary();
+        for (i = 0; i < intonationArray.length; i++) {
+          var color = (selectionSet.has(i)) ? "rgba(255, 0, 0)" : "rgba(0, 0, 0)";
+          ctx.strokeStyle = color;
+          ctx.fillStyle = color;
+          drawCircle(intonationArray[i][0], intonationArray[i][1], intonationArray[i][2], intonationArray[i][3]); 
+          ctx.strokeStyle = "rgba(0, 0, 0)";
+          ctx.fillStyle = "rgba(0, 0, 0)";
+        }
+      }
+
+      function drawBoundary() {
+        ctx.moveTo(margin, upperLimit);
+        ctx.lineTo(canvas.width - (margin * 2), upperLimit);
+        ctx.moveTo(margin, lowerLimit);
+        ctx.lineTo(canvas.width - (margin * 2), lowerLimit);
+        ctx.stroke();
+      }
+
+      function assignToneStress(tone, stress) {
+        for (let item of selectionSet.values()) {
+          intonationArray[item][0] = stress;
+          intonationArray[item][2] = tone;
+        }
+      }
+
+      function nextAvailableSyllable() {
+        var idx;
+        for (idx of selectionSet.values()) {};
+        idx += 1;
+        selectionSet.clear();
+        while((idx < intonationArray.length) && (intonationArray[idx][0] == 0)) {
+          idx += 1;
+        }
+        if (intonationArray.length > idx) {
+          selectionSet.add(idx);
+        }
+      }
+
+      function prevAvailableSyllable() {
+        var idx;
+        for (idx of selectionSet.values()) {};
+        if (idx == iap) return;   // It's for direct pattern modification.
+        idx -= 1;
+        selectionSet.clear();
+        while((idx >= 0) && (intonationArray[idx][0] == 0)) {
+          idx -= 1;
+        }
+        if (idx >= 0) {
+          selectionSet.add(idx);
+        }
+      }
+
+      function assignNucleusPattern(pattern) {
+        prevAvailableSyllable();
+        if (selectionSet.size == 0) {   // nasty patch up when the selection is not available
+          selectionSet.add(intonationArray.length - 1);
+        }
+        for (let item of selectionSet.values()) {
+          intonationArray[item][3] = pattern;
+        }
+        nextAvailableSyllable();
+        redrawCanvas();
+      }
+
+      function vanishFalseSyllable() {
+        assignToneStress(0, 0);
+        nextAvailableSyllable();
+        redrawCanvas();
+      }
+
+      function setToneStress(tone, stress) {
+        assignToneStress(tone, stress);
+        nextAvailableSyllable();
+        redrawCanvas();
+      }
+
+      function fall() {
+        assignNucleusPattern(1);
+        redrawCanvas();
+      }
+
+      function riseFall() {
+        assignNucleusPattern(3);
+        redrawCanvas();
+      }
+
+      function rise() {
+        assignNucleusPattern(4);
+        redrawCanvas();
+      }
+
+      function fallRise() {
+        assignNucleusPattern(6);
+        redrawCanvas();
+      }
+
+      function midLevel() {
+        assignNucleusPattern(7);
+        redrawCanvas();
+      }
+
+      function notNucleus() {
+        assignNucleusPattern(0);
+        redrawCanvas();
+      }
+
+    </script>
+
+  </body>
+</html>
