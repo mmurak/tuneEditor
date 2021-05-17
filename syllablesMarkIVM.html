@@ -6,7 +6,7 @@
   <body onload="initialise();">
     Sentence input: <input type="text" id="intext" size="200" onInput="sentenceInput();"><br/>
     <table>
-    <tr><th>Tone</th><th>Stress</th><th>&nbsp;</th><th align="left">Pitch Pattern</th><th>&nbsp;</th><th>&nbsp;</th></tr>
+    <tr><th>Hight</th><th>Stress</th><th>&nbsp;</th><th align="left">Tone</th><th>&nbsp;</th><th>&nbsp;</th></tr>
     <tr><td align="center">
     8</td><td>
     <input type="button" value="・" onclick="setToneStress(8, weakSize)">
@@ -75,19 +75,17 @@
     <input type="button" value="・" onclick="setToneStress(1, weakSize)">
     <input type="button" value="⚫" onclick="setToneStress(1, midSize)">
     <input type="button" value="⬤" onclick="setToneStress(1, stressedSize)">
-    </td><td></td><td>
+    </td><td></td><td></td><td></td><td>
     <input type="button" value="　◀　" onclick="prevAvailableSyllable();redrawCanvas()">
     <input type="button" value="　▶　" onclick="nextAvailableSyllable();redrawCanvas()">
-    </td><td></td><td>
     </td></tr>
     <tr><td align="center">
     0</td><td>
     <input type="button" value="・" onclick="setToneStress(0, weakSize)">
     <input type="button" value="⚫" onclick="setToneStress(0, midSize)">
     <input type="button" value="⬤" onclick="setToneStress(0, stressedSize)">
-    </td><td></td><td>
+    </td><td></td><td></td><td></td><td>
     <input type="button" value="Not a syllable" onclick="vanishFalseSyllable()">
-    </td><td></td><td>
     </td></tr>
     </table>
 
