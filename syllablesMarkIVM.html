@@ -219,7 +219,7 @@
         switch (nucleusType) {
           case 1 :  // Low/High-Fall
             ctx.moveTo(width, h);
-            ctx.bezierCurveTo(width + (size * 2), h, width + (size * 2), h, width + (size * 2), lowerLimit);
+            ctx.bezierCurveTo(width + (size * 1.5), lowerLimit - (lowerLimit - h) / 2.0, width + (size * 2), lowerLimit - (lowerLimit - h) / 2.0, width + (size * 2), lowerLimit);
             break;
           case 3 :  // Rise-Fall
             ctx.moveTo(width, h);
@@ -228,10 +228,29 @@
             break;
           case 4 :  // Low/High-Rise
             ctx.moveTo(width, h);
-            var endPoint = Math.max(upperLimit, h - (size * 2));
-            ctx.bezierCurveTo(width + (size * 2), h, width + (size * 2), h, width + (size * 2), endPoint);
+            var endPoint = (h - upperLimit) * 0.5 + upperLimit; //    Math.max(upperLimit, h - (size * 2));
+            ctx.bezierCurveTo(width + (stressedSize * 1.5), h, width + (stressedSize * 2.0), h - (h - endPoint) * 0.5, width + (stressedSize*2.0), endPoint);
             break;
           case 6 :  // Fall-Rise
+
+            ctx.moveTo(width, h);
+//            var cy = Math.min(lowerLimit, h + (size * 2));
+            var endPoint = Math.max(upperLimit, h - (size * 2));
+            var hpu = lowerLimit - (lowerLimit - h) * 0.75;
+            var hpm = lowerLimit - (lowerLimit - h) * 0.5;
+            var hpml = lowerLimit - (lowerLimit - h) * 0.375;
+            var hpl = lowerLimit - (lowerLimit - h) * 0.25;
+            ctx.bezierCurveTo(
+              width + (size*1.5), h,
+              width + (size*1.5), hpu,
+              width + (size*1.5), hpm);
+            ctx.bezierCurveTo(
+              width + (size * 1.5), lowerLimit+(stressedSize*(toneLevel/10.0)),
+              width + (size * 3.0), lowerLimit+(stressedSize*(toneLevel/10.0)),
+              width + (size * 3.0), hpml);
+            break;
+
+/*
             ctx.moveTo(width + size, h);
             var cy = Math.min(lowerLimit, h + (size * 2));
             var endPoint = Math.max(upperLimit, h - (size * 2));
@@ -240,6 +259,7 @@
                                        width + (size * 3),
                                        (lowerLimit - (lowerLimit - h) / 2));
             break;
+*/
           case 7 :  // Mid-Level
             ctx.moveTo(width, h);
             ctx.lineTo(width + (size * 3), h);
