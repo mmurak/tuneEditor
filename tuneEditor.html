@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <title>TuneEditor（Ver. 0.6）before refactoring</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="shortcut icon" href="kiwi-bird.png">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body onload="initialise();" oncopy="return false;" onpaste="return false;">
+    Sentence input:<input type="button" value="- Clear All -" onclick="clearfield();">
+    <a id="download" href="#" download="canvas.jpg" onclick="saveImage();">Save Image</a>
+    &nbsp;&nbsp;Canvas width: <select id="canvaswidth" name="canvaswidth" onchange="newCanvasWidth();">
+    <option value="300">300px</option>
+    <option value="400">400px</option>
+    <option value="500">500px</option>
+    <option value="600" selected>600px</option>
+    <option value="700">700px</option>
+    <option value="800">800px</option>
+    <option value="900">900px</option>
+    <option value="1000">1,000px</option>
+    <option value="1100">1,100px</option>
+    <option value="1200">1,200px</option>
+    <option value="1300">1,300px</option>
+    <option value="1400">1,400px</option>
+    <option value="1500">1,500px</option>
+    <option value="1600">1,600px</option>
+    </select>
+<br/>
+    <input type="text" id="intext" size="80" onInput="sentenceInput();"><br/>
+    <table>
+    <tr><th>Height</th><th>Stress</th><th>&nbsp;</th><th align="left">Tone</th><th>&nbsp;</th><th align="left">Misc.</th></tr>
+    <tr><td align="center">
+    8</td><td>
+    <input type="image" class="btn" src="./stress1.png" onclick="setToneStress(8, weakSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress2.png" onclick="setToneStress(8, midSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress3.png" onclick="setToneStress(8, stressedSize)" ondragstart="return false;">
+    </td><td></td><td>
+    <input type="button" value="Low/High-Fall" onclick="fall()">
+    </td><td></td><td>
+    <input type="checkbox" class="checkboxer" id="separator1" onclick="separatorClicked();"/>
+    <label class="label" for="separator1">Separator</label>
+    </td></tr>
+    <tr><td align="center">
+    7</td><td>
+    <input type="image" class="btn" src="./stress1.png" onclick="setToneStress(7, weakSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress2.png" onclick="setToneStress(7, midSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress3.png" onclick="setToneStress(7, stressedSize)" ondragstart="return false;">
+    </td><td></td><td>
+    <input type="button" value="Rise-Fall" onclick="riseFall()">
+    </td><td></td><td>
+    </td></tr>
+    <tr><td align="center">
+    6</td><td>
+    <input type="image" class="btn" src="./stress1.png" onclick="setToneStress(6, weakSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress2.png" onclick="setToneStress(6, midSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress3.png" onclick="setToneStress(6, stressedSize)" ondragstart="return false;">
+    </td><td></td><td>
+    <input type="button" value="Low/High-Rise" onclick="rise()">
+    </td><td></td><td>
+    </td></tr>
+    <tr><td align="center">
+    5</td><td>
+    <input type="image" class="btn" src="./stress1.png" onclick="setToneStress(5, weakSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress2.png" onclick="setToneStress(5, midSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress3.png" onclick="setToneStress(5, stressedSize)" ondragstart="return false;">
+    </td><td></td><td>
+    <input type="button" value="Fall-Rise" onclick="fallRise()">
+    </td><td></td><td>
+    </td></tr>
+    <tr><td align="center">
+    4</td><td>
+    <input type="image" class="btn" src="./stress1.png" onclick="setToneStress(4, weakSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress2.png" onclick="setToneStress(4, midSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress3.png" onclick="setToneStress(4, stressedSize)" ondragstart="return false;">
+    </td><td></td><td>
+    <input type="button" value="Mid-Level" onclick="midLevel()">
+    </td><td></td><td>
+    </td></tr>
+    <tr><td align="center">
+    3</td><td>
+    <input type="image" class="btn" src="./stress1.png" onclick="setToneStress(3, weakSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress2.png" onclick="setToneStress(3, midSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress3.png" onclick="setToneStress(3, stressedSize)" ondragstart="return false;">
+    </td><td></td><td>
+    <input type="button" value="-cancel pattern-" onclick="notNucleus()">
+    </td><td></td><td>
+    </td></tr>
+    <tr><td align="center">
+    2</td><td>
+    <input type="image" class="btn" src="./stress1.png" onclick="setToneStress(2, weakSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress2.png" onclick="setToneStress(2, midSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress3.png" onclick="setToneStress(2, stressedSize)" ondragstart="return false;">
+    </td><td></td><td></td><td></td><td>
+    <input type="button" value="　◀　" onclick="prevAvailableSyllable();redrawCanvas()">
+    <input type="button" value="　▶　" onclick="nextAvailableSyllable();redrawCanvas()">
+    </td></tr>
+    <tr><td align="center">
+    1</td><td>
+    <input type="image" class="btn" src="./stress1.png" onclick="setToneStress(1, weakSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress2.png" onclick="setToneStress(1, midSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress3.png" onclick="setToneStress(1, stressedSize)" ondragstart="return false;">
+    </td><td></td><td></td><td></td><td>
+    <input type="button" value="Make item invisible" onclick="sendToTheShed()">
+    </td></tr>
+    <tr><td align="center">
+    0</td><td>
+    <input type="image" class="btn" src="./stress1.png" onclick="setToneStress(0, weakSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress2.png" onclick="setToneStress(0, midSize)" ondragstart="return false;">
+    <input type="image" class="btn" src="./stress3.png" onclick="setToneStress(0, stressedSize)" ondragstart="return false;">
+    </td><td></td><td></td><td></td><td>
+    <input type="checkbox" class="checkboxer" id="summon" onclick="retrieveFromTheShed();"/>
+    <label class="label" for="summon">Make item visible again</label>
+    </td></tr>
+    </table>
+
+
+
+
+    <canvas id="canvas" width="1600" height="200" style="border:solid gray 1px;"></canvas>
+
+    <script src="./tuneEditor.js"></script>
+
+  </body>
+</html>
