@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>TuneEditor（Ver. 0.6）before refactoring</title>
+    <title>TuneEditor（Ver. 0.71）before refactoring</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
     <link rel="shortcut icon" href="kiwi-bird.png">
     <link rel="stylesheet" href="./styles.css">
@@ -8,6 +8,7 @@
   <body onload="initialise();" oncopy="return false;" onpaste="return false;">
     Sentence input:<input type="button" value="- Clear All -" onclick="clearfield();">
     <a id="download" href="#" download="canvas.jpg" onclick="saveImage();">Save Image</a>
+    <a id="download2" href="#" download="upperCanvas.jpg" onclick="saveHalfImage();">（upper half only）</a>
     &nbsp;&nbsp;Canvas width: <select id="canvaswidth" name="canvaswidth" onchange="newCanvasWidth();">
     <option value="300">300px</option>
     <option value="400">400px</option>
@@ -25,7 +26,7 @@
     <option value="1600">1,600px</option>
     </select>
 <br/>
-    <input type="text" id="intext" size="80" onInput="sentenceInput();"><br/>
+    <input type="text" id="intext" size="100" onInput="sentenceInput();"><br/>
     <table>
     <tr><th>Height</th><th>Stress</th><th>&nbsp;</th><th align="left">Tone</th><th>&nbsp;</th><th align="left">Misc.</th></tr>
     <tr><td align="center">
@@ -116,6 +117,9 @@
 
 
     <canvas id="canvas" width="1600" height="200" style="border:solid gray 1px;"></canvas>
+
+<br/>
+    <canvas id="canvas2" height="53" style="visibility: hidden;"></canvas>
 
     <script src="./tuneEditor.js"></script>
 

@@ -52,7 +52,7 @@ class ToneMark {
   drawHorizontalLine(context) {
     context.beginPath();
     context.moveTo(margin+this.width+this.deltaX, 70+this.deltaY);
-    context.lineTo(margin+this.width+this.deltaX+8.0, 70+this.deltaY);
+    context.lineTo(margin+this.width+this.deltaX+10.0, 70+this.deltaY);
     context.stroke();
   }
   drawAscendingBar(context) {
@@ -108,7 +108,7 @@ class LowRise extends ToneMark {
   constructor(width) {
     super(width);
     this.deltaX = 0.0;
-    this.deltaY = -8.0;
+    this.deltaY = -4.0;
   }
   draw(context) {
     super.drawAscendingBar(context);
@@ -130,7 +130,7 @@ class LowFall extends ToneMark {
   constructor(width) {
     super(width);
     this.deltaX = 0.0;
-    this.deltaY = -8.0;
+    this.deltaY = -4.0;
   }
   draw(context) {
     super.drawDescendingBar(context);
@@ -185,7 +185,7 @@ class HighStressed1 extends ToneMark {
   constructor(width) {
     super(width);
     this.deltaX = 7.0;
-    this.deltaY = -22.0;
+    this.deltaY = -25.0;
   }
   draw(context) {
     super.drawVerticalLine(context);
@@ -207,7 +207,7 @@ class HighStressed3 extends ToneMark {
   constructor(width) {
     super(width);
     this.deltaX = 0.0;
-    this.deltaY = -22.0;
+    this.deltaY = -25.0;
   }
   draw(context) {
     super.drawDescendingBar(context);
@@ -219,7 +219,7 @@ class LowStressed1 extends ToneMark {
   constructor(width) {
     super(width);
     this.deltaX = 7.0;
-    this.deltaY = -8.0;
+    this.deltaY = -5.0;
   }
   draw(context) {
     super.drawVerticalLine(context);
@@ -241,7 +241,7 @@ class LowStressed3 extends ToneMark {
   constructor(width) {
     super(width);
     this.deltaX = 0.0;
-    this.deltaY = 0.0;
+    this.deltaY = -5.0;
   }
   draw(context) {
     super.drawAscendingBar(context);
@@ -252,7 +252,7 @@ class LowStressed3 extends ToneMark {
 class HighPrehead extends ToneMark {
   constructor(width) {
     super(width);
-    this.deltaX = 0.0;
+    this.deltaX = -3.0;
     this.deltaY = -22.0;
   }
   draw(context) {
@@ -264,7 +264,7 @@ class Underline extends ToneMark {
   constructor(start, width) {
     super(width);
     this.start = start;
-    this.deltaY = 0.0;
+    this.deltaY = 2.0;
   }
   draw(context) {
     context.beginPath();
@@ -830,6 +830,18 @@ class TSMmanager {
         redrawCanvas();
         var base64 = canvas.toDataURL("image/jpeg");
         document.getElementById("download").href = base64;
+      }
+
+      function saveHalfImage() {
+        selectionSet = new Set();
+        redrawCanvas();
+        var half = document.getElementById("canvas2");
+        half.width = canvas.width;
+        half.height = 53
+        var image = ctx.getImageData(0, 35, canvas.width, 53);
+        half.getContext("2d").putImageData(image, 0, 0);
+        var base64 = canvas2.toDataURL("image/jpeg");
+        document.getElementById("download2").href = base64;
       }
 
       function newCanvasWidth() {
