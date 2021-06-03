@@ -260,6 +260,14 @@ class HighPrehead extends ToneMark {
   }
 }
 
+class SyllabicConsonant extends ToneMark {
+  constructor(width) {
+    super(width);
+  }
+  draw(context) {
+  }
+}
+
 class Underline extends ToneMark {
   constructor(start, width) {
     super(width);
@@ -273,6 +281,7 @@ class Underline extends ToneMark {
     context.stroke();
   }
 }
+
 
 
 class TSMmanager {
@@ -292,7 +301,7 @@ class TSMmanager {
                                     ["rf", RiseFall], ["fr", FallRise], ["ml", MidLevel],
                                     ["h1", HighStressed1], ["h2", HighStressed2], ["h3", HighStressed3],
                                     ["l1", LowStressed1], ["l2", LowStressed2], ["l3", LowStressed3],
-                                    ["hh", HighPrehead]]);
+                                    ["hh", HighPrehead], ["aa", SyllabicConsonant]]);
     let chunks = this.intext.split(regexp);
     let outtext = "";
     let tsmArray = [];
@@ -303,7 +312,11 @@ class TSMmanager {
       let rest = elem.substr(2);
       if (dict.has(ctrlCh)) {
         tsmArray.push(new (dict.get(ctrlCh))(this.getWidth(outtext)));
-        outtext += " " + rest;    // put filler + characters
+        if (ctrlCh == "aa") {   // ad hoc patch up
+          outtext += rest;
+        } else {
+          outtext += " " + rest;    // put filler + characters
+        }
       } else if (ctrlCh == "bs") {    // start-marker for underline
         underlineStart = this.getWidth(outtext);
         outtext += rest;
