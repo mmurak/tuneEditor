@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>TuneEditor（Ver. 0.71）before refactoring</title>
+    <title>TuneEditor（Ver. 0.8）before refactoring</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
     <link rel="shortcut icon" href="kiwi-bird.png">
     <link rel="stylesheet" href="./styles.css">
@@ -26,7 +26,7 @@
     <option value="1600">1,600px</option>
     </select>
 <br/>
-    <input type="text" id="intext" size="100" onInput="sentenceInput();"><br/>
+    <input type="text" id="intext" size="124" onInput="sentenceInput();"><br/>
     <table>
     <tr><th>Height</th><th>Stress</th><th>&nbsp;</th><th align="left">Tone</th><th>&nbsp;</th><th align="left">Misc.</th></tr>
     <tr><td align="center">
@@ -119,8 +119,13 @@
     <canvas id="canvas" width="1600" height="200" style="border:solid gray 1px;"></canvas>
 
 <br/>
+    <image src="./legend.png">
+<br/>
     <canvas id="canvas2" height="53" style="visibility: hidden;"></canvas>
 
+    <script src="./toneMark.js"></script>
+    <script src="./BSpline.js"></script>
+    <script src="./toneNote.js"></script>
     <script src="./tuneEditor.js"></script>
 
   </body>

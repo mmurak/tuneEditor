@@ -24,326 +24,18 @@
       var iap = 0;
 
       var selectionSet = new Set();
+      const NotSelected = -1;
+      let selPtr = NotSelected;
+
+      const ColourNormal = "rgb(0, 0, 0)";
+      const ColourBackground = "rgb(255, 255, 255)";
+      const ColourSelected = "rgb(255, 0, 0)";
+      const ColourSummoned = "rgb(128, 128, 255)";
 
       var alternateArray = [0, 99999];   // with a sentinel
       var prevText = " ";   // with a sentinel
 
       var mouseDown = false;
-
-
-
-
-
-class ToneMark {
-  constructor(width) {
-    this.width = width;
-  }
-  drawCircle(context) {
-    context.beginPath();
-    context.arc(margin+this.width+this.deltaX, 70+this.deltaY, 3, 0, Math.PI*2);
-    context.stroke();
-  }
-  drawVerticalLine(context) {
-    context.beginPath();
-    context.moveTo(margin+this.width+this.deltaX, 70+this.deltaY);
-    context.lineTo(margin+this.width+this.deltaX, 70+this.deltaY+8.0);
-    context.stroke();
-  }
-  drawHorizontalLine(context) {
-    context.beginPath();
-    context.moveTo(margin+this.width+this.deltaX, 70+this.deltaY);
-    context.lineTo(margin+this.width+this.deltaX+10.0, 70+this.deltaY);
-    context.stroke();
-  }
-  drawAscendingBar(context) {
-    context.beginPath();
-    context.moveTo(margin+this.width+this.deltaX, 70+this.deltaY+8);
-    context.lineTo(margin+this.width+this.deltaX+8, 70+this.deltaY);
-    context.stroke();
-  }
-  drawAscendingArrowHead(context) {
-    context.beginPath();
-    context.moveTo(margin+this.width+this.deltaX+4, 70+this.deltaY);
-    context.lineTo(margin+this.width+this.deltaX+8, 70+this.deltaY);
-    context.lineTo(margin+this.width+this.deltaX+8, 70+this.deltaY+4);
-    context.stroke();
-  }
-  drawDescendingBar(context) {
-    context.beginPath();
-    context.moveTo(margin+this.width+this.deltaX, 70+this.deltaY);
-    context.lineTo(margin+this.width+this.deltaX+8, 70+this.deltaY+8);
-    context.stroke();
-  }
-  drawDescendingArrowHead(context) {
-    context.beginPath();
-    context.moveTo(margin+this.width+this.deltaX+4, 70+this.deltaY+8);
-    context.lineTo(margin+this.width+this.deltaX+8, 70+this.deltaY+8);
-    context.lineTo(margin+this.width+this.deltaX+8, 70+this.deltaY+4);
-    context.stroke();
-  }
-  drawMountain(context) {
-    context.beginPath();
-    context.moveTo(margin+this.width+this.deltaX - 8.0, 70+this.deltaY + 4.0);
-    context.lineTo(margin+this.width+this.deltaX - 4.0, 70+this.deltaY);
-    context.lineTo(margin+this.width+this.deltaX, 70+this.deltaY+4.0);
-    context.stroke();
-  }
-  drawValley(context) {
-    context.beginPath();
-    context.moveTo(margin+this.width+this.deltaX - 8.0, 70+this.deltaY);
-    context.lineTo(margin+this.width+this.deltaX - 4.0, 70+this.deltaY+4.0);
-    context.lineTo(margin+this.width+this.deltaX, 70+this.deltaY);
-    context.stroke();
-  }
-  drawBendedLine(context) {
-    context.beginPath();
-    context.moveTo(margin+this.width+this.deltaX - 4.0, 70+this.deltaY);
-    context.lineTo(margin+this.width+this.deltaX, 70+this.deltaY+4.0);
-    context.lineTo(margin+this.width+this.deltaX-4.0, 70+this.deltaY+8.0);
-    context.stroke();
-  }
-}
-
-class LowRise extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 0.0;
-    this.deltaY = -4.0;
-  }
-  draw(context) {
-    super.drawAscendingBar(context);
-  }
-}
-
-class HighRise extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 0.0;
-    this.deltaY = -22.0;
-  }
-  draw(context) {
-    super.drawAscendingBar(context);
-  }
-}
-
-class LowFall extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 0.0;
-    this.deltaY = -4.0;
-  }
-  draw(context) {
-    super.drawDescendingBar(context);
-  }
-}
-
-class HighFall extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 0.0;
-    this.deltaY = -22.0;
-  }
-  draw(context) {
-    super.drawDescendingBar(context);
-  }
-}
-
-class RiseFall extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX =  8.0;
-    this.deltaY =  -20.0;
-  }
-  draw(context) {
-    super.drawMountain(context);
-  }
-}
-
-class FallRise extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 8.0;
-    this.deltaY = -20.0;
-  }
-  draw(context) {
-    super.drawValley(context);
-  }
-}
-
-class MidLevel extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 6.0;
-    this.deltaY = -20.0;
-  }
-  draw(context) {
-    super.drawBendedLine(context);
-  }
-}
-
-class HighStressed1 extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 7.0;
-    this.deltaY = -25.0;
-  }
-  draw(context) {
-    super.drawVerticalLine(context);
-  }
-}
-
-class HighStressed2 extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 5.0;
-    this.deltaY = -22.0;
-  }
-  draw(context) {
-    super.drawCircle(context);
-  }
-}
-
-class HighStressed3 extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 0.0;
-    this.deltaY = -25.0;
-  }
-  draw(context) {
-    super.drawDescendingBar(context);
-    super.drawDescendingArrowHead(context);
-  }
-}
-
-class LowStressed1 extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 7.0;
-    this.deltaY = -5.0;
-  }
-  draw(context) {
-    super.drawVerticalLine(context);
-  }
-}
-
-class LowStressed2 extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 5.0;
-    this.deltaY = -2.0;
-  }
-  draw(context) {
-    super.drawCircle(context);
-  }
-}
-
-class LowStressed3 extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = 0.0;
-    this.deltaY = -5.0;
-  }
-  draw(context) {
-    super.drawAscendingBar(context);
-    super.drawAscendingArrowHead(context);
-  }
-}
-
-class HighPrehead extends ToneMark {
-  constructor(width) {
-    super(width);
-    this.deltaX = -3.0;
-    this.deltaY = -22.0;
-  }
-  draw(context) {
-    super.drawHorizontalLine(context);
-  }
-}
-
-class SyllabicConsonant extends ToneMark {
-  constructor(width) {
-    super(width);
-  }
-  draw(context) {
-  }
-}
-
-class Underline extends ToneMark {
-  constructor(start, width) {
-    super(width);
-    this.start = start;
-    this.deltaY = 2.0;
-  }
-  draw(context) {
-    context.beginPath();
-    context.moveTo(margin+this.start, 70+this.deltaY);
-    context.lineTo(margin+this.width, 70+this.deltaY);
-    context.stroke();
-  }
-}
-
-
-
-class TSMmanager {
-  constructor(context, intext) {
-    this.context = context;
-    this.intext = intext;
-  }
-
-  getWidth(str) {
-    return this.context.measureText(str).width;
-  }
-
-  analyse() {
-    const prefix = "''";    // double single quotes
-    const regexp = new RegExp(prefix);
-    const dict = new Map([["lr", LowRise], ["hr", HighRise], ["lf", LowFall], ["hf", HighFall],
-                                    ["rf", RiseFall], ["fr", FallRise], ["ml", MidLevel],
-                                    ["h1", HighStressed1], ["h2", HighStressed2], ["h3", HighStressed3],
-                                    ["l1", LowStressed1], ["l2", LowStressed2], ["l3", LowStressed3],
-                                    ["hh", HighPrehead], ["aa", SyllabicConsonant]]);
-    let chunks = this.intext.split(regexp);
-    let outtext = "";
-    let tsmArray = [];
-    let ulArray = [];
-    let underlineStart = 0;
-    chunks.forEach(elem => {
-      let ctrlCh = elem.substr(0, 2);
-      let rest = elem.substr(2);
-      if (dict.has(ctrlCh)) {
-        tsmArray.push(new (dict.get(ctrlCh))(this.getWidth(outtext)));
-        if (ctrlCh == "aa") {   // ad hoc patch up
-          outtext += rest;
-        } else {
-          outtext += " " + rest;    // put filler + characters
-        }
-      } else if (ctrlCh == "bs") {    // start-marker for underline
-        underlineStart = this.getWidth(outtext);
-        outtext += rest;
-      } else if (ctrlCh == "bf") {    // end-marker for underline
-        ulArray.push(new Underline(underlineStart, this.getWidth(outtext)));
-        outtext += rest;
-      } else {
-        outtext += (outtext == "") ? elem : prefix + elem;    // put prefix except 1st chunk
-      }
-    });
-    return [outtext, tsmArray, ulArray];
-  }
-
-  draw(textstruct) {
-    this.context.fillText(textstruct[0], margin, 70);
-    textstruct[1].forEach(elem => {
-      elem.draw(this.context);
-    });
-    textstruct[2].forEach(elem => {
-      elem.draw(this.context);
-    });
-  }
-}
-
-
-
-
 
       function initialise() {
         newCanvasWidth();
@@ -359,48 +51,39 @@ class TSMmanager {
             var coordX = evt.clientX - rect.left;
             if (document.getElementById("separator1").checked) {
               document.getElementById("separator1").checked = false;
-              intonationArray.push([separator, 0, coordX, 0, 0]);
+              intonationArray.push(new Separator(coordX));
             } else {
               if (intonationArray.length == 0)
                 return;
               var delta = 99999;
               iap = 0;
               if (document.getElementById("summon").checked == false) {
-                for (i = 0; i < intonationArray.length; i++) {
-                  if (intonationArray[i][0] >= 10)
+                for (let i = 0; i < intonationArray.length; i++) {
+                  if (intonationArray[i].visible == false)
                     continue;
-                  tempDelta = Math.abs(intonationArray[i][2] + margin - coordX);
+                  tempDelta = Math.abs(intonationArray[i].width + margin - coordX);
                   if (tempDelta < delta) {
                     iap = i;
                     delta = tempDelta;
                   }
                 }
-                if (selectionSet.has(iap)) {
-                  selectionSet.clear();
+                if (selPtr == iap) {
+                  selPtr = NotSelected;
                 } else {
-                  selectionSet.clear();
-                  selectionSet.add(iap);
+                  selPtr = iap;
                 }
               } else {    // summon process
                 for (i = 0; i < intonationArray.length; i++) {
-                  if (intonationArray[i][0] < 10)
+                  if (intonationArray[i].visible)
                     continue;
-                  tempDelta = Math.abs(intonationArray[i][2] + margin - coordX);
+                  tempDelta = Math.abs(intonationArray[i].width + margin - coordX);
                   if (tempDelta < delta) {
                     iap = i;
                     delta = tempDelta;
                   }
                 }
-                switch (intonationArray[iap][0]) {
-                  case toneCircleAtTheShed:
-                    intonationArray[iap][0] = toneCircle;
-                    break;
-                  case separatorAtTheShed:
-                    intonationArray[iap][0] = separator;
-                    break;
-                  default:
-                }
-                selectionSet.clear();
+                intonationArray[iap].visible = true;
+                selPtr = NotSelected;
               }
             }
             document.getElementById("summon").checked = false;
@@ -410,20 +93,45 @@ class TSMmanager {
           mouseDown = false;
         });
         canvas.addEventListener("mousemove", function (evt) {
-            if (!mouseDown || selectionSet.size == 0)
+            if (!mouseDown || selPtr == NotSelected)
               return;
             var coordX = evt.clientX - rect.left;
-            var idx;
-            for (idx of selectionSet.values()) {};
-            intonationArray[idx][2] = coordX - margin;
+            intonationArray[selPtr].width = coordX - margin;
             redrawCanvas();
         });
         canvas.oncontextmenu = function (evt) {
             mouseDown = false;
-            selectionSet.clear();
+            selPtr = NotSelected;
             redrawCanvas();
             return false;
         };
+        document.addEventListener("keydown", function (event) {
+          if ((selPtr == NotSelected) || (intonationArray[selPtr] instanceof Separator))
+            return;
+          let keyName = event.key;
+          if (event.shiftKey) {
+            if (keyName == "ArrowRight") {
+              intonationArray[selPtr].magX += 0.1;
+            } else if (keyName == "ArrowUp") {
+              intonationArray[selPtr].magY += 0.1;
+            } else if (keyName == "ArrowLeft") {
+              let x = intonationArray[selPtr].magX - 0.1;
+              intonationArray[selPtr].magX = (x >= 0.1) ? x : 0.1;
+            } else if (keyName == "ArrowRight") {
+              let y = intonationArray[selPtr].magY - 0.1;
+              intonationArray[selPtr].magY = (y >= 0.1) ? y : 0.1;
+            }
+            redrawCanvas();
+          } else if (event.ctrlKey) {
+          } else {
+            if (keyName == "ArrowDown") {
+              intonationArray[selPtr].finalY += 1;
+            } else if (keyName == "ArrowUp") {
+              intonationArray[selPtr].finalY -= 1;
+            }
+            redrawCanvas();
+          }
+        });
       }
 
 
@@ -469,14 +177,14 @@ class TSMmanager {
           alternateArray[ptr] += 1;
           if (((ptr % 2) == 1) && (leftEdge == 99999)) {   // means vowel
             var aaptr = Math.floor(ptr / 2);
-            intonationArray[aaptr][2] += width;
-            leftEdge = intonationArray[aaptr][2];
+            intonationArray[aaptr].width += width;
+            leftEdge = intonationArray[aaptr].width;
           }
           ptr += 1;
         }
         for (i = 0; i < intonationArray.length; i++) {
-          if (intonationArray[i][2] > leftEdge) {
-            intonationArray[i][2] += width;
+          if (intonationArray[i].width > leftEdge) {
+            intonationArray[i].width += width;
           }
         }
       }
@@ -487,14 +195,14 @@ class TSMmanager {
           alternateArray[ptr] -= 1;
           if (((ptr % 2) == 1) && (leftEdge == 99999)) {   // means vowel
             var aaptr = Math.floor(ptr / 2);
-            intonationArray[aaptr][2] -= width;
-            leftEdge = intonationArray[aaptr][2];
+            intonationArray[aaptr].width -= width;
+            leftEdge = intonationArray[aaptr].width;
           }
           ptr += 1;
         }
-        for (i = 0; i < intonationArray.length; i++) {
-          if (intonationArray[i][2] > leftEdge) {
-            intonationArray[i][2] -= width;
+        for (let i = 0; i < intonationArray.length; i++) {
+          if (intonationArray[i].width > leftEdge) {
+            intonationArray[i].width -= width;
           }
         }
       }
@@ -530,7 +238,7 @@ class TSMmanager {
 //console.log("  Path 2 last Vowel");
                 var width = getRealWidth(text.substr(0, chptr))
                               + ctx.measureText(text.substr(chptr, 1)).width / 2.0;
-                intonationArray.push([toneCircle, weakSize, width, 0, 0]);
+                intonationArray.push(new ToneNote(width, getCircleHeight(weakSize, 0), weakSize, 0));
               }
             } else if (alternateArray[aaptr+1] == chptr) {  // 次のクラスターの先頭（＝現在のクラスターの末尾）の場合
 //console.log("  Path 2 Next head");
@@ -547,7 +255,7 @@ class TSMmanager {
                 alternateArray.splice(aaptr+2, 0, chptr+1);
                 var width = getRealWidth(text.substr(0, chptr))
                               + ctx.measureText(text.substr(chptr, 1)).width / 2.0;
-                intonationArray.splice(Math.floor(aaptr/2), 0, [toneCircle, weakSize, width, 0, 0]);
+                intonationArray.splice(Math.floor(aaptr/2), 0, new ToneNote(width, getCircleHeight(weakSize, 0), weakSize,0));
                 shiftArray(aaptr+3, ctx.measureText(text.charAt(chptr)).width);
               } else {                    // VCV
 //console.log("  Path 3 VCV");
@@ -556,8 +264,8 @@ class TSMmanager {
                 var width = getRealWidth(text.substr(0, chptr))
                               + ctx.measureText(text.substr(chptr, 1)).width / 2.0;
                 var adj = intonationArray[Math.floor(aaptr/2)];
-                intonationArray.splice(Math.floor(aaptr/2)+1, 0,
-                  [adj[0], adj[1], width, adj[3], adj[4]]);
+                var newObj = new ToneNote(width, adj.height, adj.size, adj.pattern);
+                intonationArray.splice(Math.floor(aaptr/2)+1, 0, newObj);
                 shiftArray(aaptr+3, ctx.measureText(text.charAt(chptr)).width);
               }
             }
@@ -599,187 +307,119 @@ class TSMmanager {
 
       }
 
-      function getCircleHeight(size, toneLevel) {
-        var lower = lowerLimit - size - (lineWidth / 2.0);
-        var upper = upperLimit + size + (lineWidth / 2.0);
-        var step = (lower - upper) / (maxLevel - 1);
+      function getCircleHeight(size, toneLevel) {               // level=9  upper=96 low=150
+        var lower = lowerLimit - size - (lineWidth / 2.0);    // 145
+        var upper = upperLimit + size + (lineWidth / 2.0);  // 101
+        var step = (lower - upper) / (maxLevel - 1);          // 5.5
         return lower - (step * toneLevel);
-      }
-
-      function drawCircle(size, width, toneLevel, nucleusType) {
-        var h = getCircleHeight(size, toneLevel)
-        ctx.beginPath();
-        ctx.arc(width, h, size, 0, Math.PI * 2, true);
-        ctx.fill();
-        switch (nucleusType) {
-          case 1 :  // Low/High-Fall
-            ctx.moveTo(width, h);
-            ctx.bezierCurveTo(width + (size * 1.5), lowerLimit - (lowerLimit - h) / 2.0, width + (size * 2), lowerLimit - (lowerLimit - h) / 2.0, width + (size * 2), lowerLimit);
-            break;
-          case 3 :  // Rise-Fall
-            ctx.moveTo(width, h);
-            var cy = Math.max(upperLimit, h - (size * 2));
-            ctx.bezierCurveTo(width + size, cy - size, width + (size * 2), cy, width + (size * 2), lowerLimit);
-            break;
-          case 4 :  // Low/High-Rise
-            ctx.moveTo(width, h);
-            var endPoint = (h - upperLimit) * 0.5 + upperLimit; //    Math.max(upperLimit, h - (size * 2));
-            ctx.bezierCurveTo(width + (stressedSize * 1.5), h, width + (stressedSize * 2.0), h - (h - endPoint) * 0.5, width + (stressedSize*2.0), endPoint);
-            break;
-          case 6 :  // Fall-Rise
-            ctx.moveTo(width + size, h);
-            var endPoint = Math.max(upperLimit, h - (size * 2));
-            var hpu = lowerLimit - (lowerLimit - h) * 0.75;
-            var hpm = lowerLimit - (lowerLimit - h) * 0.5;
-            var hpml = lowerLimit - (lowerLimit - h) * 0.375;
-            var hpl = lowerLimit - (lowerLimit - h) * 0.25;
-            ctx.bezierCurveTo(
-              width + (size*1.5), h,
-              width + (size*1.5), hpu,
-              width + (size*1.5), hpm);
-            ctx.bezierCurveTo(
-              width + (size * 1.5), lowerLimit+(stressedSize*(toneLevel/10.0)),
-              width + (size * 3.0), lowerLimit+(stressedSize*(toneLevel/10.0)),
-              width + (size * 3.0), hpml);
-            break;
-          case 7 :  // Mid-Level
-            ctx.moveTo(width, h);
-            ctx.lineTo(width + (size * 3), h);
-            break;
-        }
-        ctx.stroke();
       }
 
 
       function redrawCanvas() {
-        ctx.beginPath();
-        ctx.fillStyle = "rgb(255, 255, 255)";
+        ctx.fillStyle = ColourBackground;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "rgb(0, 0, 0)";
         var text = " " + document.getElementById("intext").value;
-
+        var summon = document.getElementById("summon").checked;
+        for (let i=0; i < intonationArray.length; i++) {
+          ctx.beginPath();
+          if (selPtr == i) {
+            ctx.strokeStyle = ColourSelected;
+            ctx.fillStyle = ColourSelected;
+          } else {
+            ctx.strokeStyle = ColourNormal;
+            ctx.fillStyle = ColourNormal;
+          }
+          let elem = intonationArray[i];
+          if (summon) {
+            if (elem.visible == false) {
+              ctx.strokeStyle = ColourSummoned;
+              ctx.fillStyle = ColourSummoned;
+              elem.draw(ctx, margin);
+            } else {
+              elem.draw(ctx, margin);
+            }
+          } else {
+            if (elem.visible == true) {
+              elem.draw(ctx, margin);
+            }
+          }
+          ctx.stroke();
+        }
+        drawBoundary();
         let tsmMgr = new TSMmanager(ctx, text);
         let textStruct = tsmMgr.analyse();
         tsmMgr.draw(textStruct);
-
-        drawBoundary();
-        var summon = document.getElementById("summon").checked;
-        for (i = 0; i < intonationArray.length; i++) {
-          var color = (selectionSet.has(i)) ? "rgb(255, 0, 0)" : "rgb(0, 0, 0)";
-          ctx.strokeStyle = color;
-          ctx.fillStyle = color;
-          switch (intonationArray[i][0]) {
-            case toneCircle :
-              drawCircle(intonationArray[i][1], intonationArray[i][2]+margin, intonationArray[i][3], intonationArray[i][4]);
-              break;
-            case separator :
-              ctx.beginPath();
-              ctx.moveTo(intonationArray[i][2], upperLimit);
-              ctx.lineTo(intonationArray[i][2], lowerLimit);
-              ctx.stroke();
-              break;
-            case toneCircleAtTheShed :
-              if (summon) {
-                color = "rgb(128, 128, 255)";
-                ctx.strokeStyle = color;
-                ctx.fillStyle = color;
-                drawCircle(intonationArray[i][1], intonationArray[i][2]+margin, intonationArray[i][3], intonationArray[i][4]);
-              }
-              break;
-            case separatorAtTheShed :
-              if (summon) {
-                color = "rgb(128, 128, 255)";
-                ctx.strokeStyle = color;
-                ctx.fillStyle = color;
-                ctx.beginPath();
-                ctx.moveTo(intonationArray[i][2], upperLimit);
-                ctx.lineTo(intonationArray[i][2], lowerLimit);
-                ctx.stroke();
-              }
-              break;
-            default:
-          }
-          ctx.strokeStyle = "rgb(0, 0, 0)";
-          ctx.fillStyle = "rgb(0, 0, 0)";
-        }
       }
 
       function drawBoundary() {
+        ctx.strokeStyle = ColourNormal;
+        ctx.fillStyle = ColourBackground;
+        ctx.beginPath();
         ctx.moveTo(margin, upperLimit);
         ctx.lineTo(canvas.width - (margin * 2), upperLimit);
         ctx.moveTo(margin, lowerLimit);
         ctx.lineTo(canvas.width - (margin * 2), lowerLimit);
         ctx.stroke();
+        ctx.strokeStyle = ColourBackground;
+        ctx.fillStyle = ColourBackground;
+        ctx.fillRect(0, 0, canvas.width, upperLimit-1);
+        ctx.fillRect(0, lowerLimit+1, canvas.width, canvas.height - lowerLimit);
       }
 
       function assignToneStress(tone, stress) {
-        for (let item of selectionSet.values()) {
-          intonationArray[item][1] = stress;
-          intonationArray[item][3] = tone;
-        }
+        intonationArray[selPtr].size = stress;
+        intonationArray[selPtr].height = getCircleHeight(stress, tone);
       }
 
       function sendToTheShed() {
-        for (let item of selectionSet.values()) {
-          var currentType = intonationArray[item][0];
-          switch (currentType) {
-            case toneCircle:
-              intonationArray[item][0] = toneCircleAtTheShed;
-              break;
-            case separator:
-              intonationArray[item][0] = separatorAtTheShed;
-              break;
-            default:
-          }
-        }
+        intonationArray[selPtr].visible = false;
         nextAvailableSyllable();
         redrawCanvas();
       }
 
       function nextAvailableSyllable() {
-        var idx;
-        for (idx of selectionSet.values()) {};
-        idx += 1;
-        selectionSet.clear();
-        while((idx < intonationArray.length) && (intonationArray[idx][0] >= 10)) {
-          idx += 1;
+        if ((selPtr == NotSelected) || (selPtr == intonationArray.length-1)) {
+          selPtr = NotSelected;
+          return;
         }
-        if (intonationArray.length > idx) {
-          selectionSet.add(idx);
+        selPtr += 1;
+        while (selPtr < intonationArray.length) {
+          let element = intonationArray[selPtr];
+          if ((element.visible == true) && (element instanceof ToneNote))
+            return;
+          selPtr += 1;
         }
+        selPtr = NotSelected;
       }
 
       function prevAvailableSyllable() {
-        var idx;
-        for (idx of selectionSet.values()) {};
-        if (idx == iap) return;   // It's for direct pattern modification.
-        idx -= 1;
-        selectionSet.clear();
-        while((idx >= 0) && (intonationArray[idx][0] >= 10)) {
-          idx -= 1;
+        if (selPtr == NotSelected)
+          return;
+        selPtr -= 1;
+        while (selPtr >= 0) {
+          let element = intonationArray[selPtr];
+          if ((element.visible == true) && (element instanceof ToneNote))
+            return;
+          selPtr -= 1;
         }
-        if (idx >= 0) {
-          selectionSet.add(idx);
-        }
+        selPtr = NotSelected;
       }
 
       function assignNucleusPattern(pattern) {
-        prevAvailableSyllable();
-        if (selectionSet.size == 0) {   // nasty patch up in case of nothing is selected
-          var j = intonationArray.length - 1;
-          while (intonationArray[j][0] != toneCircle) {
-            j -= 1;
-          }
-          selectionSet.add(j);
+        if (selPtr == NotSelected) {   // nasty patch up in case of nothing is selected
+          selPtr = intonationArray.length;
         }
-        for (let item of selectionSet.values()) {
-          intonationArray[item][4] = pattern;
+        if (iap != selPtr) {
+          prevAvailableSyllable();
         }
+        intonationArray[selPtr].pattern = pattern;
         nextAvailableSyllable();
         redrawCanvas();
       }
 
       function setToneStress(tone, stress) {
+        if (selPtr == NotSelected)
+          return;
         assignToneStress(tone, stress);
         nextAvailableSyllable();
         redrawCanvas();
@@ -817,6 +457,7 @@ class TSMmanager {
 
       function retrieveFromTheShed() {
         document.getElementById("separator1").checked = false;
+        selPtr = NotSelected;
         redrawCanvas();
       }
 
@@ -829,7 +470,7 @@ class TSMmanager {
         intext.value = "";
         intonationArray = [];   // [type, size, width, tone, nucleusType]
         iap = 0;
-        selectionSet = new Set();
+        selPtr = NotSelected;
         alternateArray = [0, 99999];   // with a sentinel
         prevText = " ";   // with a sentinel
         ctx.beginPath();
@@ -839,14 +480,14 @@ class TSMmanager {
       }
 
       function saveImage() {
-        selectionSet = new Set();
+        selPtr = NotSelected;
         redrawCanvas();
         var base64 = canvas.toDataURL("image/jpeg");
         document.getElementById("download").href = base64;
       }
 
       function saveHalfImage() {
-        selectionSet = new Set();
+        selPtr = NotSelected;
         redrawCanvas();
         var half = document.getElementById("canvas2");
         half.width = canvas.width;
@@ -863,8 +504,8 @@ class TSMmanager {
         ctx = canvas.getContext("2d");
         rect = canvas.getBoundingClientRect();
         ctx.font = "24pt Arial";
-        ctx.strokeStyle = "rgb(0, 0, 0)";
+        ctx.strokeStyle = ColourNormal;
         ctx.lineWidth = lineWidth;
-        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.fillStyle = ColourNormal;
         redrawCanvas();
       }
