@@ -117,7 +117,7 @@
             } else if (keyName == "ArrowLeft") {
               let x = intonationArray[selPtr].magX - 0.1;
               intonationArray[selPtr].magX = (x >= 0.1) ? x : 0.1;
-            } else if (keyName == "ArrowRight") {
+            } else if (keyName == "ArrowDown") {
               let y = intonationArray[selPtr].magY - 0.1;
               intonationArray[selPtr].magY = (y >= 0.1) ? y : 0.1;
             }
