@@ -412,7 +412,9 @@
         if (iap != selPtr) {
           prevAvailableSyllable();
         }
-        intonationArray[selPtr].pattern = pattern;
+        if (!(intonationArray[selPtr] instanceof ToneNote))
+          return;
+        intonationArray[selPtr].setPattern(pattern);
         nextAvailableSyllable();
         redrawCanvas();
       }
@@ -421,7 +423,11 @@
         if (selPtr == NotSelected)
           return;
         assignToneStress(tone, stress);
-        nextAvailableSyllable();
+        if (event.shiftKey) {
+          iap = selPtr;
+        } else {
+          nextAvailableSyllable();
+        }
         redrawCanvas();
       }
 
