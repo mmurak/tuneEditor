@@ -1,0 +1,53 @@
+<html>
+<head>
+  <title>TuneEditor - 特殊キー操作の一覧</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+  <link rel="shortcut icon" href="../kiwi-bird.png">
+</head>
+<body>
+<h2>テキスト領域の特殊キー操作</h2>
+<table border="1">
+<tr><th>操作</th><th>説明</th></tr>
+<tr><td>←</td><td>カーソルを1文字分左に移動させる。</td></tr>
+<tr><td>→</td><td>カーソルを1文字分右に移動させる。</td></tr>
+<tr><td>shift+←</td><td>カーソルの選択範囲を1文字分左に移動させる。</td></tr>
+<tr><td>shift+→</td><td>カーソルの選択範囲を1文字分右に移動させる。</td></tr>
+<tr><td>cmd+←</td><td>カーソルを行頭に移動させる。</td></tr>
+<tr><td>cmd+→</td><td>カーソルを行末に移動させる。</td></tr>
+<tr><td>ctrl+shift+←</td><td>カーソルの選択範囲をすぐ左の単語の語頭に移動させる。</td></tr>
+<tr><td>ctrl+shift+→</td><td>カーソルの選択範囲をすぐ右の単語の語頭の直前に移動させる。</td></tr>
+<tr><td>delete (Backspace)</td><td>カーソルのすぐ左にある文字を削除する。（または選択範囲の削除）</td></tr>
+<tr><td>delete[x]> (Delete)</td><td>カーソルのすぐ右にある文字を削除する。（または選択範囲の削除）</td></tr>
+<tr><td>cmd+C</td><td>選択範囲をこのアプリの内部クリップボードにコピーする[*1]。</td></tr>
+<tr><td>ctrl+C</td><td align="center">同上</td></tr>
+<tr><td>cmd+X</td><td>選択範囲を切り取って、このアプリの内部クリップボードにコピーする[*1]。</td></tr>
+<tr><td>ctrl+X</td><td align="center">同上</td></tr>
+<tr><td>cmd+V</td><td>このアプリの内部クリップボードの内容をカーソル位置に貼り付ける[*1]。</td></tr>
+<tr><td>ctrl+V</td><td align="center">同上</td></tr>
+<tr><td>cmd+A</td><td>すべてのテキストを選択する。</td></tr>
+<tr><td>ctrl+A</td><td align="center">同上</td></tr>
+</table>
+
+<p>[*1] 現時点でのJavaScriptの規格制定状況により、OSのクリップボードとのやり取り（特にデータの取得）は、ブラウザーによって実装状況がさまざまとなっています。このため本アプリでは今のところ、内部クリップボードとのやり取りを主体にして機能を構成しています。</p>
+
+
+<h2>トーンノート領域の特殊キー操作</h2>
+<table border="1">
+<tr><th>操作</th><th>説明</th></tr>
+<tr><td>shift+トーンボタン類のクリック</td><td>自動フォーカス移動機能を一時的に抑止する。</td></tr>
+<tr><td>cmd+shift+←</td><td>音調核のピッチ曲線全体の幅を縮める。</td></tr>
+<tr><td>cmd+shift+→</td><td>音調核のピッチ曲線全体の幅を広げる。</td></tr>
+<tr><td>cmd+shift+↑</td><td>音調核のピッチ曲線全体の高さを広げる。</td></tr>
+<tr><td>cmd+shift+↓</td><td>音調核のピッチ曲線全体の高さを縮める。</td></tr>
+<tr><td>↑</td><td>音調核のピッチ曲線末尾の位置を高くする。</td></tr>
+<tr><td>↓</td><td>音調核のピッチ曲線末尾の位置を低くする。</td></tr>
+<tr><td>cmd+Z</td><td>1つ左のトーンへとフォーカスを移動させる[*2]。</td></tr>
+<tr><td>ctrl+Z</td><td align="center">同上</td></tr>
+<tr><td>cmd+shift+Z</td><td>1つ右のトーンへとフォーカスを移動させる[*2]。</td></tr>
+<tr><td>ctrl+shift+Z</td><td align="center">同上</td></tr>
+</table>
+
+<p>[*2] このウェブアプリでは、トーンの高さとストレスを指定するボタンをクリックすると、次のトーンに自動的にフォーカスが移動します。このため、誤って不適切なボタンを押した場合、いちいち前のトーンを選択し直す必要が出てきます。問題解決にはUndo機能の実装が最善だとは分かっているのですが、仕様の詰めが今ひとつなので（^^;）、現状は「Ctrl+Zで1つ左のトーン（すなわち今設定したトーン）へとフォーカスを移動させる」という「疑似Undo」にしております。</p>
+
+</body>
+</html>
