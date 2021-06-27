@@ -1,4 +1,4 @@
-// Dispatch table for Dispatcher -- should be declared AFTER CanvasManager object.
+// Dispatch table for Dispatcher -- should be declared AFTER CanvasManager object. 
 let KeyDispatcher = {   // keyname should be specified in UPPERCASE (considering CAPS LOCK)
   "cmsBACKSPACE" : cMgr.backspace,
   "cmsDELETE" : cMgr.delete,
