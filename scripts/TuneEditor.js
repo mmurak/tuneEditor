@@ -22,6 +22,7 @@ cMgr.ccanvas.addEventListener("mousedown", function(evt) {
   mouseDown = true;
   let coordX = evt.clientX - cMgr.rect.left - 30;
   let coordY = evt.clientY - cMgr.rect.top;
+//console.log(coordY);
   if (coordY < cMgr.UpperLimit) {   // text area
     textClick = true;
     let chp = 0;
@@ -274,3 +275,7 @@ function prevAvailableSyllable() {
   selPtr = NotSelected;
 }
 
+function centrelineControl() {
+  document.getElementById("centrelineCB").blur();
+  cMgr.draw();
+}

@@ -21,6 +21,7 @@ class CanvasManager {
   constructor(canvas, ccanvas, offset) {
     // CONSTANTS
     this.NormalColour = "rgb(0, 0, 0)";
+    this.GrayColour = "rgb(180, 180, 180)";
     this.RedColour = "rgb(255, 0, 0)";
     this.BlueColour = "rgb(128, 128, 255)";
     this.BackgroundColour = "rgb(255, 255, 255)";
@@ -134,6 +135,19 @@ class CanvasManager {
     this.ctx.moveTo(this.Margin, this.LowerLimit);
     this.ctx.lineTo(this.width - (this.Margin * 2), this.LowerLimit);
     this.ctx.stroke();
+    //
+    if (document.getElementById("centrelineCB").checked) {
+      this.ctx.strokeStyle = this.GrayColour;
+      this.ctx.lineWidth = 1;
+      this.ctx.beginPath();
+      let centreY = (this.UpperLimit + this.LowerLimit) / 2.0;
+      this.ctx.moveTo(this.Margin, centreY);
+      this.ctx.lineTo(this.width - (this.Margin * 2), centreY);
+      this.ctx.stroke();
+      this.ctx.strokeStyle = this.NormalColour;
+      this.ctx.lineWidth = this.LineWidth;
+    }
+    //
     this.ctx.fillStyle = this.BackgroundColour;
     this.ctx.fillRect(0, 0, this.width, this.UpperLimit - 1);
     this.ctx.fillRect(0, this.LowerLimit + 1, this.width, this.canvas.height - this.LowerLimit);
@@ -676,6 +690,17 @@ class CanvasManager {
     nextAvailableSyllable();
   }
 
+  easterKey() {
+    let val = prompt("The value should be between 97 and 199.  Current value is " + this.LowerLimit);
+    if (isNumber(val)) {
+      val = Number(val);
+      if ((val > this.UpperLimit) && (val < 200)) {
+        this.LowerLimit = val;
+        this.draw();
+      }
+    }
+  }
+
 }
 
 // experimenting... (paste function)
@@ -688,3 +713,10 @@ async function readFromClipboard() {
   }
 }
 
+// supporting function for easter key
+function isNumber(n) {
+  if (typeof(n) === "string" && n.trim() !== "" && Number.isFinite(n - 0) ) {
+    return true;
+  }
+  return false;
+}
