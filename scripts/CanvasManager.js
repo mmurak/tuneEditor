@@ -138,7 +138,7 @@ class CanvasManager {
     //
     if (document.getElementById("centrelineCB").checked) {
       this.ctx.setLineDash([5, 2]);
-      this.ctx.lineWidth = 1;
+      this.ctx.lineWidth = 2;
       this.ctx.beginPath();
       let centreY = (this.UpperLimit + this.LowerLimit) / 2.0;
       this.ctx.moveTo(this.Margin, centreY);
