@@ -137,14 +137,14 @@ class CanvasManager {
     this.ctx.stroke();
     //
     if (document.getElementById("centrelineCB").checked) {
-      this.ctx.strokeStyle = this.GrayColour;
+      this.ctx.setLineDash([5, 2]);
       this.ctx.lineWidth = 1;
       this.ctx.beginPath();
       let centreY = (this.UpperLimit + this.LowerLimit) / 2.0;
       this.ctx.moveTo(this.Margin, centreY);
       this.ctx.lineTo(this.width - (this.Margin * 2), centreY);
       this.ctx.stroke();
-      this.ctx.strokeStyle = this.NormalColour;
+      this.ctx.setLineDash([]);
       this.ctx.lineWidth = this.LineWidth;
     }
     //
