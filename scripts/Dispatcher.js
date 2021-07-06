@@ -38,6 +38,7 @@ let KeyDispatcher = {   // keyname should be specified in UPPERCASE (considering
   "CmSZ" : cMgr.redoHook,
   "cMSZ" : cMgr.redoHook,
   "cMsK" : cMgr.easterKey,
+  "CmSK" : cMgr.easterKey,
 };
 
 // Menu Dispatch table for Dispatcher -- should be declared AFTER CanvasManager object.
