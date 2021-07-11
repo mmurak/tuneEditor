@@ -1,3 +1,5 @@
+let magFactor = 1.0;
+
 function getStandardPath(pattern) {  // This function acts as class variables for ToneNote
   const pcoord = [
     [],         // Not nucleus
@@ -9,7 +11,7 @@ function getStandardPath(pattern) {  // This function acts as class variables fo
     [[0, 0], [10, 0], [10, 36], [10, 48], [15, 50], [17, 50], [20, 48], [22, 42], [25, 30]],   // 6. Fall Rise
     [[0, 0], [25, 0]],         // 7. Mid-Level
   ];
-  return pcoord[pattern];
+  return pcoord[pattern].map(x => [x[0] * magFactor, x[1]]);
 }
 
 class ToneNote {

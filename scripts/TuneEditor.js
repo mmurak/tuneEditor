@@ -181,9 +181,9 @@ function separatorClicked() {
   document.getElementById("summon").checked = false;
 }
 
-const weakSize = 4;
-const midSize = 6;
-const stressedSize = 8;
+let weakSize = 4;
+let midSize = 6;
+let stressedSize = 8;
 function setToneStress(tone, stress) {
   cMgr.ccanvas.focus();
   if (selPtr == NotSelected)

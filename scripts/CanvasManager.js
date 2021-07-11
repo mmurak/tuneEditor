@@ -696,6 +696,17 @@ class CanvasManager {
       val = Number(val);
       if ((val > this.UpperLimit) && (val < 200)) {
         this.LowerLimit = val;
+        if (val >= 170) {
+          weakSize = 6;
+          midSize = 9;
+          stressedSize = 13;
+          magFactor = 1.5;
+        } else {
+          weakSize = 4;
+          midSize = 6;
+          stressedSize = 8;
+          magFactor = 1.0;
+        }
         this.draw();
       }
     }
