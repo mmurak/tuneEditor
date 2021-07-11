@@ -279,3 +279,60 @@ function centrelineControl() {
   document.getElementById("centrelineCB").blur();
   cMgr.draw();
 }
+
+
+let ParmList = null;
+
+function getParm(key) {
+  if (ParmList == null) {
+    ParmList = [];
+    var arg = location.search.substring(1);
+    if (arg != "") {
+      let args = arg.split("&");
+      for(let i = 0; i < args.length; i++) {
+        parmPair = args[i].split("=");
+        ParmList[parmPair[0]] = parmPair[1];
+      }
+    }
+  }
+  if (key in ParmList) {
+    return ParmList[key];
+  } else {
+    return "";
+  }
+}
+
+// CONFIGURATOR SECTION
+//   default baseline=150&s=4&m=6&l=8&magfactor=1.0
+//     if baseline >= 170  s=6&m=9&l=13&magfactor=1.5
+let parmwork = getParm("baseline");
+if (parmwork != "") {
+  if (isNumber(parmwork)) {
+    cMgr.LowerLimit = Number(parmwork);
+  }
+}
+parmwork = getParm("s");
+if (parmwork != "") {
+  if (isNumber(parmwork)) {
+    weakSize = Number(parmwork);
+  }
+}
+parmwork = getParm("m");
+if (parmwork != "") {
+  if (isNumber(parmwork)) {
+    midSize = Number(parmwork);
+  }
+}
+parmwork = getParm("l");
+if (parmwork != "") {
+  if (isNumber(parmwork)) {
+    stressedSize = Number(parmwork);
+  }
+}
+parmwork = getParm("magfactor");
+if (parmwork != "") {
+  if (isNumber(parmwork)) {
+    magFactor = Number(parmwork);
+  }
+}
+cMgr.draw();
