@@ -335,4 +335,21 @@ if (parmwork != "") {
     magFactor = Number(parmwork);
   }
 }
+parmwork = getParm("font");
+if (parmwork != "") {
+  cMgr.FontGlyph = decodeURI(parmwork);
+  cMgr.setCanvas(cMgr.canvas, cMgr.ccanvas);
+}
+parmwork = getParm("fontsize");
+if (parmwork != "") {
+  if (isNumber(parmwork)) {
+    cMgr.FontSize = Number(parmwork);
+    cMgr.setCanvas(cMgr.canvas, cMgr.ccanvas);
+  }
+}
+
+parmwork = getParm("dotdistribution");
+if (parmwork != "") {
+  cMgr.DotDistribution = Number(parmwork);
+}
 cMgr.draw();

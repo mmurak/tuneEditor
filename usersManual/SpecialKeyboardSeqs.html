@@ -5,45 +5,58 @@
   <link rel="shortcut icon" href="../kiwi-bird.png">
 </head>
 <body>
-<h2>Special keyboard sequences for Text area</h2>
+<h2>Special key-sequences for Text area</h2>
 <table border="1">
 <tr><th>key</th><th>Description</th></tr>
 <tr><td>←</td><td>Move cursor one character to the left.</td></tr>
 <tr><td>→</td><td>Move cursor one character to the right.</td></tr>
 <tr><td>shift+←</td><td>Move auxiliary cursor to the left to select a range.</td></tr>
 <tr><td>shift+→</td><td>Move auxiliary cursor to the right to select a range.</td></tr>
-<tr><td>cmd+←</td><td>Move cursor to the beginning of the line.</td></tr>
-<tr><td>cmd+→</td><td>Move cursor to the end of the line.</td></tr>
+<tr><td>ctrl+q</td><td>Move cursor to the beginning of the line.</td></tr>
+<tr><td>ctrl+w</td><td>Move cursor to the end of the line.<br/>(This doesn't work with Windows, so use ctrl+shift+Q)</td></tr>
+<tr><td>ctrl+shift+Q</td><td>Move cursor to the end of the line.</td></tr>
 <tr><td>ctrl+shift+←</td><td>Extend the selection to the head of the closest word on the left.</td></tr>
 <tr><td>ctrl+shift+→</td><td>Extend the selection to just before the nearest word on the right.</td></tr>
 <tr><td>delete (Backspace)</td><td>Delete text to the left of the cursor. (Or delete the selected region.)</td></tr>
 <tr><td>delete[x]> (Delete)</td><td>Delete text to the right of the cursor. (Or delete the selected region.)</td></tr>
-<tr><td>cmd+C</td><td>Copy the selection to the internal and OS buffer.</td></tr>
-<tr><td>ctrl+C</td><td align="center">ditto</td></tr>
-<tr><td>cmd+X</td><td>Cut the selection and copy it to the internal and OS buffer.</td></tr>
-<tr><td>ctrl+X</td><td align="center">ditto</td></tr>
-<tr><td>cmd+V</td><td>Paste the contents from the internal buffer.</td></tr>
-<tr><td>ctrl+V</td><td align="center">ditto</td></tr>
-<tr><td>cmd+shift+V</td><td>Paste the contents from the OS buffer. (Chrome only)</td></tr>
-<tr><td>cmd+A</td><td>Select all text.</td></tr>
-<tr><td>ctrl+A</td><td align="center">ditto</td></tr>
+<tr><td>cmd+c</td><td>Copy the selection to the internal and OS buffer.[*1]</td></tr>
+<tr><td>ctrl+c</td><td align="center">ditto</td></tr>
+<tr><td>cmd+x</td><td>Cut the selection and copy it to the internal and OS buffer.[*1]</td></tr>
+<tr><td>ctrl+x</td><td align="center">ditto</td></tr>
+<tr><td>cmd+v</td><td>Paste the contents from the internal buffer.[*1]</td></tr>
+<tr><td>ctrl+v</td><td align="center">ditto</td></tr>
+<tr><td>cmd+a</td><td>Select all text.</td></tr>
+<tr><td>ctrl+a</td><td align="center">ditto</td></tr>
 </table>
 
+<p>[*1] Due to the current status of JavaScript standards, the behaviour of the cut/copy & paste function (especially paste function) varies from browser to browser.  For this reason, this application currently employs internal clipboard, which means the application can't interact with other applications.</p>
 
 
-<h2>Special keyboard sequences for Graphic area</h2>
+<h2>Special key-sequences for Graphic area</h2>
 <table border="1">
 <tr><th>key</th><th>Description</th></tr>
+<tr><td>shift+click on Tone-button-matrix</td><td>Suppress the automatic focus-forward function.</td></tr>
 <tr><td>cmd+shift+←</td><td>Decrease the width of the tail of the tonal nucleus.</td></tr>
+<tr><td>ctrl+←</td><td align="center">ditto (works with Windows)</td></tr>
 <tr><td>cmd+shift+→</td><td>Increase the width of the tail of the tonal nucleus.</td></tr>
+<tr><td>ctrl+→</td><td align="center">ditto (works with Windows)</td></tr>
 <tr><td>cmd+shift+↑</td><td>Increase the height of the tail of the tonal nucleus.</td></tr>
+<tr><td>ctrl+↑</td><td align="center">ditto (works with Windows)</td></tr>
 <tr><td>cmd+shift+↓</td><td>Decrease the height of the tail of the tonal nucleus.</td></tr>
+<tr><td>ctrl+↓</td><td align="center">ditto (works with Windows)</td></tr>
 <tr><td>↑</td><td>Raise the height of the tail end of the tonal nucleus.</td></tr>
 <tr><td>↓</td><td>Lower the height of the tail end of the tonal nucleus.</td></tr>
-<tr><td>cmd+Z</td><td>Select the tone note immediately to the left.</td></tr>
-<tr><td>ctrl+Z</td><td align="center">ditto</td></tr>
-<tr><td>cmd+shift+Z</td><td>Select the tone note immediately to the right.</td></tr>
+<tr><td>cmd+z</td><td>Select the tone note immediately to the left.[*2]</td></tr>
+<tr><td>ctrl+z</td><td align="center">ditto</td></tr>
+<tr><td>cmd+shift+Z</td><td>Select the tone note immediately to the right.[*2]</td></tr>
 <tr><td>ctrl+shift+Z</td><td align="center">ditto</td></tr>
+<tr><td></td><td></td></tr>
+<tr><td>cmd+k</td><td>Adjust the height of the graphic area. (between 97 and 199) [*3]</td></tr>
+<tr><td>ctrl+shift+k</td><td align="center">ditto (for Windows)</td></tr>
 </table>
 </body>
 </html>
+
+<p>[*2] In this web app, when you click on a Tone-button-matrix (one of the buttons that specifies the height and stress of a tone), the focus automatically moves to the next tone.  This means that if you accidentally click an inappropriate button, you will have to re-select the previous tone every time.  I know that the best way to solve this problem is to implement the Undo function, but I'm still working on the specifications (^^;), so I decided to implement a "pseudo-Undo" which makes focus move 1 position to the left by pressing Ctrl+Z.</p>
+
+<p>[*3] This feature was implemented at the suggestions of Prof. Yoshiki Nagase.  I would like to thank Prof. Nagase, and Mr. Takeo Kubo for passing on the suggestions.</p>

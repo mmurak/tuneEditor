@@ -27,13 +27,15 @@ class CanvasManager {
     this.BackgroundColour = "rgb(255, 255, 255)";
     this.CursorColour = "rgba(64, 128, 64, 0.8)";
     this.RangeColour = "rgba(135, 206, 235, 0.5)";
-    this.Font = "24pt TimesRoman";
+    this.FontGlyph = "Times New Roman";
+    this.FontSize = "27";
     this.LineWidth = 2;
     this.CursorWidth = 3;
     this.UpperLimit = 96;
     this.LowerLimit = 150;
     this.Margin = 20;
     this.MaxLevel = 9;
+    this.DotDistribution = 0;
     // Initialise canvas info.
     this.setCanvas(canvas, ccanvas);
     // display offset
@@ -47,6 +49,7 @@ class CanvasManager {
     this.underline = new Set();
     this.tsm = new TSMmanager(offset, 70);
     this.tnm = new ToneNoteManager(this);
+    this.gap = String.fromCodePoint(0x2004); // for diacriticals
   }
 
   /* Canvas size control */
@@ -55,7 +58,7 @@ class CanvasManager {
     this.width = canvas.width;
     this.height = canvas.height;
     this.ctx = canvas.getContext("2d");
-    this.ctx.font = this.Font;
+    this.ctx.font = this.FontSize + "pt " + this.FontGlyph;
     this.ctx.strokeStyle = this.NormalColour;
     this.ctxfillStyle = this.NormalColour;
     this.ctx.lineWidth = this.LineWidth;
@@ -201,8 +204,23 @@ class CanvasManager {
 
   // Return height for tone note
   getHeight4Note(size, toneLevel) {
-    let lower = this.LowerLimit - size - (this.LineWidth / 2.0);
-    let upper = this.UpperLimit + size + (this.LineWidth / 2.0);
+    let newSize;
+    switch (this.DotDistribution) {
+      case 0:
+        newSize = size;
+        break;
+      case 1:
+        newSize = stressedSize;
+        break;
+      case 2:
+        if ((toneLevel == 0) || (toneLevel == this.MaxLevel - 1)) {
+          newSize = size
+        } else {
+          newSize = stressedSize;
+        }
+    }
+    let lower = this.LowerLimit - newSize - (this.LineWidth / 2.0);
+    let upper = this.UpperLimit + newSize + (this.LineWidth / 2.0);
     let step = (lower - upper) / (this.MaxLevel - 1);
     return lower - (step * toneLevel);
   }
@@ -452,119 +470,119 @@ class CanvasManager {
 
   /* Tone Stress Mark - High-Rise */
   highRise() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "hr");
     this.draw();
   }
 
   /* Tone Stress Mark - Low-Rise */
   lowRise() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "lr");
     this.draw();
   }
 
   /* Tone Stress Mark - High-Fall */
   highFall() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "hf");
     this.draw();
   }
 
   /* Tone Stress Mark - Low-Fall */
   lowFall() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "lf");
     this.draw();
   }
 
   /* Tone Stress Mark - Rise-Fall */
   riseFall() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "rf");
     this.draw();
   }
 
   /* Tone Stress Mark - Fall-Rise */
   fallRise() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "fr");
     this.draw();
   }
 
   /* Tone Stress Mark - Mid-Level */
   midLevel() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "ml");
     this.draw();
   }
 
   /* Tone Stress Mark - High-1 */
   high1() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "h1");
     this.draw();
   }
 
   /* Tone Stress Mark - Low-1 */
   low1() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "l1");
     this.draw();
   }
 
   /* Tone Stress Mark - High-2 */
   high2() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "h2");
     this.draw();
   }
 
   /* Tone Stress Mark - Low-2 */
   low2() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "l2");
     this.draw();
   }
 
   /* Tone Stress Mark - High-3 */
   high3() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "h3");
     this.draw();
   }
 
   /* Tone Stress Mark - Low-3 */
   low3() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "l3");
     this.draw();
   }
 
   /* Tone Stress Mark - High-Prehead */
   highPrehead() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "hp");
     this.draw();
   }
 
   /* Tone Stress Mark - Low-Prehead */
   lowPrehead() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "lp");
     this.draw();
   }
 
   /* Intonation Phrase Separator */
   intonationP() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "ip");
     this.draw();
   }
 
   /* FullStop Separator */
   fullStop() {
-    this.insert(" ");
+    this.insert(this.gap);
     this.tsm.register(this.ptr-1, "fs");
     this.draw();
   }
