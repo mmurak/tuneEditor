@@ -218,6 +218,9 @@ class CanvasManager {
         } else {
           newSize = stressedSize;
         }
+        break;
+      default:
+        newSize = size;
     }
     let lower = this.LowerLimit - newSize - (this.LineWidth / 2.0);
     let upper = this.UpperLimit + newSize + (this.LineWidth / 2.0);
