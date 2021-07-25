@@ -733,6 +733,14 @@ class CanvasManager {
     }
   }
 
+  saveHalfImageHook() {
+    document.getElementById("download2").click();
+  }
+
+  saveImageHook() {
+    document.getElementById("download").click();
+  }
+
 }
 
 // experimenting... (paste function)

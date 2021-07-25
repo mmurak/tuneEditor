@@ -63,6 +63,8 @@ let MenuDispatcher = {   // keyname should be specified in UPPERCASE (considerin
   "SU" : cMgr.setUnderline,
   "CU" : cMgr.clearUnderline,
   "AA" : cMgr.extraVowel,
+  "SS" : cMgr.saveHalfImageHook,
+  "SW" : cMgr.saveImageHook,
 };
 
 
