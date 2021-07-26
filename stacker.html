@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title>Stacker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="shortcut icon" href="kiwi-bird.png">
+  </head>
+  <body style="user-select: none;">
+  <input type="file" onChange="readImage(this.files, 'mainCanvas')"></input>
+  <a id="download" href="#" download="stackedImage.jpg" onclick="saveImage();">Save Image</a><br>
+  <div id="canvasArea"><canvas></canvas></div>
+
+<script>
+let imageArray = [];
+function readImage(files, canvasId) {
+  let reader = new FileReader();
+  reader.onload = function(evt) {
+    let anImage = new Image();
+      anImage.onload = function() {
+        imageArray.push(anImage);
+        drawCanvas();
+      }
+      anImage.src = event.target.result;
+    }
+    reader.readAsDataURL(files[0]);
+}
+
+function getFullWidth() {
+  let fullWidth = 0;
+  for (let i = 0; i < imageArray.length; i++) {
+    fullWidth = (fullWidth < imageArray[i].naturalWidth) ? imageArray[i].naturalWidth : fullWidth;
+  }
+  return fullWidth;
+}
+
+function getFullHeight() {
+  let fullHeight = 0;
+  for (let i = 0; i < imageArray.length; i++) {
+    fullHeight += imageArray[i].naturalHeight;
+  }
+  return fullHeight;
+}
+
+function drawCanvas() {
+  let canvasArea = document.getElementById("canvasArea");
+  canvasArea.removeChild(canvasArea.lastChild);
+  let mainCanvas = document.createElement("canvas");
+  mainCanvas.width = getFullWidth();
+  mainCanvas.height = getFullHeight();
+  let ctx = mainCanvas.getContext('2d');
+  let startY = 0;
+  for (let i = 0; i < imageArray.length; i++) {
+    let anImage = imageArray[i];
+    ctx.drawImage(anImage, 0, startY);
+    startY += anImage.height;
+  }
+  canvasArea.appendChild(mainCanvas);
+}
+
+
+function saveImage() {
+  let canvas = document.getElementById("canvasArea").lastChild;
+  let base64 = canvas.toDataURL("image/jpeg");
+  document.getElementById("download").href = base64;
+}
+
+</script>
+</body>
+</html>
