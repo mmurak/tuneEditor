@@ -347,9 +347,12 @@ if (parmwork != "") {
     cMgr.setCanvas(cMgr.canvas, cMgr.ccanvas);
   }
 }
-
 parmwork = getParm("dotdistribution");
 if (parmwork != "") {
   cMgr.DotDistribution = Number(parmwork);
+}
+parmwork = getParm("midline");
+if ((parmwork == "y") || (parmwork == "Y")) {
+  document.getElementById("centrelineCB").checked = true;
 }
 cMgr.draw();
