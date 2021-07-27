@@ -116,6 +116,16 @@ class CanvasManager {
   /* Draw text string and cursor */
   // Draw two canvases (main)
   draw() {
+//   canvas grower
+    let canvas = document.getElementById("canvas");
+    let ccanvas = document.getElementById("cursor");
+    let necessaryWidth = this.ctx.measureText(this.textdata).width + this.offset * 2 + 10;
+    if (canvas.width < necessaryWidth) {
+      canvas.width = necessaryWidth;
+      ccanvas.width = necessaryWidth;
+      this.setCanvas(canvas, ccanvas);
+    }
+//
     this.ctx.fillStyle = this.BackgroundColour;
     this.ctx.fillRect(0, 0, this.width, this.height);
     this.ctx.fillStyle = this.NormalColour;
