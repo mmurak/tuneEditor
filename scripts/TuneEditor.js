@@ -20,9 +20,9 @@ let selPtr = NotSelected;
 let textClick = false;
 cMgr.ccanvas.addEventListener("mousedown", function(evt) {
   mouseDown = true;
-  let coordX = evt.pageX - cMgr.rect.left - 30;
+  let xFixed = (cMgr.rect.left >= 0) ? cMgr.rect.left : 0;
+  let coordX = evt.pageX - xFixed - 30;
   let coordY = evt.pageY - cMgr.rect.top;
-//console.log(coordY);
   if (coordY < cMgr.UpperLimit) {   // text area
     textClick = true;
     let chp = 0;
@@ -86,7 +86,8 @@ cMgr.ccanvas.addEventListener("mousemove", function (evt) {
   if (textClick) {    // text area
     if (!mouseDown)
       return;
-    let coordX = evt.pageX - cMgr.rect.left - 30;
+    let xFixed = (cMgr.rect.left >= 0) ? cMgr.rect.left : 0;
+    let coordX = evt.pageX - xFixed - 30;
     let coordY = evt.pageY - cMgr.rect.top;
     let chp = 0;
     while((chp < cMgr.textdata.length) && (cMgr.ctx.measureText(cMgr.textdata.substr(0, chp+1)).width < coordX)) {
@@ -97,7 +98,8 @@ cMgr.ccanvas.addEventListener("mousemove", function (evt) {
   } else {
     if (!mouseDown || selPtr == NotSelected) 
       return;
-    let coordX = evt.pageX - cMgr.rect.left;
+    let xFixed = (cMgr.rect.left >= 0) ? cMgr.rect.left : 0;
+    let coordX = evt.pageX - xFixed;
     cMgr.tnm.noteArray[selPtr].width = coordX - 30;
     cMgr.draw();
   }
