@@ -311,50 +311,59 @@ let parmwork = getParm("baseline");
 if (parmwork != "") {
   if (isNumber(parmwork)) {
     cMgr.LowerLimit = Number(parmwork);
+    console.log("baseline: '" + parmwork + "'");
   }
 }
 parmwork = getParm("s");
 if (parmwork != "") {
   if (isNumber(parmwork)) {
     weakSize = Number(parmwork);
+    console.log("s(small dot): '" + parmwork + "'");
   }
 }
 parmwork = getParm("m");
 if (parmwork != "") {
   if (isNumber(parmwork)) {
     midSize = Number(parmwork);
+    console.log("m(medium dot): '" + parmwork + "'");
   }
 }
 parmwork = getParm("l");
 if (parmwork != "") {
   if (isNumber(parmwork)) {
     stressedSize = Number(parmwork);
+    console.log("l(large dot): '" + parmwork + "'");
   }
 }
 parmwork = getParm("magfactor");
 if (parmwork != "") {
   if (isNumber(parmwork)) {
     magFactor = Number(parmwork);
+    console.log("magfactor: '" + parmwork + "'");
   }
 }
 parmwork = getParm("font");
 if (parmwork != "") {
   cMgr.FontGlyph = decodeURI(parmwork);
   cMgr.setCanvas(cMgr.canvas, cMgr.ccanvas);
+  console.log("font: '" + cMgr.FontGlyph + "'");
 }
 parmwork = getParm("fontsize");
 if (parmwork != "") {
   if (isNumber(parmwork)) {
     cMgr.FontSize = Number(parmwork);
     cMgr.setCanvas(cMgr.canvas, cMgr.ccanvas);
+    console.log("fontsize: '" + cMgr.FontSize + "'");
   }
 }
 parmwork = getParm("dotdistribution");
 if (parmwork != "") {
   cMgr.DotDistribution = Number(parmwork);
+  console.log("dotdistribution: '" + parmwork + "'");
 }
 parmwork = getParm("midline");
 if ((parmwork == "y") || (parmwork == "Y")) {
   document.getElementById("centrelineCB").checked = true;
+  console.log("midline: '" + parmwork + "'");
 }
 cMgr.draw();
