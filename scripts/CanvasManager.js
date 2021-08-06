@@ -751,6 +751,16 @@ class CanvasManager {
     document.getElementById("download").click();
   }
 
+  saveInternalStruct() {
+    if (Restraint == "on") return;
+    saveInternalStructure();
+  }
+
+  loadInternalStruct() {
+    if (Restraint == "on") return;
+    loadInternalStructure();
+  }
+
 }
 
 // experimenting... (paste function)

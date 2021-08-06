@@ -80,6 +80,9 @@ class ToneNote {
     }
     context.stroke();
   }
+  getClassName() {
+    return this.constructor.name;
+  }
 }
 
 class Separator {   // could be subclass of sth... like Element
@@ -92,5 +95,8 @@ class Separator {   // could be subclass of sth... like Element
     context.moveTo(this.width+margin, cMgr.UpperLimit);
     context.lineTo(this.width+margin, cMgr.LowerLimit);
     context.stroke();
+  }
+  getClassName() {
+    return this.constructor.name;
   }
 }

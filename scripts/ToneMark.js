@@ -78,6 +78,9 @@ class ToneMark {
   size() {    // default value, override the value if necessary
     return 1;
   }
+  getClassName() {
+    return this.constructor.name;
+  }
 }
 
 class LowRise extends ToneMark {

@@ -304,6 +304,209 @@ function getParm(key) {
   }
 }
 
+function _serialiseConfiguration() {
+  return 'baseline:' + cMgr.LowerLimit + "," +
+            'small:' + weakSize + "," +
+            'mid:' + midSize + "," +
+            'large:' + stressedSize + "," +
+            'magfactor:' + magFactor + "," +
+            'font:' + cMgr.FontGlyph + "," +
+            'fontsize:' + cMgr.FontSize + "," +
+            'dotdistribution:' + cMgr.DotDistribution + "," +
+            'midline:' + ((document.getElementById("centrelineCB").checked == true) ? 'y' : 'n');
+}
+
+function getClass(classname){return Function('return (' + classname + ')')();}
+// new getClass("class name")
+
+function _serialiseTSMarray() {
+  let result = "";
+  for (let i = 0; i < cMgr.tsm.tsmArray.length; i++) {
+    let item = cMgr.tsm.tsmArray[i];
+    result += item[0] + ":" + item[1].getClassName() + ",";
+  }
+  return result.slice(0, -1);
+}
+
+function _serialiseNoteArray() {
+/*
+ToneNote: width, height, size, pattern, magX, magY, finalY, visible
+Separator: width, visible
+*/
+  let result = "";
+  for (let i = 0; i < cMgr.tnm.noteArray.length; i++) {
+    let item = cMgr.tnm.noteArray[i];
+    let cn = item.getClassName();
+    if (cn == "ToneNote") {
+      result += `${cn}|${item.width}|${item.height}|${item.size}|${item.pattern}|${item.magX}|${item.magY}|${item.finalY}|${item.visible},`;
+    } else {  // must be one of the Separators
+      result += `${cn}|${item.width}|${item.visible},`;
+    }
+  }
+  return result.slice(0, -1);
+}
+
+function saveInternalStructure() {
+  let contents = "[VERSION]1.01\n";
+  contents += "[CONFIG]" + _serialiseConfiguration() + "\n";
+  contents += "[CANVAS]" + cMgr.canvas.width + "\n";
+  contents += "[TEXT]" + cMgr.textdata + "\n";
+  contents += "[TSM]" + _serialiseTSMarray() + "\n";
+  contents += "[UNDERLINE]" + Array.from(cMgr.underline).join("|") + "\n";
+  contents += "[ALTARRAY]" + cMgr.tnm.altArray.join("|") + "\n";
+  contents += "[NOTEARRAY]" + _serialiseNoteArray() + "\n";
+
+  let bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+  let blob = new Blob([ bom, contents ], { "type" : "text/plain" });
+  let link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "Project.tir";
+  link.click();
+}
+
+function _setConfig(data) {
+  let tbl = data.split(/,/);
+  for (const elem of tbl) {
+    let kv = elem.split(/:/);
+    if (kv[0] == "baseline") {
+      cMgr.LowerLimit = Number(kv[1]);
+    } else if (kv[0] == "small") {
+      weakSize = Number(kv[1]);
+    } else if (kv[0] == "mid") {
+      midSize = Number(kv[1]);
+    } else if (kv[0] == "large") {
+      stressedSize = Number(kv[1]);
+    } else if (kv[0] == "magfactor") {
+      magFactor = Number(kv[1]);
+    } else if (kv[0] == "font") {
+      cMgr.FontGlyph = kv[1];
+      cMgr.setCanvas(cMgr.canvas, cMgr.ccanvas);
+    } else if (kv[0] == "fontsize") {
+      cMgr.FontSize = Number(kv[1]);
+      cMgr.setCanvas(cMgr.canvas, cMgr.ccanvas);
+    } else if (kv[0] == "dotdistribution") {
+      cMgr.DotDistribution = Number(kv[1]);
+    } else if (kv[0] == "midline") {
+      let cb = document.getElementById("centrelineCB");
+      if (kv[1] == "y") 
+        cb.checked = true;
+      else
+        cb.checked = false;
+    }
+  }
+}
+
+function _setTSM(data) {
+  let tbl = data.split(/,/);
+  let margin = cMgr.tsm.margin;
+  let vmargin = cMgr.tsm.vmargin;
+  cMgr.tsm.tsmArray = [];
+  for (const elem of tbl) {
+    let kv = elem.split(/:/);
+    let class2 = getClass(kv[1]);
+    cMgr.tsm.tsmArray.push([Number(kv[0]), new class2(margin, vmargin)]);
+  }
+}
+
+function _setNoteArray(data) {
+  let tbl = data.split(/,/);
+  let noteArray = [];
+  for (const elem of tbl) {
+    let p = elem.split(/\|/);
+    let class2 = getClass(p[0]);
+    if (p[0] == "ToneNote") {
+      let obj = new class2(Number(p[1]), Number(p[2]), Number(p[3]), 0);
+      obj.pattern = Number(p[4]);
+      obj.magX = Number(p[5]);
+      obj.magY = Number(p[6]);
+      obj.finalY = Number(p[7]);
+      obj.visible = (p[8] == "true") ? true : false;
+      noteArray.push(obj);
+    } else {    // It must be Separator
+      let obj = new class2(Number(p[1]), (p[8] == "true") ? true : false);
+      noteArray.push(obj);
+    }
+    cMgr.tnm.noteArray = noteArray;
+  }
+}
+
+function _parseInternalStructure(data) {
+  let errorFlag = false;
+  if (m = data.match(/^\[VERSION\]([^\n]*)\n/)) {
+    console.log(m[1]);
+  } else {
+    errorFlag = true;
+    return;
+  }
+  if (m = data.match(/\[CONFIG\]([^\n]*)\n/)) {
+    _setConfig(m[1]);
+  } else {
+    errorFlag = true;
+  }
+  if (m = data.match(/\[CANVAS\]([^\n]*)\n/)) {
+    document.getElementById("canvaswidth").options[0].selected = true;
+    let canvas = document.getElementById("canvas");
+    canvas.width = Number(m[1]);
+    let ccanvas = document.getElementById("cursor");
+    ccanvas.width = Number(m[1]);
+    cMgr.setCanvas(canvas, ccanvas);
+  } else {
+    errorFlag = true;
+  }
+  if (m = data.match(/\[TEXT\]([^\n]*)\n/)) {
+    cMgr.textdata = m[1];
+  } else {
+    errorFlag = true;
+  }
+  if (m = data.match(/\[TSM\]([^\n]*)\n/)) {
+    _setTSM(m[1]);
+  } else {
+    errorFlag = true;
+  }
+  if (m = data.match(/\[UNDERLINE\]([^\n]*)\n/)) {
+    if (m[1] != "") {
+      cMgr.underline = new Set(m[1].split(/\|/).map(function(e) { return Number(e);}));
+    } else {
+      cMgr.underline = new Set();
+    }
+  } else {
+    errorFlag = true;
+  }
+  if (m = data.match(/\[ALTARRAY\]([^\n]*)\n/)) {
+    cMgr.tnm.altArray = m[1].split(/\|/);
+  } else {
+    errorFlag = true;
+  }
+  if (m = data.match(/\[NOTEARRAY\]([^\n]*)\n/)) {
+    _setNoteArray(m[1]);
+  } else {
+    errorFlag = true;
+  }
+  cMgr.ptr = 0;
+  cMgr.edge = 0;
+  iap = 0;
+  selPtr = NotSelected;
+  cMgr.draw();
+}
+
+function loadInternalStructure(evt) {
+  console.log("LoadInternalStructure called");
+  let input = evt.target;
+  if (input.files.length == 0) {
+    console.log('No file selected');
+    return;
+  }
+  const file = input.files[0];
+  console.log(file);
+  const reader = new FileReader();
+  reader.onload = () => {
+    _parseInternalStructure(reader.result);
+  };
+  reader.readAsText(file);
+}
+
+
+
 // CONFIGURATOR SECTION
 //   default baseline=150&s=4&m=6&l=8&magfactor=1.0
 //     if baseline >= 170  s=6&m=9&l=13&magfactor=1.5
@@ -366,4 +569,21 @@ if ((parmwork == "y") || (parmwork == "Y")) {
   document.getElementById("centrelineCB").checked = true;
 //  console.log("midline: '" + parmwork + "'");
 }
+
+let Restraint = "on";
+parmwork = getParm("restraint");
+if (parmwork == "off") {
+  Restraint = "off";
+  let hiddenArea = document.getElementById("hiddenArea");
+  let pButton = document.createElement("input");
+  pButton.type = "file";
+  pButton.id = "projInput";
+  pButton.accept = ".tir";
+  pButton.addEventListener("click", evt => {pButton.value=null;}, false);
+  pButton.addEventListener("focus", evt => {pButton.blur();}, false);
+  pButton.addEventListener("change", loadInternalStructure, false);
+  hiddenArea.appendChild(pButton);
+//  console.log("Restraint: '" + parmwork + "'");
+}
+
 cMgr.draw();
