@@ -397,11 +397,11 @@ function _setConfig(data) {
 }
 
 function _setTSM(data) {
+  cMgr.tsm.tsmArray = [];
   if (data == "") return;
   let tbl = data.split(/,/);
   let margin = cMgr.tsm.margin;
   let vmargin = cMgr.tsm.vmargin;
-  cMgr.tsm.tsmArray = [];
   for (const elem of tbl) {
     let kv = elem.split(/:/);
     let class2 = getClass(kv[1]);
@@ -410,7 +410,10 @@ function _setTSM(data) {
 }
 
 function _setNoteArray(data) {
-  if (data == "") return;
+  if (data == "") {
+    cMgr.tnm.noteArray = [];
+    return;
+  }
   let tbl = data.split(/,/);
   let noteArray = [];
   for (const elem of tbl) {
@@ -428,8 +431,8 @@ function _setNoteArray(data) {
       let obj = new class2(Number(p[1]), (p[8] == "true") ? true : false);
       noteArray.push(obj);
     }
-    cMgr.tnm.noteArray = noteArray;
   }
+  cMgr.tnm.noteArray = noteArray;
 }
 
 function _parseInternalStructure(data) {
