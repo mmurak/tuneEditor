@@ -5,7 +5,7 @@
     <link rel="shortcut icon" href="kiwi-bird.png">
   </head>
   <body style="user-select: none;">
-  <input type="file" onChange="readImage(this.files, 'mainCanvas')" accept=".jpg,.jpeg,.png,.gif"></input>
+  <input type="file" onChange="readImage(this.files, 'mainCanvas')" onclick="this.value=null;" accept=".jpg,.jpeg,.png,.gif"></input>
   <input type="button" id="delBtn" value="Delete Last Entry" disabled="true" onclick="deleteLast();"></input>
   <a id="download" href="#" download="stackedImage.jpg" onclick="saveImage();">Save Image</a><br>
   <div id="canvasArea"><canvas></canvas></div>
