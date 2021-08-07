@@ -397,6 +397,7 @@ function _setConfig(data) {
 }
 
 function _setTSM(data) {
+  if (data == "") return;
   let tbl = data.split(/,/);
   let margin = cMgr.tsm.margin;
   let vmargin = cMgr.tsm.vmargin;
@@ -409,6 +410,7 @@ function _setTSM(data) {
 }
 
 function _setNoteArray(data) {
+  if (data == "") return;
   let tbl = data.split(/,/);
   let noteArray = [];
   for (const elem of tbl) {
