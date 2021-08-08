@@ -138,6 +138,7 @@ function newCanvasWidth() {
       return;
     }
   }
+  SpecifiedCanvasWidth = newWidth;  // for Canvas shrinker
   let canvas = document.getElementById("canvas");
   canvas.width = newWidth;
   let ccanvas = document.getElementById("cursor");
@@ -347,7 +348,7 @@ Separator: width, visible
 }
 
 function saveInternalStructure() {
-  let contents = "[VERSION]1.01\n";
+  let contents = "[VERSION]1.02\n";
   contents += "[CONFIG]" + _serialiseConfiguration() + "\n";
   contents += "[CANVAS]" + cMgr.canvas.width + "\n";
   contents += "[TEXT]" + cMgr.textdata + "\n";

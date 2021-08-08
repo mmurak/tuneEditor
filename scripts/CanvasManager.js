@@ -124,6 +124,14 @@ class CanvasManager {
       canvas.width = necessaryWidth;
       ccanvas.width = necessaryWidth;
       this.setCanvas(canvas, ccanvas);
+    } else if (SpecifiedCanvasWidth > necessaryWidth) {
+      canvas.width = SpecifiedCanvasWidth;
+      ccanvas.width = SpecifiedCanvasWidth;
+      this.setCanvas(canvas, ccanvas);
+    } else {
+      canvas.width = necessaryWidth;
+      ccanvas.width = necessaryWidth;
+      this.setCanvas(canvas, ccanvas);
     }
 //
     this.ctx.fillStyle = this.BackgroundColour;
