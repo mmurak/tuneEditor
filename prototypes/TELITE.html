@@ -1,0 +1,200 @@
+<html>
+  <head>
+    <title>TuneEditor Lite（Ver. 0.02）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+  </head>
+  <body>
+  <div id="container" style="position:relative;">
+    <div id="overlaytop" style="position:absolute;right:10px !important;display:block;z-index:9999">
+    <div style="float:right;">
+      <textarea id="buttonish" cols="16" rows="1" onfocus="focusIn();" onfocusout="focusOut();"></textarea><br/><br/>
+      <input type="button" id="stepback" value="Erase last stroke" onclick="eraseLastStroke();"></input>
+    </div>
+    </div>
+    <div id="overlaymiddle" style="position:absolute;width:100% !important;display:block;z-index:8888">
+    </div>
+    <div id="textarea"></div>
+  </div>
+  <script>
+
+const masterDef = [
+//  tag, symbol, offsetFromTop, size
+  ["\\hp\\", "_", -0.6, 0.7],      //  High Pre-head
+  ["\\h1\\", "╹", 1.5, 0.4],      //  High stressed (first occurence)
+  ["\\h2\\", "⚬", 0.7, 0.5],    // Other stressed
+  ["\\h3\\", "➘", 0.5, 0.5],    // Falling
+  ["\\lp\\", "_", 0.4, 0.7],    // Low Pre-head (supplemental)
+  ["\\l1\\", "╹", 2.6, 0.4],      // Low stressed (first occurence)
+  ["\\l2\\", "⚬", 1.6, 0.5],    // Other stressed
+  ["\\l3\\", "➚", 1.7, 0.5],      // Raising
+  ["\\hf\\", "╲", 2.0, 0.2],      // Nucleus High Fall
+  ["\\hr\\", "／", 2.0, 0.2],      // Nucleus High Rise
+  ["\\lf\\", "╲", 5.0, 0.2],      // Nucleus Low Fall
+  ["\\lr\\", "／", 5.0, 0.2],      // Nucleus Low Rise
+  ["\\fr\\", "∨", 0.5, 0.5],      // Nucleus Fall Rise
+  ["\\rf\\", "∧", 0.5, 0.5],      // Nucleus Rise Fall
+  ["\\ml\\", "&gt;", 0.5, 0.5],      // Nucleus Mid-Level
+  ["\\ip\\", "|"],      // IP
+  ["\\fs\\", "‖"],      // FS
+  ["\n", "<br/>"],      // Line Feed
+  ["  ", "&nbsp;&nbsp;"],      // spaces
+  ["[[", "<span style='text-decoration:underline;'>"],    // Underline start
+  ["]]", "</span>"],            // Underline end
+];
+
+const tag = 0;
+const symbol = 1;
+const voffset = 2;
+const size = 3;
+
+const penColour = "rgb(255,0,0,0.05)";
+const penCentreColour = "rgb(255,255,255,0.5)";
+const nibSize = 5;
+const centreNibSize = 1;
+
+const buttonish = document.getElementById("buttonish");
+const textarea = document.getElementById("textarea");
+textarea.style = "font-size: 34px; font-family: 'Times New Roman';";
+
+let canvas = document.createElement("canvas");
+canvas.width = window.innerWidth - 10;    // where shoud I get 10?
+canvas.height = window.innerHeight - 10;  // ditto...
+canvas.style = "background-color:rgb(255,255,255,0.0)";
+let ctx = canvas.getContext("2d");
+document.getElementById("overlaymiddle").appendChild(canvas);
+
+let imageArray = [];
+const stepback = document.getElementById("stepback");
+stepback.disabled = true;
+
+const coldColor = "rgb(224, 255, 255);"
+const hotColor = "rgb(255, 192, 203);"
+
+const tsmDict = {}
+for (const elem of masterDef) {
+  if (elem.length == 4) {
+    tsmDict[elem[tag]] = "<span style='vertical-align: top; position: relative; top: " + elem[voffset] + "em; font-size: " + elem[size] + "em;'>" + elem[symbol] + "</span>";
+  } else {
+    tsmDict[elem[tag]] = elem[symbol];
+  }
+}
+
+
+focusOut();
+buttonish.addEventListener("input", function(evt) {
+  let text = htmlEscape(buttonish.value);
+  buttonish.value = "";
+  textarea.style.lineHeight = 2;
+  textarea.innerHTML = processTSM(text);
+  focusOut();
+  buttonish.blur();
+});
+
+canvas.addEventListener("mousedown", dragStart);
+canvas.addEventListener("mouseup", dragEnd);
+canvas.addEventListener("mouseout", dragEnd);
+canvas.addEventListener("mousemove", (evt) => { draw(fixedX(evt), fixedY(evt)); });
+
+document.addEventListener("keydown", (evt) => { keyInput(evt); });
+
+
+function htmlEscape(parm) {
+  return parm
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    replace(/'/g, '&#39;');
+}
+
+RegExp.escape = function(s) {
+  return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
+
+function processTSM(rawText) {
+  for(k in tsmDict) {
+    let re = new RegExp(RegExp.escape(k), "g");
+    rawText = rawText.replace(re, tsmDict[k]);
+  }
+  return rawText;
+}
+
+function focusIn() {
+  buttonish.style = "background-color:" + hotColor + "caret-color:" + hotColor + "font-size: 200%;font-color:rgb(255,0,0);text-align:center;";
+  buttonish.value = "";
+}
+
+function focusOut() {
+  buttonish.style = "background-color:" + coldColor + "caret-color:" + coldColor + "font-size:200%;font-color:rgb(255,0,0);text-align:center;";
+  buttonish.value = "";
+}
+
+
+function eraseLastStroke() {
+  if (imageArray.length == 0) return;
+  let image = imageArray.pop();
+  ctx.putImageData(image, 0, 0);
+  if (imageArray.length == 0) stepback.disabled = true;
+}
+
+let isDrag = false;
+let lastX = null;
+let lastY = null;
+
+function dragStart() {
+  imageArray.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+  stepback.disabled = false;
+  ctx.beginPath();
+  isDrag = true;
+}
+
+function dragEnd() {
+  ctx.closePath();
+  isDrag = false;
+  lastX = null;
+  lastY = null;
+}
+
+function fixedX(evt) {
+  return evt.clientX - canvas.getBoundingClientRect().left;
+}
+
+function fixedY(evt) {
+  return evt.clientY - canvas.getBoundingClientRect().top;
+}
+
+function draw(x, y) {
+  if (!isDrag) return;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = penColour;
+  ctx.lineWidth = nibSize;
+  if (lastX == null || lastY == null) {
+    ctx.moveTo(x, y);
+  } else {
+    ctx.moveTo(lastX, lastY);
+  }
+  ctx.lineTo(x, y);
+  ctx.stroke();
+  ctx.strokeStyle = penCentreColour;
+  ctx.lineWidth = centreNibSize;
+  if (lastX == null || lastY == null) {
+    ctx.moveTo(x, y);
+  } else {
+    ctx.moveTo(lastX, lastY);
+  }
+  ctx.lineTo(x, y);
+  ctx.stroke();
+  lastX = x;
+  lastY = y;
+}
+
+function keyInput(evt) {
+  if (evt.key == "c" || evt.key == "C") {
+    eraseLastStroke();
+  }
+}
+
+  </script>
+  </body>
+</html>
