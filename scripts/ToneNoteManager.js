@@ -4,7 +4,7 @@ class ToneNoteManager {
     this.altArray;
     this.noteArray;
     this.clear();
-    this.pattern = new RegExp(/^[aeiouy\u200b]+$/i);
+    this.pattern = new RegExp(/^[aeiouy\u200bɨʉɯɪᵻᵿʊøɘɵɤəɛœɜɞʌɔæɐɶɑɒ]+$/i);
   }
 
   clear() {

@@ -576,11 +576,41 @@ if ((parmwork == "y") || (parmwork == "Y")) {
 //  console.log("midline: '" + parmwork + "'");
 }
 
+const coldColor = "rgb(224, 255, 255);"
+const hotColor = "rgb(255, 192, 203);"
+const coldGateStyle = "background-color:" + coldColor + "caret-color:" + coldColor + "font-size:200%;font-color:rgb(255,0,0);text-align:center;";
+const hotGateStyle = "background-color:" + hotColor + "caret-color:" + hotColor + "font-size:200%;font-color:rgb(255,0,0);text-align:center;";
+
 let Restraint = "on";
 parmwork = getParm("restraint");
 if (parmwork == "off") {
   Restraint = "off";
   let hiddenArea = document.getElementById("hiddenArea");
+  // Hot-gate
+  let hotGate = document.createElement("textarea");
+  hotGate.cols = 16;
+  hotGate.rows = 1;
+  hotGate.style = coldGateStyle;
+  hotGate.addEventListener("focus", (evt) => {
+    hotGate.style = hotGateStyle;
+    hotGate.value = "";
+  });
+  hotGate.addEventListener("focusout", (evt) => {
+    hotGate.style = coldGateStyle;
+    hotGate.value = "";
+  });
+  hotGate.addEventListener("input", (evt) => {
+    let injectile = hotGate.value;
+    hotGate.value = "";
+    hotGate.blur();
+      for (const ch of Array.from(injectile)) {
+        cMgr.insert(ch);
+      }
+      cMgr.draw();
+  });
+  hiddenArea.appendChild(hotGate);
+  hiddenArea.appendChild(document.createElement("hr"));
+  // File input
   let pButton = document.createElement("input");
   pButton.type = "file";
   pButton.id = "projInput";
