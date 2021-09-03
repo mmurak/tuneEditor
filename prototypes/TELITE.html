@@ -95,9 +95,9 @@ canvas.addEventListener("mouseup", dragEnd);
 canvas.addEventListener("mouseout", dragEnd);
 canvas.addEventListener("mousemove", (evt) => { draw(fixedX(evt), fixedY(evt)); });
 
-canvas.addEventListener("touchstart", dragStart);
-canvas.addEventListener("touchend", dragEnd);
-canvas.addEventListener("touchmove", (evt) => { draw(fixedX(evt), fixedY(evt)); });
+canvas.addEventListener("touchstart", (evt) => { touchStart(evt); });
+canvas.addEventListener("touchend", (evt) => { touchEnd(evt); });
+canvas.addEventListener("touchmove", (evt) => { touchMove(evt); });
 
 document.addEventListener("keydown", (evt) => { keyInput(evt); });
 
@@ -144,6 +144,27 @@ function eraseLastStroke() {
 let isDrag = false;
 let lastX = null;
 let lastY = null;
+
+function touchStart(evt) {
+  evt.preventDefault();
+  imageArray.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+  stepback.disabled = false;
+  ctx.beginPath();
+  isDrag = true;
+}
+
+function touchEnd(evt) {
+  ctx.closePath();
+  isDrag = false;
+  lastX = null;
+  lastY = null;
+}
+
+function touchMove(evt) {
+  let x = evt.changedTouches[0].pageX;
+  let y = evt.changedTouches[0].pageY;
+  draw(x, y);
+}
 
 function dragStart() {
   imageArray.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
