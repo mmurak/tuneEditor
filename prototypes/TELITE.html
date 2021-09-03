@@ -95,6 +95,10 @@ canvas.addEventListener("mouseup", dragEnd);
 canvas.addEventListener("mouseout", dragEnd);
 canvas.addEventListener("mousemove", (evt) => { draw(fixedX(evt), fixedY(evt)); });
 
+canvas.addEventListener("touchstart", dragStart);
+canvas.addEventListener("touchend", dragEnd);
+canvas.addEventListener("touchmove", (evt) => { draw(fixedX(evt), fixedY(evt)); });
+
 document.addEventListener("keydown", (evt) => { keyInput(evt); });
 
 
