@@ -581,10 +581,11 @@ const hotColor = "rgb(255, 192, 203);"
 const coldGateStyle = "background-color:" + coldColor + "caret-color:" + coldColor + "font-size:200%;font-color:rgb(255,0,0);text-align:center;";
 const hotGateStyle = "background-color:" + hotColor + "caret-color:" + hotColor + "font-size:200%;font-color:rgb(255,0,0);text-align:center;";
 
-let Restraint = "on";
+let Restraint = "off";
 parmwork = getParm("restraint");
-if (parmwork == "off") {
-  Restraint = "off";
+if (parmwork == "on") {
+  Restraint = "on";
+} else {
   let hiddenArea = document.getElementById("hiddenArea");
   // Hot-gate
   let hotGate = document.createElement("textarea");
