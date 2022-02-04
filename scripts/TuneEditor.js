@@ -13,6 +13,13 @@ window.addEventListener("focus", function (evt) {
   cMgr.draw();
 });
 
+window.addEventListener("popstate", function (evt) {
+  if (!evt.originalEvent.state) {
+    history.pushState(null, null, null);
+    return;
+  }
+});
+
 let mouseDown = false;
 let iap = 0;
 const NotSelected = -1;
