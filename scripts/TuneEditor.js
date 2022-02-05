@@ -14,10 +14,8 @@ window.addEventListener("focus", function (evt) {
 });
 
 window.addEventListener("popstate", function (evt) {
-  if (!evt.originalEvent.state) {
-    history.pushState(null, null, null);
-    return;
-  }
+  history.pushState(null, null, null);
+  return;
 });
 
 let mouseDown = false;
