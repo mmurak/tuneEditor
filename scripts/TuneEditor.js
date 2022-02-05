@@ -13,6 +13,7 @@ window.addEventListener("focus", function (evt) {
   cMgr.draw();
 });
 
+history.pushState(null, null, null);
 window.addEventListener("popstate", function (evt) {
   history.pushState(null, null, null);
   return;
