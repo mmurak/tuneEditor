@@ -83,8 +83,8 @@ class CanvasManager {
     let cPt = this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset;
     // scrollablePain control
     let currentOffset = document.getElementById("scroll-canvas").scrollLeft;
-    if (cPt >= ScrollAreaWidth - 70) {
-        document.getElementById("scroll-canvas").scrollLeft =  cPt - ScrollAreaWidth + 70;
+    if (cPt >= Math.floor(ScrollAreaWidth / 2)) {
+        document.getElementById("scroll-canvas").scrollLeft =  cPt - Math.floor(ScrollAreaWidth / 2);
     } else if (cPt - 70 <= currentOffset) {
         document.getElementById("scroll-canvas").scrollLeft =  cPt - 70;
     }
