@@ -103,7 +103,8 @@ cMgr.ccanvas.addEventListener("mousemove", function (evt) {
     if (!mouseDown)
       return;
     let xFixed = (cMgr.rect.left >= 0) ? cMgr.rect.left : 0;
-    let coordX = evt.pageX - xFixed - 30;
+//    let coordX = evt.pageX - xFixed - 30;
+    let coordX = evt.layerX - 30;
     let coordY = evt.pageY - cMgr.rect.top;
     let chp = 0;
     while((chp < cMgr.textdata.length) && (cMgr.ctx.measureText(cMgr.textdata.substr(0, chp+1)).width < coordX)) {
@@ -115,7 +116,8 @@ cMgr.ccanvas.addEventListener("mousemove", function (evt) {
     if (!mouseDown || selPtr == NotSelected) 
       return;
     let xFixed = (cMgr.rect.left >= 0) ? cMgr.rect.left : 0;
-    let coordX = evt.pageX - xFixed;
+//    let coordX = evt.pageX - xFixed;
+    let coordX = evt.layerX;
     cMgr.tnm.noteArray[selPtr].width = coordX - 30;
     cMgr.draw();
   }

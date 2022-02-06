@@ -148,12 +148,26 @@ class CanvasManager {
     this._drawUnderline();
     this._drawCursor();
     // scrollablePain control
+    /*
     let currentOffset = document.getElementById("scroll-canvas").scrollLeft;
     let cPt = this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset;
     if (cPt >= Math.floor(ScrollAreaWidth / 2)) {
         document.getElementById("scroll-canvas").scrollLeft =  cPt - Math.floor(ScrollAreaWidth / 2);
     } else {
         document.getElementById("scroll-canvas").scrollLeft = 0;
+    }
+    */
+    // New slider
+    let currentOffset = document.getElementById("scroll-canvas").scrollLeft;
+    let cPt = this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset;
+    if (cPt > currentOffset + ScrollAreaWidth) {
+      document.getElementById("scroll-canvas").scrollLeft = cPt - ScrollAreaWidth;
+    } else if (cPt < currentOffset) {
+      if (cPt == this.offset) {
+        document.getElementById("scroll-canvas").scrollLeft = 0;
+      } else {
+        document.getElementById("scroll-canvas").scrollLeft = cPt;
+      }
     }
     //
   }
