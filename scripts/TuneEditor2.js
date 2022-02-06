@@ -19,6 +19,15 @@ window.addEventListener("popstate", function (evt) {
   return;
 });
 
+window.addEventListener('keydown', function(evt){
+  let kc = event.keyCode;
+  switch (kc) {
+    case 37:    // ←
+    case 39:    // →
+      evt.preventDefault();
+    }
+}, true);
+
 let mouseDown = false;
 let iap = 0;
 const NotSelected = -1;
