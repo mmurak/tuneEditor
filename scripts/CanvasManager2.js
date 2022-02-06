@@ -159,8 +159,8 @@ class CanvasManager {
     */
     // New slider
     let currentOffset = document.getElementById("scroll-canvas").scrollLeft;
-    let cPt = this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset;
-    if (cPt > currentOffset + ScrollAreaWidth) {
+    let cPt = Math.floor(this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset);
+    if (cPt > (currentOffset + ScrollAreaWidth)) {
       document.getElementById("scroll-canvas").scrollLeft = cPt - ScrollAreaWidth;
     } else if (cPt < currentOffset) {
       if (cPt == this.offset) {
@@ -168,6 +168,7 @@ class CanvasManager {
       } else {
         document.getElementById("scroll-canvas").scrollLeft = cPt;
       }
+    } else {
     }
     //
   }

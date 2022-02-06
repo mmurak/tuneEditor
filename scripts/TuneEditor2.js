@@ -162,7 +162,7 @@ function newCanvasWidth() {
   let ccanvas = document.getElementById("cursor");
   ccanvas.width = newWidth;
   document.getElementById("scroll-canvas").style = "height: 256px; max-width:" + (Number(newWidth) + 10) + "px;overflow-x: scroll;";
-  ScrollAreaWidth = newWidth;
+  ScrollAreaWidth = Number(newWidth);
   cMgr.setCanvas(canvas, ccanvas);
   cMgr.draw();
 }
