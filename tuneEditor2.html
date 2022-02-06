@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>TuneEditor（Ver. 2.03 alfa）</title>
+    <title>TuneEditor（Ver. 2.05）</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
     <link rel="shortcut icon" href="kiwi-bird.png">
     <link rel="stylesheet" href="./tuneEditor.css">
@@ -123,8 +123,8 @@
     <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(2, midSize)" ondragstart="return false;">
     <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(2, stressedSize)" ondragstart="return false;">
     </td><td></td><td></td><td></td><td>
-    <input type="button" value="　◀　" onclick="prevAvailableSyllable();cMgr.draw()">
-    <input type="button" value="　▶　" onclick="nextAvailableSyllable();cMgr.draw()">
+    <input type="button" value="　◀　" onclick="prevAvailableSyllable();cMgr.draw(false)">
+    <input type="button" value="　▶　" onclick="nextAvailableSyllable();cMgr.draw(false)">
     </td></tr>
     <tr><td align="center">
     1</td><td>
@@ -175,10 +175,10 @@
 
     <script>
       let cMgr = new CanvasManager(canvas, ccanvas, 30);
-      cMgr.draw();
+      cMgr.draw(true);
     </script>
 
-    <script src="./scripts/Dispatcher.js"></script>
+    <script src="./scripts/Dispatcher2.js"></script>
 
     <script>
       let dispatcher = new Dispatcher(KeyDispatcher, MenuDispatcher, cMgr);

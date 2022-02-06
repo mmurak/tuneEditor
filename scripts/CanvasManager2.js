@@ -115,7 +115,7 @@ class CanvasManager {
 
   /* Draw text string and cursor */
   // Draw two canvases (main)
-  draw() {
+  draw(scroll2cursor) {
 //   canvas grower
     let canvas = document.getElementById("canvas");
     let ccanvas = document.getElementById("cursor");
@@ -147,30 +147,19 @@ class CanvasManager {
     this.tsm.draw(this.ctx, this.textdata);
     this._drawUnderline();
     this._drawCursor();
-    // scrollablePain control
-    /*
-    let currentOffset = document.getElementById("scroll-canvas").scrollLeft;
-    let cPt = this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset;
-    if (cPt >= Math.floor(ScrollAreaWidth / 2)) {
-        document.getElementById("scroll-canvas").scrollLeft =  cPt - Math.floor(ScrollAreaWidth / 2);
-    } else {
-        document.getElementById("scroll-canvas").scrollLeft = 0;
-    }
-    */
-    // New slider
-    let currentOffset = document.getElementById("scroll-canvas").scrollLeft;
-    let cPt = Math.floor(this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset);
-    if (cPt > (currentOffset + ScrollAreaWidth)) {
-      document.getElementById("scroll-canvas").scrollLeft = cPt - ScrollAreaWidth;
-    } else if (cPt < currentOffset) {
-      if (cPt == this.offset) {
-        document.getElementById("scroll-canvas").scrollLeft = 0;
-      } else {
-        document.getElementById("scroll-canvas").scrollLeft = cPt;
+    if (scroll2cursor) {
+      let currentOffset = document.getElementById("scroll-canvas").scrollLeft;
+      let cPt = Math.floor(this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset);
+      if (cPt > (currentOffset + ScrollAreaWidth)) {
+        document.getElementById("scroll-canvas").scrollLeft = cPt - ScrollAreaWidth;
+      } else if (cPt < currentOffset) {
+        if (cPt == this.offset) {
+          document.getElementById("scroll-canvas").scrollLeft = 0;
+        } else {
+          document.getElementById("scroll-canvas").scrollLeft = cPt;
+        }
       }
-    } else {
     }
-    //
   }
 
   /* Draw components */

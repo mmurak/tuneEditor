@@ -10,7 +10,7 @@ window.addEventListener("blur", function (evt) {
 });
 
 window.addEventListener("focus", function (evt) {
-  cMgr.draw();
+  cMgr.draw(false);
 });
 
 history.pushState(null, null, null);
@@ -50,7 +50,7 @@ cMgr.ccanvas.addEventListener("mousedown", function(evt) {
     } else {
       cMgr.ptr = cMgr.edge = chp;
     }
-    cMgr.draw();
+    cMgr.draw(true);
   } else if (document.getElementById("separator1").checked) {   // put a separator 
     document.getElementById("separator1").checked = false;
     cMgr.tnm.noteArray.push(new Separator(coordX));
@@ -90,7 +90,7 @@ cMgr.ccanvas.addEventListener("mousedown", function(evt) {
     }
   }
   document.getElementById("summon").checked = false;
-  cMgr.draw();
+  cMgr.draw(false);
 });
 
 cMgr.ccanvas.addEventListener("mouseup", function (evt) {
@@ -111,7 +111,7 @@ cMgr.ccanvas.addEventListener("mousemove", function (evt) {
       chp += 1;
     }
     cMgr.edge = chp;
-    cMgr.draw();
+    cMgr.draw(true);
   } else {
     if (!mouseDown || selPtr == NotSelected) 
       return;
@@ -119,14 +119,14 @@ cMgr.ccanvas.addEventListener("mousemove", function (evt) {
 //    let coordX = evt.pageX - xFixed;
     let coordX = evt.layerX;
     cMgr.tnm.noteArray[selPtr].width = coordX - 30;
-    cMgr.draw();
+    cMgr.draw(false);
   }
 });
 
 cMgr.canvas.oncontextmenu = function (evt) {
   mouseDown = false;
   selPtr = NotSelected;
-  cMgr.draw();
+  cMgr.draw(false);
   return false;
 };
 
@@ -164,19 +164,19 @@ function newCanvasWidth() {
   document.getElementById("scroll-canvas").style = "height: 256px; max-width:" + (Number(newWidth) + 10) + "px;overflow-x: scroll;";
   ScrollAreaWidth = Number(newWidth);
   cMgr.setCanvas(canvas, ccanvas);
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function saveImage() {
   selPtr = NotSelected;
-  cMgr.draw();
+  cMgr.draw(false);
   let base64 = cMgr.canvas.toDataURL("image/jpeg");
   document.getElementById("download").href = base64;
 }
 
 function saveHalfImage() {
   selPtr = NotSelected;
-  cMgr.draw();
+  cMgr.draw(false);
   let half = document.getElementById("canvas2");
   half.width = cMgr.canvas.width;
   half.height = 53
@@ -191,13 +191,13 @@ function sendToTheShed() {
     return;
   cMgr.tnm.noteArray[selPtr].visible = false;
   nextAvailableSyllable();
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function retrieveFromTheShed() {
   document.getElementById("separator1").checked = false;
   selPtr = NotSelected;
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function separatorClicked() {
@@ -218,7 +218,7 @@ function setToneStress(tone, stress) {
   } else {
     nextAvailableSyllable();
   }
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function assignNucleusPattern(pattern) {
@@ -237,37 +237,37 @@ function assignNucleusPattern(pattern) {
   } else {
     nextAvailableSyllable();
   }
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function fall() {
   assignNucleusPattern(1);
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function riseFall() {
   assignNucleusPattern(3);
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function rise() {
   assignNucleusPattern(4);
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function fallRise() {
   assignNucleusPattern(6);
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function midLevel() {
   assignNucleusPattern(7);
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function notNucleus() {
   assignNucleusPattern(0);
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function nextAvailableSyllable() {
@@ -300,7 +300,7 @@ function prevAvailableSyllable() {
 
 function centrelineControl() {
   document.getElementById("centrelineCB").blur();
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 
@@ -512,7 +512,7 @@ function _parseInternalStructure(data) {
   cMgr.edge = 0;
   iap = 0;
   selPtr = NotSelected;
-  cMgr.draw();
+  cMgr.draw(false);
 }
 
 function loadInternalStructure(evt) {
@@ -627,7 +627,7 @@ if (parmwork == "on") {
       for (const ch of Array.from(injectile)) {
         cMgr.insert(ch);
       }
-      cMgr.draw();
+      cMgr.draw(true);
   });
   hiddenArea.appendChild(hotGate);
   hiddenArea.appendChild(document.createElement("hr"));
@@ -643,4 +643,4 @@ if (parmwork == "on") {
 //  console.log("Restraint: '" + parmwork + "'");
 }
 
-cMgr.draw();
+cMgr.draw(true);
