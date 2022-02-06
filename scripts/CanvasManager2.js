@@ -81,14 +81,6 @@ class CanvasManager {
   // draw vertical cursor (internal use)
   _drawVcursor() {
     let cPt = this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset;
-    // scrollablePain control
-    let currentOffset = document.getElementById("scroll-canvas").scrollLeft;
-    if (cPt >= Math.floor(ScrollAreaWidth / 2)) {
-        document.getElementById("scroll-canvas").scrollLeft =  cPt - Math.floor(ScrollAreaWidth / 2);
-    } else if (cPt - 70 <= currentOffset) {
-        document.getElementById("scroll-canvas").scrollLeft =  cPt - 70;
-    }
-    //
     this.cctx.beginPath();
     this.cctx.moveTo(cPt, 44);
     this.cctx.lineTo(cPt, 72);
@@ -155,6 +147,17 @@ class CanvasManager {
     this.tsm.draw(this.ctx, this.textdata);
     this._drawUnderline();
     this._drawCursor();
+    // scrollablePain control
+    let currentOffset = document.getElementById("scroll-canvas").scrollLeft;
+    let cPt = this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset;
+    if (cPt >= Math.floor(ScrollAreaWidth / 2)) {
+        console.log("YEScPt:" + cPt + "scrollLeft:" + currentOffset);
+        document.getElementById("scroll-canvas").scrollLeft =  cPt - Math.floor(ScrollAreaWidth / 2);
+    } else {
+        console.log("NOcPt:" + cPt + "scrollLeft:" + currentOffset);
+        document.getElementById("scroll-canvas").scrollLeft = 0;
+    }
+    //
   }
 
   /* Draw components */
