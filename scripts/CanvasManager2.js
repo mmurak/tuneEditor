@@ -151,10 +151,8 @@ class CanvasManager {
     let currentOffset = document.getElementById("scroll-canvas").scrollLeft;
     let cPt = this.ctx.measureText(this.textdata.substr(0, this.ptr)).width + this.offset;
     if (cPt >= Math.floor(ScrollAreaWidth / 2)) {
-        console.log("YEScPt:" + cPt + "scrollLeft:" + currentOffset);
         document.getElementById("scroll-canvas").scrollLeft =  cPt - Math.floor(ScrollAreaWidth / 2);
     } else {
-        console.log("NOcPt:" + cPt + "scrollLeft:" + currentOffset);
         document.getElementById("scroll-canvas").scrollLeft = 0;
     }
     //
