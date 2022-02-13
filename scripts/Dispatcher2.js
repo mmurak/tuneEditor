@@ -99,6 +99,37 @@ class Dispatcher {
     document.body.classList.remove('nav-open');
   }
 
+  // this function violates DRY principle.  must be improved somehow.
+  scrollDecision(keyname, entry) {
+    const excludeTable = {
+      "CmsC" : 1, // Copy
+      "cMsC" : 1, // Copy
+      "CmsA" : 1, // Select all
+      "cMsA" : 1, // Select all
+      "CmsZ" : 1, // Tone move
+      "cMsZ" : 1, // Tone move
+      "CmSZ" : 1, // Tone move
+      "cMSZ" : 1, // Tone move
+      "cMsK" : 1, // Easter command
+      "CmSK" : 1, // Easter command
+    };
+    const includeTable = {
+      "cmsBACKSPACE" : 1, // BS
+      "cmsDELETE" : 1,    // DEL
+      "cmsARROWLEFT" : 1, // ←
+      "cmsARROWRIGHT" : 1,    // →
+      "cmSARROWLEFT" : 1, // Sel ←
+      "cmSARROWRIGHT" : 1,    // Sel →
+      "CmSARROWLEFT" : 1, // Word ←
+      "CmSARROWRIGHT" : 1,    // Word →
+    };
+    if (((keyname.length == 1) && !(entry in excludeTable)) || (entry in includeTable)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   /* Dispatcher main logic */
   dispatch(evt) {
     let keyname = evt.key;
@@ -133,7 +164,8 @@ class Dispatcher {
           this._menuOpen();
         }
       }
-      this.cMgr.draw(true);
+      let flag = this.scrollDecision(keyname, entry);
+      this.cMgr.draw(flag);
     }
   }
 }
