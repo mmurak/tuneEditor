@@ -179,8 +179,8 @@ function saveHalfImage() {
   cMgr.draw(false);
   let half = document.getElementById("canvas2");
   half.width = cMgr.canvas.width;
-  half.height = 53
-  let image = cMgr.ctx.getImageData(0, 35, cMgr.canvas.width, 53);
+  half.height = 75;
+  let image = cMgr.ctx.getImageData(0, 15, cMgr.canvas.width, 75);
   half.getContext("2d").putImageData(image, 0, 0);
   let base64 = canvas2.toDataURL("image/jpeg");
   document.getElementById("download2").href = base64;

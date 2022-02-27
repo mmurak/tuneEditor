@@ -616,10 +616,58 @@ class CanvasManager {
     this.draw();
   }
 
+  intonationP0() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "ip0");
+    this.draw();
+  }
+
+  intonationP1() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "ip1");
+    this.draw();
+  }
+
+  intonationP2() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "ip2");
+    this.draw();
+  }
+
+  intonationP3() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "ip3");
+    this.draw();
+  }
+
   /* FullStop Separator */
   fullStop() {
     this.insert(this.gap);
     this.tsm.register(this.ptr-1, "fs");
+    this.draw();
+  }
+
+  fullStop0() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "fs0");
+    this.draw();
+  }
+
+  fullStop1() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "fs1");
+    this.draw();
+  }
+
+  fullStop2() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "fs2");
+    this.draw();
+  }
+
+  fullStop3() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "fs3");
     this.draw();
   }
 

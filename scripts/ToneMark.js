@@ -259,6 +259,58 @@ class IP extends ToneMark {
   draw(context, width) {
     super.drawLargeVerticalLine(context, width+1);
   }
+  drawSuperScript(context, width, ch) {
+    let fontSaver = context.font;
+    let strokeSaver = context.strokeStyle;
+    let fillSaver = context.fillStyle;
+    context.font = "15pt \"Courier\"";
+    context.strokeStyle = "#f00";
+    context.fillStyle = "#f00";
+    context.fillText(ch, this.margin + width, this.vmargin - 35);
+    context.font = fontSaver;
+    context.strokeStyle = strokeSaver;
+    context.fillStyle = fillSaver;
+  }
+}
+
+class IP0 extends IP {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+  }
+  draw(context, width) {
+    super.draw(context, width);
+    super.drawSuperScript(context, width,  "0");
+  }
+}
+
+class IP1 extends IP {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+  }
+  draw(context, width) {
+    super.draw(context, width);
+    super.drawSuperScript(context, width,  "1");
+  }
+}
+
+class IP2 extends IP {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+  }
+  draw(context, width) {
+    super.draw(context, width);
+    super.drawSuperScript(context, width,  "2");
+  }
+}
+
+class IP3 extends IP {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+  }
+  draw(context, width) {
+    super.draw(context, width);
+    super.drawSuperScript(context, width,  "3");
+  }
 }
 
 class FullStop extends ToneMark {
@@ -270,6 +322,58 @@ class FullStop extends ToneMark {
   draw(context, width) {
     super.drawLargeVerticalLine(context, width-1);
     super.drawLargeVerticalLine(context, width+3);
+  }
+  drawSuperScript(context, width, ch) {
+    let fontSaver = context.font;
+    let strokeSaver = context.strokeStyle;
+    let fillSaver = context.fillStyle;
+    context.font = "15pt \"Courier\"";
+    context.strokeStyle = "#f00";
+    context.fillStyle = "#f00";
+    context.fillText(ch, this.margin + width, this.vmargin - 35);
+    context.font = fontSaver;
+    context.strokeStyle = strokeSaver;
+    context.fillStyle = fillSaver;
+  }
+}
+
+class FullStop0 extends FullStop {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+  }
+  draw(context, width) {
+    super.draw(context, width);
+    super.drawSuperScript(context, width,  "0");
+  }
+}
+
+class FullStop1 extends FullStop {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+  }
+  draw(context, width) {
+    super.draw(context, width);
+    super.drawSuperScript(context, width,  "1");
+  }
+}
+
+class FullStop2 extends FullStop {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+  }
+  draw(context, width) {
+    super.draw(context, width);
+    super.drawSuperScript(context, width,  "2");
+  }
+}
+
+class FullStop3 extends FullStop {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+  }
+  draw(context, width) {
+    super.draw(context, width);
+    super.drawSuperScript(context, width,  "3");
   }
 }
 
@@ -299,7 +403,17 @@ class TSMmanager {
                                     ["l1", LowStressed1], ["l2", LowStressed2], ["l3", LowStressed3],
                                     ["hp", HighPrehead], ["lp", LowPrehead],
                                     ["aa", SyllabicConsonant],
-                                    ["fs", FullStop], ["ip", IP]]);
+                                    ["fs", FullStop],
+                                    ["fs0", FullStop0],
+                                    ["fs1", FullStop1],
+                                    ["fs2", FullStop2],
+                                    ["fs3", FullStop3],
+                                    ["ip", IP],
+                                    ["ip0", IP0],
+                                    ["ip1", IP1],
+                                    ["ip2", IP2],
+                                    ["ip3", IP3],
+                                    ]);
   }
 
   register(ptr, mkStr) {
