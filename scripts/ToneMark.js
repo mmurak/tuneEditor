@@ -257,7 +257,7 @@ class IP extends ToneMark {
     this.deltaY = -28.0;
   }
   draw(context, width) {
-    super.drawLargeVerticalLine(context, width+1);
+    super.drawLargeVerticalLine(context, width+2);
   }
   drawSuperScript(context, width, ch) {
     let fontSaver = context.font;
@@ -320,8 +320,8 @@ class FullStop extends ToneMark {
     this.deltaY = -28.0;
   }
   draw(context, width) {
-    super.drawLargeVerticalLine(context, width-1);
-    super.drawLargeVerticalLine(context, width+3);
+    super.drawLargeVerticalLine(context, width);
+    super.drawLargeVerticalLine(context, width+4);
   }
   drawSuperScript(context, width, ch) {
     let fontSaver = context.font;
@@ -377,6 +377,97 @@ class FullStop3 extends FullStop {
   }
 }
 
+// Solid 3 lines
+class Solid3Line extends ToneMark {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+    this.deltaX = 4.0;
+    this.deltaY = -28.0;
+  }
+  draw(context, width) {
+    super.drawLargeVerticalLine(context, width-2);
+    super.drawLargeVerticalLine(context, width+2);
+    super.drawLargeVerticalLine(context, width+6);
+  }
+}
+
+// Solid 4 lines
+class Solid4Line extends ToneMark {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+    this.deltaX = 4.0;
+    this.deltaY = -28.0;
+  }
+  draw(context, width) {
+    super.drawLargeVerticalLine(context, width);
+    let lineWidthSaver = context.lineWidth;
+    context.lineWidth = 4;
+    super.drawLargeVerticalLine(context, width+5);
+    context.lineWidth = lineWidthSaver;
+  }
+}
+
+// Dashed lines
+class Dashed1Line extends ToneMark {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+    this.deltaX = 4.0;
+    this.deltaY = -28.0;
+  }
+  draw(context, width) {
+    context.setLineDash([2, 2]);
+    super.drawLargeVerticalLine(context, width+2);
+    context.setLineDash([]);
+  }
+}
+
+class Dashed2Line extends ToneMark {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+    this.deltaX = 4.0;
+    this.deltaY = -28.0;
+  }
+  draw(context, width) {
+    context.setLineDash([2, 2]);
+    super.drawLargeVerticalLine(context, width);
+    super.drawLargeVerticalLine(context, width+4);
+    context.setLineDash([]);
+  }
+}
+
+class Dashed3Line extends ToneMark {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+    this.deltaX = 4.0;
+    this.deltaY = -28.0;
+  }
+  draw(context, width) {
+    context.setLineDash([2, 2]);
+    super.drawLargeVerticalLine(context, width-2);
+    super.drawLargeVerticalLine(context, width+2);
+    super.drawLargeVerticalLine(context, width+6);
+    context.setLineDash([]);
+  }
+}
+
+class Dashed4Line extends ToneMark {
+  constructor(margin, vmargin) {
+    super(margin, vmargin);
+    this.deltaX = 4.0;
+    this.deltaY = -28.0;
+  }
+  draw(context, width) {
+    context.setLineDash([2, 2]);
+    super.drawLargeVerticalLine(context, width);
+    context.setLineDash([]);
+    let lineWidthSaver = context.lineWidth;
+    context.lineWidth = 4;
+    super.drawLargeVerticalLine(context, width+5);
+    context.lineWidth = lineWidthSaver;
+  }
+}
+
+// Syllabic Consonant
 class SyllabicConsonant extends ToneMark {
   constructor(margin, vmargin) {
     super(margin, vmargin);
@@ -413,6 +504,12 @@ class TSMmanager {
                                     ["ip1", IP1],
                                     ["ip2", IP2],
                                     ["ip3", IP3],
+                                    ["s3l", Solid3Line],
+                                    ["s4l", Solid4Line],
+                                    ["d1l", Dashed1Line],
+                                    ["d2l", Dashed2Line],
+                                    ["d3l", Dashed3Line],
+                                    ["d4l", Dashed4Line],
                                     ]);
   }
 

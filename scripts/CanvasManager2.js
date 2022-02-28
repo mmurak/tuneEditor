@@ -671,6 +671,44 @@ class CanvasManager {
     this.draw();
   }
 
+  /* Solid Vertical-line extension */
+  solid3Line() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "s3l");
+    this.draw();
+  }
+
+  solid4Line() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "s4l");
+    this.draw();
+  }
+
+  /* Dashed Vertical-line extension */
+  dashed1Line() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "d1l");
+    this.draw();
+  }
+
+  dashed2Line() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "d2l");
+    this.draw();
+  }
+
+  dashed3Line() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "d3l");
+    this.draw();
+  }
+
+  dashed4Line() {
+    this.insert(this.gap);
+    this.tsm.register(this.ptr-1, "d4l");
+    this.draw();
+  }
+
   /* Extra Vowel */
   extraVowel() {
     this.insert("\u200b");   // Zero width space
