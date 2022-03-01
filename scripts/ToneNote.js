@@ -85,7 +85,7 @@ class ToneNote {
   }
 }
 
-class Separator {   // could be subclass of sth... like Element
+class Separator1 {   // could be subclass of sth... like Element
   constructor(width) {
     this.width = width;
     this.visible = true;
@@ -95,6 +95,158 @@ class Separator {   // could be subclass of sth... like Element
     context.moveTo(this.width+margin, cMgr.UpperLimit);
     context.lineTo(this.width+margin, cMgr.LowerLimit);
     context.stroke();
+  }
+  getClassName() {
+    return this.constructor.name;
+  }
+}
+
+class Separator extends Separator1 {    // for compatibility
+  constructor(width) {
+    super(width);
+  }
+}
+
+class Separator2 {   // could be subclass of sth... like Element
+  constructor(width) {
+    this.width = width;
+    this.visible = true;
+  }
+  draw(context, margin) {
+    context.beginPath();
+    context.moveTo(this.width+margin-2, cMgr.UpperLimit);
+    context.lineTo(this.width+margin-2, cMgr.LowerLimit);
+    context.moveTo(this.width+margin+2, cMgr.UpperLimit);
+    context.lineTo(this.width+margin+2, cMgr.LowerLimit);
+    context.stroke();
+  }
+  getClassName() {
+    return this.constructor.name;
+  }
+}
+
+class Separator3 {   // could be subclass of sth... like Element
+  constructor(width) {
+    this.width = width;
+    this.visible = true;
+  }
+  draw(context, margin) {
+    context.beginPath();
+    context.moveTo(this.width+margin-3, cMgr.UpperLimit);
+    context.lineTo(this.width+margin-3, cMgr.LowerLimit);
+    context.moveTo(this.width+margin, cMgr.UpperLimit);
+    context.lineTo(this.width+margin, cMgr.LowerLimit);
+    context.moveTo(this.width+margin+3, cMgr.UpperLimit);
+    context.lineTo(this.width+margin+3, cMgr.LowerLimit);
+    context.stroke();
+  }
+  getClassName() {
+    return this.constructor.name;
+  }
+}
+
+class Separator4 {   // could be subclass of sth... like Element
+  constructor(width) {
+    this.width = width;
+    this.visible = true;
+  }
+  draw(context, margin) {
+    context.beginPath();
+    context.moveTo(this.width+margin-2, cMgr.UpperLimit);
+    context.lineTo(this.width+margin-2, cMgr.LowerLimit);
+    let lineWidthSaver = context.lineWidth;
+    context.stroke();
+    context.beginPath();
+    context.lineWidth = 4;
+    context.moveTo(this.width+margin+3, cMgr.UpperLimit);
+    context.lineTo(this.width+margin+3, cMgr.LowerLimit);
+    context.stroke();
+    context.lineWidth = lineWidthSaver;
+  }
+  getClassName() {
+    return this.constructor.name;
+  }
+}
+
+class SeparatorDL1 {   // could be subclass of sth... like Element
+  constructor(width) {
+    this.width = width;
+    this.visible = true;
+  }
+  draw(context, margin) {
+    context.beginPath();
+    context.setLineDash([3, 3]);
+    context.moveTo(this.width+margin, cMgr.UpperLimit);
+    context.lineTo(this.width+margin, cMgr.LowerLimit);
+    context.stroke();
+    context.setLineDash([]);
+  }
+  getClassName() {
+    return this.constructor.name;
+  }
+}
+
+class SeparatorDL2 {   // could be subclass of sth... like Element
+  constructor(width) {
+    this.width = width;
+    this.visible = true;
+  }
+  draw(context, margin) {
+    context.beginPath();
+    context.setLineDash([3, 3]);
+    context.moveTo(this.width+margin-2, cMgr.UpperLimit);
+    context.lineTo(this.width+margin-2, cMgr.LowerLimit);
+    context.moveTo(this.width+margin+2, cMgr.UpperLimit);
+    context.lineTo(this.width+margin+2, cMgr.LowerLimit);
+    context.stroke();
+    context.setLineDash([]);
+  }
+  getClassName() {
+    return this.constructor.name;
+  }
+}
+
+class SeparatorDL3 {   // could be subclass of sth... like Element
+  constructor(width) {
+    this.width = width;
+    this.visible = true;
+  }
+  draw(context, margin) {
+    context.beginPath();
+    context.setLineDash([3, 3]);
+    context.moveTo(this.width+margin-3, cMgr.UpperLimit);
+    context.lineTo(this.width+margin-3, cMgr.LowerLimit);
+    context.moveTo(this.width+margin, cMgr.UpperLimit);
+    context.lineTo(this.width+margin, cMgr.LowerLimit);
+    context.moveTo(this.width+margin+3, cMgr.UpperLimit);
+    context.lineTo(this.width+margin+3, cMgr.LowerLimit);
+    context.stroke();
+    context.setLineDash([]);
+  }
+  getClassName() {
+    return this.constructor.name;
+  }
+}
+
+class SeparatorDL4 {   // could be subclass of sth... like Element
+  constructor(width) {
+    this.width = width;
+    this.visible = true;
+  }
+  draw(context, margin) {
+    context.beginPath();
+    context.setLineDash([3, 3]);
+    context.moveTo(this.width+margin-2, cMgr.UpperLimit);
+    context.lineTo(this.width+margin-2, cMgr.LowerLimit);
+    let lineWidthSaver = context.lineWidth;
+    context.stroke();
+    context.setLineDash([]);
+    context.beginPath();
+    context.lineWidth = 4;
+    context.moveTo(this.width+margin+3, cMgr.UpperLimit);
+    context.lineTo(this.width+margin+3, cMgr.LowerLimit);
+    context.stroke();
+    context.lineWidth = lineWidthSaver;
   }
   getClassName() {
     return this.constructor.name;

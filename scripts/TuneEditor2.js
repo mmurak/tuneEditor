@@ -51,9 +51,29 @@ cMgr.ccanvas.addEventListener("mousedown", function(evt) {
       cMgr.ptr = cMgr.edge = chp;
     }
     cMgr.draw(true);
-  } else if (document.getElementById("separator1").checked) {   // put a separator 
+  } else if (document.getElementById("separator1").checked) {   // put a Solid separator 
     document.getElementById("separator1").checked = false;
-    cMgr.tnm.noteArray.push(new Separator(coordX));
+    if (evt.shiftKey && evt.altKey) {
+      cMgr.tnm.noteArray.push(new Separator4(coordX));
+    } else if (evt.shiftKey) {
+      cMgr.tnm.noteArray.push(new Separator2(coordX));
+    } else if (evt.altKey) {
+      cMgr.tnm.noteArray.push(new Separator3(coordX));
+    } else {
+      cMgr.tnm.noteArray.push(new Separator1(coordX));
+    }
+    selPtr = NotSelected;
+  } else if (document.getElementById("separator2").checked) {   // put a Dashed separator 
+    document.getElementById("separator2").checked = false;
+    if (evt.shiftKey && evt.altKey) {
+      cMgr.tnm.noteArray.push(new SeparatorDL4(coordX));
+    } else if (evt.shiftKey) {
+      cMgr.tnm.noteArray.push(new SeparatorDL2(coordX));
+    } else if (evt.altKey) {
+      cMgr.tnm.noteArray.push(new SeparatorDL3(coordX));
+    } else {
+      cMgr.tnm.noteArray.push(new SeparatorDL1(coordX));
+    }
     selPtr = NotSelected;
   } else {    // tone process
     if (cMgr.tnm.noteArray.length == 0)
@@ -196,11 +216,18 @@ function sendToTheShed() {
 
 function retrieveFromTheShed() {
   document.getElementById("separator1").checked = false;
+  document.getElementById("separator2").checked = false;
   selPtr = NotSelected;
   cMgr.draw(false);
 }
 
 function separatorClicked() {
+  document.getElementById("separator2").checked = false;
+  document.getElementById("summon").checked = false;
+}
+
+function separatorClickedDL() {
+  document.getElementById("separator1").checked = false;
   document.getElementById("summon").checked = false;
 }
 

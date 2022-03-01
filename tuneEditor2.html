@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>TuneEditor（Ver. 2.08）</title>
+    <title>TuneEditor（Ver. 2.10）</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
     <link rel="shortcut icon" href="kiwi-bird.png">
     <link rel="stylesheet" href="./tuneEditor.css">
@@ -70,7 +70,7 @@
     <input type="button" value="Low/High-Fall" onclick="fall()">
     </td><td></td><td>
     <input type="checkbox" class="checkboxer" id="separator1" onclick="separatorClicked();"/>
-    <label class="label" for="separator1">Separator</label>
+    <label class="label" for="separator1">Separator (Solid line)</label>
     </td></tr>
     <tr><td align="center">
     7</td><td>
@@ -80,6 +80,8 @@
     </td><td></td><td>
     <input type="button" value="Rise-Fall" onclick="riseFall()">
     </td><td></td><td>
+    <input type="checkbox" class="checkboxer" id="separator2" onclick="separatorClickedDL();"/>
+    <label class="label" for="separator2">Separator (Dashed line)</label>
     </td></tr>
     <tr><td align="center">
     6</td><td>
