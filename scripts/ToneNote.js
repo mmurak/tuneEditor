@@ -152,14 +152,14 @@ class Separator4 {   // could be subclass of sth... like Element
   }
   draw(context, margin) {
     context.beginPath();
-    context.moveTo(this.width+margin-2, cMgr.UpperLimit);
-    context.lineTo(this.width+margin-2, cMgr.LowerLimit);
+    context.moveTo(this.width+margin-3, cMgr.UpperLimit);
+    context.lineTo(this.width+margin-3, cMgr.LowerLimit);
     let lineWidthSaver = context.lineWidth;
     context.stroke();
     context.beginPath();
-    context.lineWidth = 4;
-    context.moveTo(this.width+margin+3, cMgr.UpperLimit);
-    context.lineTo(this.width+margin+3, cMgr.LowerLimit);
+    context.lineWidth = 5;
+    context.moveTo(this.width+margin+4, cMgr.UpperLimit);
+    context.lineTo(this.width+margin+4, cMgr.LowerLimit);
     context.stroke();
     context.lineWidth = lineWidthSaver;
   }
@@ -236,15 +236,15 @@ class SeparatorDL4 {   // could be subclass of sth... like Element
   draw(context, margin) {
     context.beginPath();
     context.setLineDash([3, 3]);
-    context.moveTo(this.width+margin-2, cMgr.UpperLimit);
-    context.lineTo(this.width+margin-2, cMgr.LowerLimit);
+    context.moveTo(this.width+margin-3, cMgr.UpperLimit);
+    context.lineTo(this.width+margin-3, cMgr.LowerLimit);
     let lineWidthSaver = context.lineWidth;
     context.stroke();
     context.setLineDash([]);
     context.beginPath();
-    context.lineWidth = 4;
-    context.moveTo(this.width+margin+3, cMgr.UpperLimit);
-    context.lineTo(this.width+margin+3, cMgr.LowerLimit);
+    context.lineWidth = 5;
+    context.moveTo(this.width+margin+4, cMgr.UpperLimit);
+    context.lineTo(this.width+margin+4, cMgr.LowerLimit);
     context.stroke();
     context.lineWidth = lineWidthSaver;
   }
