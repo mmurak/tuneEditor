@@ -1,0 +1,66 @@
+label {
+  cursor: pointer;
+  padding:5px;
+  border: 1px solid #434343;
+  border-radius: 5px;
+}
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"]:checked + .label {
+  background-color: #80C0FF;
+}
+
+.btn:hover {
+  background-color: grey;
+}
+.btn:active {
+  background-color: white;
+}
+
+.canvas-wrapper {
+    position: relative;
+}
+.canvas-wrapper canvas {
+  position: absolute;
+  top: 10;
+  left: 0;
+}
+
+.global-nav {
+  position: fixed;
+  top: -200px; /* heightに合わせる */
+  right: 0;
+  height: 200px;
+  width: 100%;
+  padding-top: 10px;
+  background-color: #fff;
+  transition: all .3s;
+  z-index: 200;
+}
+.black-bg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: #000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s;
+}
+/* 表示時 */
+.nav-open .global-nav {
+  top: 0;
+}
+.nav-open .black-bg {
+  opacity: .1;
+  visibility: visible;
+}
+
+.scroll-canvas {
+  height: 256px;
+  width:100%;
+  overflow: scroll;
+}

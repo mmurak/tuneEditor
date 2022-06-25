@@ -1,0 +1,196 @@
+<html>
+  <head>
+    <title>TuneEditor（Ver. 4.00β）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="shortcut icon" href="./PurpleKiwiBird.png">
+    <link rel="stylesheet" href="./tuneEditor4.css">
+  </head>
+  <body style="user-select: none;">
+    <div id="Wrap">
+      <nav class="global-nav">
+        <div align="left" id="ESCmenu">&nbsp;<label id="MiniDisplay"></label>&nbsp; To execute the command, type the underlined characters.  (Press ESC to close this menu.)
+          <br/><br/>
+          <img src="./menuIMG/LowFall.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/HighFall.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/RiseFall.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/LowRise.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/HighRise.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/FallRise.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/MidLevel.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <br/>
+          <img src="./menuIMG/High1.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/High2.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/High3.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/Low1.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/Low2.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/Low3.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <br/>
+          <img src="./menuIMG/HighPrehead.jpg" height="30" width="180" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/LowPrehead.jpg" height="30" width="180" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/SetUnderline.jpg" height="30" width="150" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/ClearUnderline.jpg" height="30" width="150" style="object-fit: cover;object-position: 0 100%;">
+          <br/>
+          <img src="./menuIMG/IntonationPhrase.jpg" height="30" width="180" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/FullStop.jpg" height="30" width="150" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/AddATone.jpg" height="30" width="150" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/SaveImage.png" height="30" width="130" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/SaveProject.png" height="30" width="130" style="object-fit: cover;object-position: 0 100%;">
+        </div>
+      </nav>
+      <div class="black-bg"></div>
+      <table>
+        <tr><th>Height</th><th>Stress</th><th>&nbsp;</th><th align="left">Tone</th><th>&nbsp;</th><th align="left">Misc.</th><th></th><th align="left"><textarea id="HotGate" cols="25" rows="1"></textarea></th></tr>
+        <tr><td align="center">8―</td>
+          <td>
+            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(8, 'S')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(8, 'M')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(8, 'L')" ondragstart="return false;">
+          </td>
+          <td></td>
+          <td><input type="button" value="Low/High-Fall" onclick="fall()"></td>
+          <td></td>
+          <td><input type="checkbox" class="checkboxer" id="Separator1" onclick="separatorClicked();"/>
+            <label class="label" for="Separator1">Separator (Solid line)</label>
+          </td>
+          <td></td>
+          <td>Use graphics: <input type="checkbox" id="GraphicsCheckBox" checked style="display: inline" onclick="graphicsControl()"/></td>
+        </tr>
+        <tr><td align="center">7　</td>
+          <td>
+            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(7, 'S')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(7, 'M')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(7, 'L')" ondragstart="return false;">
+          </td>
+          <td></td>
+          <td><input type="button" value="Rise-Fall" onclick="riseFall()"></td>
+          <td></td>
+          <td><input type="checkbox" class="checkboxer" id="Separator2" onclick="separatorClickedDL();"/>
+            <label class="label" for="Separator2">Separator (Dashed line)</label>
+          </td>
+          <td></td>
+          <td>Centreline: <input type="checkbox" id="CentrelineCheckBox" style="display: inline" onclick="centrelineControl()"/></td>
+        </tr>
+        <tr><td align="center">6　</td>
+          <td>
+            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(6, 'S')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(6, 'M')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(6, 'L')" ondragstart="return false;">
+          </td>
+          <td></td>
+          <td><input type="button" value="Low/High-Rise" onclick="rise()"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Open Project/cfg File: <input type="file" id="ProjInput" accept=".ti4,.cfg"/></td>
+        </tr>
+        <tr><td align="center">5　</td>
+          <td>
+            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(5, 'S')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(5, 'M')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(5, 'L')" ondragstart="return false;">
+          </td>
+          <td></td>
+          <td><input type="button" value="Fall-Rise" onclick="fallRise()"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><a id="Download2" href="#" download="project.ti4" onclick="saveInternalStructure();">Save Project File</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="Download" href="#" download="canvas.jpeg" onclick="saveImage();">Save Image File</a></td>
+        </tr>
+        <tr><td align="center">4―</td>
+          <td>
+            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(4, 'S')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(4, 'M')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(4, 'L')" ondragstart="return false;">
+          </td>
+          <td></td>
+          <td><input type="button" value="Mid-Level" onclick="midLevel()"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr><td align="center">3　</td>
+          <td>
+            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(3, 'S')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(3, 'M')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(3, 'L')" ondragstart="return false;">
+          </td>
+          <td></td>
+          <td><input type="button" value="-cancel pattern-" onclick="notNucleus()"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr><td align="center">2　</td>
+          <td>
+            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(2, 'S')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(2, 'M')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(2, 'L')" ondragstart="return false;">
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <input type="button" value="　◀　" onclick="prevAvailableSyllable();G.aView.draw(false)">
+            <input type="button" value="　▶　" onclick="nextAvailableSyllable();G.aView.draw(false)">
+          </td>
+          <td></td>
+          <td><input type="button" id="ClearButton" value="- Clear All -" onclick="clearfield();" onfocus="blurThis();"></td>
+        </tr>
+        <tr><td align="center">1　</td>
+          <td>
+            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(1, 'S')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(1, 'M')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(1, 'L')" ondragstart="return false;">
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><input type="button" value="Make item invisible" onclick="sendToTheShed()"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr><td align="center">0―</td>
+          <td>
+            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(0, 'S')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(0, 'M')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(0, 'L')" ondragstart="return false;">
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <input type="checkbox" class="checkboxer" id="Summon" onclick="retrieveFromTheShed();"/>
+            <label class="label" for="Summon">Make item visible again</label>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    <div id="ScrollCanvas" class="scroll-canvas">
+      <div class="canvas-wrapper">
+        <canvas id="TextCanvas" width="800" height="200" style="border:solid gray 1px;"></canvas>
+        <canvas id="CursorCanvas" width="800" height="200"></canvas>
+      </div>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./scripts4/GlobalManager4.js"></script>
+    <script src="./scripts4/ParameterManager4.js"></script>
+
+    <script src="./scripts4/TSMsymbol4.js"></script>
+    <script src="./scripts4/TSMmanager4.js"></script>
+    <script src="./scripts4/BSpline.js"></script>
+    <script src="./scripts4/ToneNote4.js"></script>
+    <script src="./scripts4/Separator4.js"></script>
+    <script src="./scripts4/ToneNoteManager4.js"></script>
+    <script src="./scripts4/CanvasManager4.js"></script>
+    <script src="./scripts4/Model4.js"></script>
+    <script src="./scripts4/Dispatcher4.js"></script>
+
+    <script src="./scripts4/TuneEditor4.js"></script>
+
+  </body>
+</html>
