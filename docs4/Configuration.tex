@@ -52,7 +52,7 @@ DotLSize=12
 
 \subsection{描画エリアの全体レイアウト}
 
-　TuneEditorは出力イメージを作成するにあたり、最小の幅（\texttt{CanvasMinWidth}）と最小の高さ（\texttt{CanvasMinHeight}）という設定値から\textsf{最小限の描画領域}を作成し、その上下左右に余白（\texttt{CanvasTopMargin}／\texttt{CanvasBottomMargin}／\texttt{CanvasLeftMargin}／\texttt{CanvasRightMargin}）を確保するようになっています。
+　TuneEditorは出力イメージを作成するにあたり、最小の幅（\texttt{CanvasMinWidth}）と最小の高さ（\texttt{CanvasMinHeight}）という設定値から\textsf{最小限の描画領域}を作成し、その上下左右に余白（\texttt{CanvasTopMargin}, \texttt{CanvasBottomMargin}, \texttt{CanvasLeftMargin}, \texttt{CanvasRightMargin}）を確保するようになっています。
 
 なお、この最小限の描画領域の幅は、入力された行が長くなっていくと必要に応じて自動拡張されます。また、高さも改行が入力されるたびに、TSM行の高さ（\texttt{TSMHeight}）と、行間表記を使う場合にはその高さ（\texttt{DotsAreaHeight}）が加味されて自動的に拡張していくようになっています。
 
