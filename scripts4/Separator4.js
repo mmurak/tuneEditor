@@ -1,8 +1,8 @@
 class Separator {
-    constructor(lineNo, offset) {
+    constructor(lineNo, offset, visible) {
         this.lineNo = lineNo;
         this.offset = offset;
-        this.visible = true;
+        this.visible = visible;
     }
     getYs(context) {
         let startY = GPD["CanvasTopMargin"] + (this.lineNo * (GPD["TSMHeight"] + GPD["DotsAreaHeight"])) + GPD["TSMHeight"] + GPD["TopLineOffset"];
@@ -15,8 +15,8 @@ class Separator {
 }
 
 class Separator1 extends Separator {
-    constructor(lineNo, offset)  {
-        super(lineNo, offset) ;
+    constructor(lineNo, offset, visible)  {
+        super(lineNo, offset, visible) ;
     }
     draw(context) {
         let yy = super.getYs();
@@ -28,8 +28,8 @@ class Separator1 extends Separator {
 }
 
 class Separator2 extends Separator {
-    constructor(lineNo, offset)  {
-        super(lineNo, offset) ;
+    constructor(lineNo, offset, visible)  {
+        super(lineNo, offset, visible) ;
     }
     draw(context) {
         let yy = super.getYs();
@@ -43,8 +43,8 @@ class Separator2 extends Separator {
 }
 
 class Separator3 extends Separator {
-    constructor(lineNo, offset)  {
-        super(lineNo, offset) ;
+    constructor(lineNo, offset, visible)  {
+        super(lineNo, offset, visible) ;
     }
     draw(context) {
         let yy = super.getYs();
@@ -60,8 +60,8 @@ class Separator3 extends Separator {
 }
 
 class Separator4 extends Separator {
-    constructor(lineNo, offset)  {
-        super(lineNo, offset) ;
+    constructor(lineNo, offset, visible)  {
+        super(lineNo, offset, visible) ;
     }
     draw(context) {
         let yy = super.getYs();
@@ -80,8 +80,8 @@ class Separator4 extends Separator {
 }
 
 class SeparatorDL1 extends Separator {
-    constructor(lineNo, offset)  {
-        super(lineNo, offset) ;
+    constructor(lineNo, offset, visible)  {
+        super(lineNo, offset, visible) ;
     }
     draw(context) {
         let yy = super.getYs();
@@ -95,8 +95,8 @@ class SeparatorDL1 extends Separator {
 }
 
 class SeparatorDL2 extends Separator {
-    constructor(lineNo, offset)  {
-        super(lineNo, offset) ;
+    constructor(lineNo, offset, visible)  {
+        super(lineNo, offset, visible) ;
     }
     draw(context) {
         let yy = super.getYs();
@@ -112,8 +112,8 @@ class SeparatorDL2 extends Separator {
 }
 
 class SeparatorDL3 extends Separator {
-    constructor(lineNo, offset)  {
-        super(lineNo, offset) ;
+    constructor(lineNo, offset, visible)  {
+        super(lineNo, offset, visible) ;
     }
     draw(context) {
         let yy = super.getYs();
@@ -131,8 +131,8 @@ class SeparatorDL3 extends Separator {
 }
 
 class SeparatorDL4 extends Separator {
-    constructor(lineNo, offset)  {
-        super(lineNo, offset) ;
+    constructor(lineNo, offset, visible)  {
+        super(lineNo, offset , visible) ;
     }
     draw(context) {
         let yy = super.getYs();
