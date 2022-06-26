@@ -333,10 +333,12 @@ function saveImage() {
     G.aModel.separatorPtr = G.NotSelected;
     G.aView.draw(false);
     let base64 = G.aView.canvas.toDataURL("image/jpeg");
-    let link = document.createElement("a");
-    link.href = base64;
-    link.download = "canvas.jpeg";
-    link.click();
+//    let link = document.createElement("a");
+//    link.href = base64;
+//    link.download = "canvas.jpeg";
+//    link.click();
+    G.download.href =  base64;
+    G.download.download = "canvas.jpeg";
     G.download.blur();
 }
 
@@ -542,10 +544,12 @@ function saveInternalStructure() {
 
     let bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
     let blob = new Blob([ bom, contents ], { "type" : "text/plain" });
-    let link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "Project.ti4";
-    link.click();
+//    let link = document.createElement("a");
+//    link.href = URL.createObjectURL(blob);
+//    link.download = "Project.ti4";
+//    link.click();
+    G.download2.href = URL.createObjectURL(blob);
+    G.download2.download = "Project.ti4";
     G.download2.blur();
 }
 
