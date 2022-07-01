@@ -24,6 +24,7 @@ document.addEventListener("keydown", function (evt) {
     let keyname = evt.key;
     if ((keyname == "Shift") || (keyname == "Meta") || (keyname == "Alt")) return;
     G.aDispatcher.dispatch(evt);
+    if (keyname == " ")  evt.preventDefault();
 });
 
 window.addEventListener("blur", function (evt) {
