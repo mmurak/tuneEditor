@@ -316,6 +316,7 @@ fitScrollCanvas2Window() {
     }
 
     _draw1Boundary(left, linePtr, upper, lower, ll, centreline, areaHeight) {
+        if (GPD["sf"] > ll) return;
         this.ctx.beginPath();
         this.ctx.moveTo(left + GPD["sf"], linePtr + upper);
         this.ctx.lineTo(left + ll, linePtr + upper);
@@ -346,11 +347,15 @@ fitScrollCanvas2Window() {
         let linePtr = GPD["CanvasTopMargin"] + tsmHeight;
         let delta = areaHeight + tsmHeight;
         let lineNo = G.aModel.getTextLines().length;
-        let ll = this.canvas.width - left - right;
-        while (lineNo > 0) {
+        let ll = this.canvas.width - left - right;      // the value might be overwritten later when FullBaseline is '0'
+        let lineInfo = G.aModel.getTextLines();
+        for (let idx = 0; idx < lineNo; idx++) {
+            if (GPD["FullBaseline"] == "0") {
+                ll = left + this.ctx.measureText(lineInfo[idx]).width - right;
+            }
             this._draw1Boundary(left, linePtr, upper, lower, ll, centreline, areaHeight);
             linePtr += delta;
-            lineNo--;
+//            lineNo--;
         }
     }
 
