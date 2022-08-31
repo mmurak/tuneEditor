@@ -317,9 +317,9 @@ fitScrollCanvas2Window() {
 
     _draw1Boundary(left, linePtr, upper, lower, ll, centreline, areaHeight) {
         this.ctx.beginPath();
-        this.ctx.moveTo(left, linePtr + upper);
+        this.ctx.moveTo(left + GPD["sf"], linePtr + upper);
         this.ctx.lineTo(left + ll, linePtr + upper);
-        this.ctx.moveTo(left, linePtr + lower);
+        this.ctx.moveTo(left + GPD["sf"], linePtr + lower);
         this.ctx.lineTo(left + ll, linePtr + lower);
         this.ctx.stroke();
         if (centreline) {
@@ -327,7 +327,7 @@ fitScrollCanvas2Window() {
             this.ctx.setLineDash([5, 2]);
             this.ctx.lineWidth = 2;
             let centreY = (upper + lower) / 2.0;
-            this.ctx.moveTo(left, linePtr + centreY);
+            this.ctx.moveTo(left + GPD["sf"], linePtr + centreY);
             this.ctx.lineTo(left + ll, linePtr + centreY);
             this.ctx.stroke();
             this.ctx.setLineDash([]);
