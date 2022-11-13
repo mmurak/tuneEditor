@@ -261,6 +261,7 @@ function smoother(subArray) {
             (endHeight >= -1) || (endHeight <= G.aView.MaxLevel))) {
             if (window.confirm("'Smoothing' would work better with 'DotDistributionPattern=0'.\nPress 'OK' to change the setting.\n(You can re-set the parameter with CTRL-K dialog box whenever you like.)")) {
                 GPD["DotDistributionPattern"] = 0;
+                GP["DotDistributionPattern"] = "0";
             }
         }
         let xorigin = subArray[fromP][1][1] + subArray[fromP][0].width;
