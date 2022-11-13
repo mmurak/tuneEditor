@@ -180,6 +180,8 @@ G.aView.ccanvas.addEventListener("mousedown", function(evt) {
                 } else {
                     if (evt.shiftKey) { // Smoother
                         smoother(subArray);
+                        G.aModel.selPtr = G.NotSelected;
+                        G.aModel.separatorPtr =  G.NotSelected;
                     } else {
                         G.aModel.selPtr = G.iap;
                         G.aModel.separatorPtr =  G.NotSelected;
@@ -251,6 +253,15 @@ function smoother(subArray) {
         let toP = getSubArrayIndexFromGlobalIndex(subArray, G.iap);
         if (fromP > toP) {
             [fromP, toP] = [toP, fromP];
+        }
+        let startHeight = subArray[fromP][0].height;
+        let endHeight = subArray[toP][0].height;
+        if ((GPD["DotDistributionPattern"] == 2) && 
+            ((startHeight >= -1) || (startHeight <= G.aView.MaxLevel) ||
+            (endHeight >= -1) || (endHeight <= G.aView.MaxLevel))) {
+            if (window.confirm("'Smoothing' would work better with 'DotDistributionPattern=0'.\nPress 'OK' to change the setting.\n(You can re-set the parameter with CTRL-K dialog box whenever you like.)")) {
+                GPD["DotDistributionPattern"] = 0;
+            }
         }
         let xorigin = subArray[fromP][1][1] + subArray[fromP][0].width;
         let deltaX = subArray[toP][1][1] + subArray[toP][0].width - xorigin;
