@@ -259,9 +259,9 @@ function smoother(subArray) {
         if ((GPD["DotDistributionPattern"] == 2) && 
             ((startHeight >= -1) || (startHeight <= G.aView.MaxLevel) ||
             (endHeight >= -1) || (endHeight <= G.aView.MaxLevel))) {
-            if (window.confirm("'Smoothing' would work better with 'DotDistributionPattern=0'.\nPress 'OK' to change the setting.\n(You can re-set the parameter with CTRL-K dialog box whenever you like.)")) {
-                GPD["DotDistributionPattern"] = 0;
-                GP["DotDistributionPattern"] = "0";
+            if (window.confirm("'Smoothing' would work better with 'DotDistributionPattern=1'.\nPress 'OK' to change the setting.\n(You can re-set the parameter with CTRL-K dialog box whenever you like.)")) {
+                GPD["DotDistributionPattern"] = 1;
+                GP["DotDistributionPattern"] = "1";
             }
         }
         let xorigin = subArray[fromP][1][1] + subArray[fromP][0].width;
