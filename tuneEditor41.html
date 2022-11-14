@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>TuneEditor（Ver. 4.10RC）</title>
+    <title>TuneEditor（Ver. 4.10RC2）</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
     <link rel="shortcut icon" href="./PurpleKiwiBird.png">
     <link rel="stylesheet" href="./tuneEditor4.css">
@@ -42,9 +42,9 @@
         <tr><th>Height</th><th>Stress</th><th>&nbsp;</th><th align="left">Tone</th><th>&nbsp;</th><th align="left">Misc.</th><th></th><th align="left"><textarea id="HotGate" cols="25" rows="1"></textarea></th></tr>
         <tr><td align="center">8―</td>
           <td>
-            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(8, 'S')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(8, 'M')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(8, 'L')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress1.png" value="8|S" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" value="8|M" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" value="8|L" ondragstart="return false;">
           </td>
           <td></td>
           <td><input type="button" value="Low/High-Fall" onclick="fall()"></td>
@@ -57,9 +57,9 @@
         </tr>
         <tr><td align="center">7　</td>
           <td>
-            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(7, 'S')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(7, 'M')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(7, 'L')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress1.png" value="7|S" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" value="7|M" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" value="7|L" ondragstart="return false;">
           </td>
           <td></td>
           <td><input type="button" value="Rise-Fall" onclick="riseFall()"></td>
@@ -72,9 +72,9 @@
         </tr>
         <tr><td align="center">6　</td>
           <td>
-            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(6, 'S')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(6, 'M')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(6, 'L')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress1.png" value="6|S" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" value="6|M" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" value="6|L" ondragstart="return false;">
           </td>
           <td></td>
           <td><input type="button" value="Low/High-Rise" onclick="rise()"></td>
@@ -85,9 +85,9 @@
         </tr>
         <tr><td align="center">5　</td>
           <td>
-            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(5, 'S')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(5, 'M')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(5, 'L')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress1.png" value="5|S" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" value="5|M" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" value="5|L" ondragstart="return false;">
           </td>
           <td></td>
           <td><input type="button" value="Fall-Rise" onclick="fallRise()"></td>
@@ -98,9 +98,9 @@
         </tr>
         <tr><td align="center">4―</td>
           <td>
-            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(4, 'S')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(4, 'M')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(4, 'L')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress1.png" value="4|S" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" value="4|M" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" value="4|L" ondragstart="return false;">
           </td>
           <td></td>
           <td><input type="button" value="Mid-Level" onclick="midLevel()"></td>
@@ -111,9 +111,9 @@
         </tr>
         <tr><td align="center">3　</td>
           <td>
-            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(3, 'S')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(3, 'M')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(3, 'L')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress1.png" value="3|S" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" value="3|M" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" value="3|L" ondragstart="return false;">
           </td>
           <td></td>
           <td><input type="button" value="-cancel pattern-" onclick="notNucleus()"></td>
@@ -124,9 +124,9 @@
         </tr>
         <tr><td align="center">2　</td>
           <td>
-            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(2, 'S')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(2, 'M')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(2, 'L')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress1.png" value="2|S" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" value="2|M" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" value="2|L" ondragstart="return false;">
           </td>
           <td></td>
           <td></td>
@@ -140,9 +140,9 @@
         </tr>
         <tr><td align="center">1　</td>
           <td>
-            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(1, 'S')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(1, 'M')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(1, 'L')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress1.png" value="1|S" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" value="1|M" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" value="1|L" ondragstart="return false;">
           </td>
           <td></td>
           <td></td>
@@ -153,9 +153,9 @@
         </tr>
         <tr><td align="center">0―</td>
           <td>
-            <input type="image" class="btn" src="./images/stress1.png" onclick="setToneStress(0, 'S')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress2.png" onclick="setToneStress(0, 'M')" ondragstart="return false;">
-            <input type="image" class="btn" src="./images/stress3.png" onclick="setToneStress(0, 'L')" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress1.png" value="0|S" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress2.png" value="0|M" ondragstart="return false;">
+            <input type="image" class="btn" src="./images/stress3.png" value="0|L" ondragstart="return false;">
           </td>
           <td></td>
           <td></td>

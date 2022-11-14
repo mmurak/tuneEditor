@@ -44,6 +44,12 @@ window.addEventListener('keydown', function(evt){   // To prevent Back/Forward p
     }
 }, true);
 
+const toneStressButtons = document.getElementsByClassName("btn");
+for (let i = 0; i < toneStressButtons.length; i++) {
+    toneStressButtons[i].addEventListener("click", function(evt) {
+        setToneStress(evt, this);
+    });
+}
 
 //////////
 function _analyseClickedInfo(evt) {
@@ -254,23 +260,15 @@ function smoother(subArray) {
         if (fromP > toP) {
             [fromP, toP] = [toP, fromP];
         }
-        let startHeight = subArray[fromP][0].height;
-        let endHeight = subArray[toP][0].height;
-        if ((GPD["DotDistributionPattern"] == 2) && 
-            ((startHeight >= -1) || (startHeight <= G.aView.MaxLevel) ||
-            (endHeight >= -1) || (endHeight <= G.aView.MaxLevel))) {
-            if (window.confirm("'Smoothing' would work better with 'DotDistributionPattern=1'.\nPress 'OK' to change the setting.\n(You can re-set the parameter with CTRL-K dialog box whenever you like.)")) {
-                GPD["DotDistributionPattern"] = 1;
-                GP["DotDistributionPattern"] = "1";
-            }
-        }
+        let startHeight = subArray[fromP][0].physicalHeight;
+        let endHeight = subArray[toP][0].physicalHeight;
         let xorigin = subArray[fromP][1][1] + subArray[fromP][0].width;
         let deltaX = subArray[toP][1][1] + subArray[toP][0].width - xorigin;
-        let yorigin =  subArray[fromP][0].height;
-        let deltaY =  subArray[toP][0].height - subArray[fromP][0].height;
+        let yorigin =  startHeight;
+        let deltaY =  yorigin - endHeight;
         let slope = deltaY / deltaX;
         for(let i = fromP + 1; i <= toP; i++) {
-            subArray[i][0].height = yorigin + Math.round((subArray[i][1][1] + subArray[i][0].width - xorigin) * slope);
+            subArray[i][0].physicalHeight = yorigin - Math.round((subArray[i][1][1] + subArray[i][0].width - xorigin) * slope);
         }
     }
 }
@@ -419,12 +417,17 @@ function separatorClickedDL() {
     G.summon.checked = false;
 }
 
-function setToneStress(tone, stress) {
+function setToneStress(evt, obj) { // tone, stress) {
+    let [tone, stress] = obj.value.split("|");
     G.aView.ccanvas.focus();
     if (G.aModel.selPtr == G.NotSelected)
         return;
-    G.aModel.tnm.noteArray[G.aModel.selPtr].height = -(tone * 125 + 1);
-    G.aModel.tnm.noteArray[G.aModel.selPtr].size = stress;
+    let selTone = G.aModel.tnm.noteArray[G.aModel.selPtr];
+    selTone.size = stress;
+    if (!evt.metaKey) {
+        selTone.height = -(tone * 125 + 1);
+        selTone.physicalHeight = G.aView.getHeight4Note(selTone.getRadius(selTone.size), selTone.height);
+    }
     if (event.shiftKey) {
         G.iap = G.aModel.selPtr;
     } else {
@@ -563,7 +566,7 @@ Separator: width, visible
     for (let i = 0; i < G.aModel.tnm.noteArray.length; i++) {
         let item = G.aModel.tnm.noteArray[i];
         let cn = item.getClassName();
-       result += `${cn}|${item.width}|${item.height}|${item.size}|${item.pattern}|${item.magX}|${item.magY}|${item.finalY}|${item.visible},`;
+       result += `${cn}|${item.width}|${item.height}|${item.size}|${item.pattern}|${item.magX}|${item.magY}|${item.finalY}|${item.visible}|${item.physicalHeight},`;
     }
     return result.slice(0, -1);
 }
@@ -652,6 +655,9 @@ function _setNoteArray(data) {
         obj.magY = Number(p[6]);
         obj.finalY = Number(p[7]);
         obj.visible = (p[8] == "true") ? true : false;
+        if (p.length == 10) {
+            obj.physicalHeight = Number(p[9]);
+        }
         noteArray.push(obj);
     }
     G.aModel.tnm.noteArray = noteArray;

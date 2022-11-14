@@ -21,6 +21,7 @@ class ToneNote {
             this.height = height;
         }
         this.size = size;
+        this.physicalHeight = G.aView.getHeight4Note(this.getRadius(this.size), this.height);
         this.pattern = 0;
         this.magX = 1.0;
         this.magY = 1.0;
@@ -47,11 +48,11 @@ class ToneNote {
             let maxdev = this.getMax(spath);
             let magnifier = 1.0
             if (maxdev != 0) {
-                magnifier = (GPD["BottomLineOffset"] - G.aView.getHeight4Note(this.getRadius(this.size), this.height) ) / maxdev;
+                magnifier = (GPD["BottomLineOffset"] - this.physicalHeight ) / maxdev;
             }
             for(let i = 0; i < spath.length; i++) {
                 let x = parmX + GPD["CanvasLeftMargin"] + (spath[i][0] * this.magX);
-                let y = GPD["CanvasTopMargin"] + parmY * (GPD["TSMHeight"] + GPD["DotsAreaHeight"]) + GPD["TSMHeight"] + G.aView.getHeight4Note(this.getRadius(this.size), this.height) + (spath[i][1] * magnifier * this.magY);
+                let y = GPD["CanvasTopMargin"] + parmY * (GPD["TSMHeight"] + GPD["DotsAreaHeight"]) + GPD["TSMHeight"] + this.physicalHeight + (spath[i][1] * magnifier * this.magY);
                 modifiedPath.push([x, y]);
             }
             if (this.pattern != 7) {
@@ -79,7 +80,7 @@ class ToneNote {
     draw(context, coord) {
         context.beginPath();
         let radius = this.getRadius(this.size);
-        context.arc(coord[1] + this.width + GPD["CanvasLeftMargin"], GPD["CanvasTopMargin"] + coord[0] * (GPD["TSMHeight"] + GPD["DotsAreaHeight"]) + GPD["TSMHeight"] + G.aView.getHeight4Note(radius, this.height), radius, 0, Math.PI * 2, true);
+        context.arc(coord[1] + this.width + GPD["CanvasLeftMargin"], GPD["CanvasTopMargin"] + coord[0] * (GPD["TSMHeight"] + GPD["DotsAreaHeight"]) + GPD["TSMHeight"] + this.physicalHeight, radius, 0, Math.PI * 2, true);
         context.fill();
         let dotsAreaOffset = GPD["CanvasTopMargin"] + (coord[0] * (GPD["TSMHeight"] + GPD["DotsAreaHeight"])) + GPD["TSMHeight"];
         let upperLimit = dotsAreaOffset + GPD["TopLineOffset"];
