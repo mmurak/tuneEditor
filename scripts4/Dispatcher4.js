@@ -129,6 +129,7 @@ class Dispatcher {
                         this.mtable[command].apply(this.model);  // this is tricky... sort of.
                     }
                     this._menuClose();
+                    G.patternTemplate.process(command);
                 }
             }
         } else {

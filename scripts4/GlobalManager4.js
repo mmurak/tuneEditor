@@ -28,5 +28,6 @@ class GlobalManager {
         this.coldGateStyle = "background-color:" + this.coldColour + "caret-color:" + this.coldColour + "font-size:100%;font-color:rgb(255,0,0);text-align:center;resize: none;";
         this.hotGateStyle = "background-color:" + this.hotColour + "caret-color:" + this.hotColour + "font-size:100%;font-color:rgb(255,0,0);text-align:center;resize: none;";
         this.hotGate.style = this.coldGateStyle;
+        this.patternTemplate = new OandA();
     }
 }

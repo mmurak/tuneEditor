@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>TuneEditor（Ver. 4.10RC2）</title>
+    <title>TuneEditor（Ver. 4.10RC3）</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
     <link rel="shortcut icon" href="./PurpleKiwiBird.png">
     <link rel="stylesheet" href="./tuneEditor4.css">
@@ -10,20 +10,20 @@
       <nav class="global-nav">
         <div align="left" id="ESCmenu">&nbsp;<label id="MiniDisplay"></label>&nbsp; To execute the command, type the underlined characters.  (Press ESC to close this menu.)
           <br/><br/>
-          <img src="./menuIMG/LowFall.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
-          <img src="./menuIMG/HighFall.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
-          <img src="./menuIMG/RiseFall.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
-          <img src="./menuIMG/LowRise.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
-          <img src="./menuIMG/HighRise.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
-          <img src="./menuIMG/FallRise.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
-          <img src="./menuIMG/MidLevel.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/LowFall.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="LFimg">
+          <img src="./menuIMG/HighFall.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="HFimg">
+          <img src="./menuIMG/RiseFall.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="RFimg">
+          <img src="./menuIMG/LowRise.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="LRimg">
+          <img src="./menuIMG/HighRise.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="HRimg">
+          <img src="./menuIMG/FallRise.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="FRimg">
+          <img src="./menuIMG/MidLevel.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="MLimg">
           <br/>
-          <img src="./menuIMG/High1.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/High1.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="HHimg">
           <img src="./menuIMG/High2.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
-          <img src="./menuIMG/High3.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
-          <img src="./menuIMG/Low1.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/High3.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="FHimg">
+          <img src="./menuIMG/Low1.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="LHimg">
           <img src="./menuIMG/Low2.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
-          <img src="./menuIMG/Low3.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;">
+          <img src="./menuIMG/Low3.jpg" height="30" width="120" style="object-fit: cover;object-position: 0 100%;" id="RHimg">
           <br/>
           <img src="./menuIMG/HighPrehead.jpg" height="30" width="180" style="object-fit: cover;object-position: 0 100%;">
           <img src="./menuIMG/LowPrehead.jpg" height="30" width="180" style="object-fit: cover;object-position: 0 100%;">
@@ -177,9 +177,9 @@
     </div>
 
     <script src="./config.js"></script>
+    <script src="./scripts4/OandA.js"></script>
     <script src="./scripts4/GlobalManager4.js"></script>
     <script src="./scripts4/ParameterManager4.js"></script>
-
     <script src="./scripts4/TSMsymbol4.js"></script>
     <script src="./scripts4/TSMmanager4.js"></script>
     <script src="./scripts4/BSpline.js"></script>
