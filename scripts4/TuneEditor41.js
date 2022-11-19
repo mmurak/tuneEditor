@@ -319,6 +319,7 @@ G.aView.canvas.oncontextmenu = function (evt) {
 
 G.hotGate.addEventListener("focus", (evt) => {
     G.hotGate.style = G.hotGateStyle;
+    G.aModel.innerClipboard = "";
     G.hotGate.value = "";
 });
 G.hotGate.addEventListener("focusout", (evt) => {
