@@ -1,0 +1,35 @@
+figure{
+    display:table;
+    text-align: center;
+}
+figure img {
+    width: 60%;
+}
+figcaption{
+    caption-side: top;
+    display: table-caption;
+}
+.roman{
+    font-family: "Times New Roman";
+    font-size: 150%;
+}
+.gentleTable {
+ width: 80%;
+ text-align: center;
+ border-collapse: collapse;
+ border-spacing: 0;
+}
+.gentleTable th {
+ padding: 10px;
+ background: #e9faf9;
+ border: solid 1px #778ca3;
+}
+.gentleTable td {
+ padding: 10px;
+ border: solid 1px #778ca3;
+}
+.emphasis{
+    border-bottom: solid;
+    border-color: #FF0000;
+    border-width: 3px;
+}

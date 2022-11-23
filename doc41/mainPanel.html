@@ -1,0 +1,214 @@
+<html>
+<head>
+    <title>TuneEditor - Main Panel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="shortcut icon" href="./PurpleKiwiBird.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h2>画面と操作の概要</h2>
+
+<a name="a00"/>
+<p>　TuneEditorの画面は以下のようになっています。</p>
+
+<figure>
+<img src="./images/MainPanel.png" usemap="#ImageMap" alt="" />
+<map name="ImageMap">
+  <area shape="rect" coords="101,275,263,765" href="#a01" alt="" />
+  <area shape="rect" coords="244,780,485,819" href="#a01" alt="" />
+  <area shape="rect" coords="272,279,451,608" href="#a02" alt="" />
+  <area shape="rect" coords="287,661,435,723" href="#a02" alt="" />
+  <area shape="rect" coords="458,279,767,391" href="#a03" alt="" />
+  <area shape="rect" coords="469,443,756,490" href="#a03" alt="" />
+  <area shape="rect" coords="456,604,654,658" href="#a04" alt="" />
+  <area shape="rect" coords="494,543,797,578" href="#a04" alt="" />
+  <area shape="rect" coords="453,663,767,772" href="#a05" alt="" />
+  <area shape="rect" coords="686,780,997,820" href="#a05" alt="" />
+  <area shape="rect" coords="773,234,1091,282" href="#a06" alt="" />
+  <area shape="rect" coords="1161,231,1495,278" href="#a06" alt="" />
+  <area shape="rect" coords="776,290,1020,325" href="#a07" alt="" />
+  <area shape="rect" coords="1161,287,1414,326" href="#a07" alt="" />
+  <area shape="rect" coords="773,343,1022,379" href="#a08" alt="" />
+  <area shape="rect" coords="1161,336,1374,375" href="#a08" alt="" />
+  <area shape="rect" coords="774,389,1409,441" href="#a09" alt="" />
+  <area shape="rect" coords="1102,565,1516,614" href="#a09" alt="" />
+  <area shape="rect" coords="761,452,987,489" href="#a10" alt="" />
+  <area shape="rect" coords="779,518,1101,553" href="#a10" alt="" />
+  <area shape="rect" coords="1003,453,1212,488" href="#a11" alt="" />
+  <area shape="rect" coords="1117,516,1358,557" href="#a11" alt="" />
+  <area shape="rect" coords="767,609,912,655" href="#a12" alt="" />
+  <area shape="rect" coords="859,694,1026,742" href="#a12" alt="" />
+  <area shape="rect" coords="49,835,1483,911" href="#a13" alt="" />
+  <area shape="rect" coords="1208,708,1458,763" href="#a13" alt="" />
+  <area shape="rect" coords="42,918,1476,1067" href="#a14" alt="" />
+  <area shape="rect" coords="1221,1111,1398,1153" href="#a14" alt="" />
+</map>
+<figcaption>画面の概要</figcaption>
+</figure>
+
+
+<hr>
+
+<a name="a01"/>
+<h3>高さとサイズの指定</h3>
+
+<p>　行間表示領域に表示されたいずれかのドットをクリックすると、そのドットが選択されます。その後、このボタンのいずれかをクリックすることで、ドットの高さ（9段階）とサイズ（3段階）を変更することができます。</p>
+
+<p>　ボタンをクリックすると自動的に次のドットが選択されるようになりますが、この自動移動機能を抑止したい場合、Shiftキーを押しながらボタンをクリックします。</p>
+
+<p>　Metaキー（macOSではcommandキー、WindowsではAltキー）を押しながらボタンをクリックすると、どの高さのボタンを押してもドットの現在の高さは変更されず、サイズのみが変更されます。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a02"/>
+<h3>音調核の指定ボタン</h3>
+
+<p>　音調核の指定ボタンを押すと、現在選択されているドットに「尻尾」を付けたり、外したりすることができます。</p>
+
+<p>　高さとサイズの指定ボタンを押すと、（Shiftキーが押されていない限り）次のドットが選択されますが、その時点で音調核の指定ボタンを押した場合、（次のドットが赤くなっていますが）今高さとサイズを指定したドットに対して尻尾の処理が適用されます。それ以外の場合では、処理を適用したいドットを選択した後、音調核の指定ボタンを使うようにしてください。</p>
+
+<table class="gentleTable">
+<tr><th>ラベル</th><th>意味</th></tr>
+<tr><td>Low/High-Fall</td><td>低下降調または高下降調</td></tr>
+<tr><td>Rise-Fall</td><td>上昇下降調</td></tr>
+<tr><td>Low/High-Rise</td><td>低上昇調または高上昇調</td></tr>
+<tr><td>Fall-Rise</td><td>下降上昇調</td></tr>
+<tr><td>Mid-Level</td><td>平坦調</td></tr>
+<tr><td>-cancel pattern-</td><td>尻尾の削除</td></tr>
+</table>
+
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a03"/>
+<h3>行間表記の区切り線指定</h3>
+
+<p>　「Separator  (Solid line)」または、「Separator (Dashed line)」をクリックした後、行間表示領域のどこかをクリックすると、その位置に区切り線を追加することができます。</p>
+
+<p>　行間表示領域をクリックする際にShiftキーやOptionキーを押下した状態でクリックすると、区切り線の形状を変えることができます。</p>
+
+<figure>
+<img src="./images/SolidLine.png" alt="" />
+</figure>
+
+<figure>
+<img src="./images/DashedLine.png" alt="" />
+</figure>
+
+
+<p>　こういった区切り線は、ドットの場合と同じ手順で左右位置を調整したり、非表示／再表示を切り替えることができます。ただ、ドットとは独立したかたちで位置管理を行っているため、テキスト内容を変更してもドットのように描画位置はシフトしていきません。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a04"/>
+<h3>直前／直後のドットへ移動</h3>
+
+<p>　「◀」をクリックすると、選択されているドットの左にあるドットが選択され、「▶」をクリックすると、選択されているドットの右にあるドットが選択されます。</p>
+
+<p>　「◀」をクリックする代わりに、Commandキー+Z（macOSの場合）、あるいはCtrlキー＋Z（Windowsの場合）を押しても同じ機能を実行できます。</p>
+
+<p>　「▶」をクリックする代わりに、Commandキー+Shiftキー+Z（macOSの場合）、あるいはCtrlキー+Shiftキー+Z（Windowsの場合）を押しても同じ機能を実行できます。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a05"/>
+<h3>ドットの表示／非表示関連</h3>
+
+<p>　ドットを選択し、「Make item invisible」をクリックすると、該当ドットは非表示になります（非表示になるだけで削除されるわけではありません）。</p>
+
+<p>　このようにして非表示にしたドットを再び表示させたい場合、「Make item visible again」をクリックすると、再表示選択モードになり、既に非表示にしたドット（群）が青で表示されます。その後、再表示させたいドットをクリックすると、再び表示され、通常モードに戻ります。再表示選択モードを途中でキャンセルしたい場合、「Make item visible again」をもう一度クリックすると、通常モードに戻ります。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a06"/>
+<h3>他アプリからのペースト制御</h3>
+
+<p>　他のアプリでコピーしたテキストをTuneEditorのテキスト／TSM領域にペーストしたい場合、OSが用意している一般的なペーストコマンドは使えません。これはクリップボードとの連携を行う際に使用する規格が現時点で統一されておらず、ブラウザーによってはうまく機能しない場合があるためです。このためTuneEditorでは、以下のような独自の操作方法でペースト処理を実行します。</p>
+
+
+<ul style="list-style:lower-roman">
+<li>他のアプリ上で、コピー（またはカット）処理を実行し、OSのクリップボードにテキストをコピーする。</li>
+<li>TuneEditorの画面上部にある水色の領域をクリックする（ピンク色に変化します）。</li>
+<li>この状態でOSのペースト処理を実行する。</li>
+</ul>
+
+<p>　なお、途中で気が変わって処理を中断したい場合、画面上の赤色以外の領域をクリックすると、通常の編集モードに戻ります。</p>
+
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a07"/>
+<h3>行間表記の使用有無</h3>
+
+<p>　このチェックボックスは、行間表記を使用するかどうかを指定するものです。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a08"/>
+<h3>中央線の描画有無</h3>
+
+<p>　このチェックボックスは、行間表記の「4」の高さの位置に点線を描画するかどうかを指定するものです。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a09"/>
+<h3>プロジェクト／設定ファイルの入力</h3>
+
+<p>　このボタンをクリックすることで、過去に保存しておいたプロジェクトファイルを読み込んだり、独自のパラメーター設定を読み込むことができます。</p>
+
+<p>　パラメーター設定ファイルやその内容については、パラメータの項で解説予定です。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a10"/>
+<h3>プロジェクトファイルの保存</h3>
+
+<p>　現在の作業状況をプロジェクトファイルとして、ファイルに保存します。ファイルの拡張子は「.ti4」となっています。</p>
+
+<p>　プロジェクトファイルの内部構造については、技術仕様の項で解説予定です。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a11"/>
+<h3>画像ファイルの保存</h3>
+
+<p>　テキスト／TSM領域の内容と、行間表示領域（あれば）の内容を画像ファイルとしてファイルに保存します。ファイルの形式はJPEGであり、拡張子は「.jpeg」となっています。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a12"/>
+<h3>全データ消去</h3>
+
+<p>　このボタンを押すと、入力したすべてのデータが消去されます。なお、誤操作を防ぐために、確認のダイアログボックスが表示されます。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a13"/>
+<h3>テキスト／TSM領域</h3>
+
+<p>　入力したテキストおよびTSMが表示される領域です。</p>
+
+<p>　マウスのクリックでカーソルを移動したり、ドラッグで範囲を選択することができます。</p>
+
+<p>　キーボードによるカーソル移動関連の操作については、<a href="./functionKeys.html#cursorMovementKeys" target="_blank">このページ</a>を参照してください。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+<a name="a14"/>
+<h3>行間表示領域</h3>
+
+<p>　行間表示が表示される領域です。</p>
+
+<p>　マウスのクリックでドットを選択したり、ドラッグでドットを左右に移動することができます。</p>
+
+<hr><a href="#a00">ページ先頭に戻る</a>
+
+
+<script src="./imageMapResizer.min.js"></script>
+<script>
+imageMapResize();
+</script>
+
+</body>
+</html>

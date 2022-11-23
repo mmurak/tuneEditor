@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>TuneEditor - Nucleus Presumption method</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="shortcut icon" href="./PurpleKiwiBird.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h1>TuneEditorにおける音節核の判定</h1>
+
+<h2>判定方法</h2>
+
+<p>　TuneEditorは内部に「音節核になり得る文字」（以下、音節核候補文字と呼称します）を定義しており、入力された文字とその前後の文字が以下の条件を満足する場合にドットを挿入するようになっています。</p>
+
+<ul>
+<li>入力した文字が音節核候補文字であり、その直前および直後の文字の双方が音節各候補文字<span class="emphasis">以外</span>である場合、該当位置にドットを挿入する。</li>
+<li>入力した文字が音節核候補文字<span class="emphasis">以外</span>であり、その前後の双方が音節核候補文字である場合、入力した文字の次の文字に対応するドットを挿入する。</li>
+</ul>
+
+<p>　※ なお、行頭の直前と行末の直後には架空の非音節核候補文字があると解釈して動作します。</p>
+
+
+<h2>音節核候補文字とは</h2>
+
+<p>　音節核候補文字とは、音節核になり得る以下の文字集合を指します。</p>
+
+<table class="gentleTable">
+<tr><th>ラテンアルファベット</th><td><span class="roman">a e i o u y</span></td></tr>
+<tr><th>国際音声記号</th><td><span class="roman">ɨ ʉ ɯ ɪ ᵻ ᵿ ʊ ø ɘ ɵ ɤ ə ɛ œ ɜ ɞ ʌ ɔ æ ɐ ɶ ɑ ɒ ɚ</span></td></tr>
+<tr><th>その他</th><td><span class="roman">Unicode</span>の&#92;u200b</td></tr>
+</table>
+
+<p>　※ Unicodeの&#92;u200bは、横幅ゼロの空白文字として定義されています。この文字を音節核候補文字として定義しておくことで、若干の制限を残しながらも音節核候補文字のない部分（例えば「B.B.C.」）でもドットを追加できるようになります。詳細は次のセクションを参照してください。</p>
+
+
+
+<a name="addADot"/>
+<h2>文字上に音節核表示文字が含まれていない場所にドットを追加する</h2>
+
+<p>　以下の手順により、音節核候補文字のない部分にドットを追加することができます。</p>
+
+<ul style="list-style:lower-roman">
+<li>ドットを追加したい場所の近くにある、音節核候補文字<span class="emphasis">ではない</span>文字が2つ以上連続している場所を見つけ出す。</li>
+<li>それら文字の間にテキストカーソルを移動し、コマンドメニュー（escキーを押すと表示される）から「aa」（Add A tone）コマンドを実行する。</li>
+</ul>
+
+<p><strong>仕掛けの話：</strong> aaコマンドによって該当位置にUnicodeの&#92;u200b（幅がゼロの空白）を挿入し、強制的にドットを作り出しています。その結果、カーソルを右から左、あるいは左から右に移動させると1文字分の「足踏み」が発生することになります。これは仕様です。</p>
+
+</body>
+</html>

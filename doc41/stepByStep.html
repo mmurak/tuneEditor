@@ -1,0 +1,193 @@
+<html>
+<head>
+    <title>TuneEditor - Step by Step</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="shortcut icon" href="./PurpleKiwiBird.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    </style>
+</head>
+<body>
+
+<h1>まずは使ってみよう</h1>
+
+<h2>I. 作業の準備</h2>
+
+<h3>1. アプリケーションを起動する</h3>
+
+<p>　TuneEditorはブラウザーアプリです。以下のURLにアクセスするだけで、アプリケーションが起動します。</p>
+
+<blockquote><pre><a href="https://mmurak.github.io/tuneEditor/tuneEditor41.html" target="_blank">https://mmurak.github.io/tuneEditor/tuneEditor41.html</a></pre></blockquote>
+
+<figure>
+<img src="./images/Fig01.png">
+<figcaption>図1：初期画面</figcaption>
+</figure>
+
+<h3>2. 表示画面を調整する（任意）</h3>
+
+<p>　TuneEditorはウィンドウの横幅が900ピクセル以上のウィンドウを想定して作られています（900ピクセル未満だと、ウィンドウ上部からスライドしてくるメニュー画面が顔をのぞかせてしまいます）。このため、必要に応じてブラウザーのウィンドウ幅を広げてください。</p>
+
+<p>　また、ウィンドウ上部のボタン領域が場所を取りすぎて実際の編集領域が狭いと感じた場合には、ブラウザーの［表示］メニューから［縮小］を選択し、全体的な表示を縮小してください。</p>
+
+<h2>II. 入力・編集作業</h2>
+
+<h3>1. テキストを入力する</h3>
+
+<p>　編集領域に緑色のカーソルが点滅している状態で、キーボードから文字を入力すると、その文字がカーソル位置に挿入されていきます。なお、カーソルを上下左右などに移動させる等の編集方法については<a href="./FunctionalKeys.html" target="_blank">このページ</a>を参照してください。</p>
+
+<p>　それではまず、以下のテキストを入力してみてください。</p>
+
+<blockquote class="roman">Take as many as you think you'll need.</blockquote>
+
+<figure>
+<img src="./images/Fig02.png">
+<figcaption>図2：テキスト入力後の画面</figcaption>
+</figure>
+
+<h3>2. TSM記号を入力する</h3>
+
+<p>　本来であれば、テキスト入力中か、テキスト入力を終了したこの段階でTSM記号の入力を行うことになります。しかし、入力にはTSMに関する一定の知識が必要になる点、そして今は全体的な作業イメージを見ていただきたい点から、ここではその作業を割愛します。詳しい入力方法については<a href="./TSMentry.html" target="_blank">このページ</a>を参照してください。</p>
+
+<h3>3. 行間表記を作成する</h3>
+
+<h4>(1). ドットを非表示にする、あるいは再表示させる</h4>
+
+<p>　入力内容に応じて、行間表示領域にいくつかのドットが表示されていくはずです。このドットは、入力したテキストの音節核に該当する部分に表示されるようになっています。</p>
+
+<p>　ただ、英語の綴りと発音には完全な規則性がないため、常に正しい判断をしてくれるわけではありません（その判定処理の詳細については<a href="./nucleusPresumption.html" target="_blank">このページ</a>を参照してください）。この例では、「<span class="roman">Take</span>」の「<span class="roman">e</span>」部分にも音節核があると誤って判定されています。</p>
+
+<p>　それでは、この不要なドットを非表示にしてしまいましょう。手順は以下の通りです。</p>
+
+<ul style="list-style:lower-roman">
+<li>消したいドットをマウスでクリックし、選択状態（赤）にする。
+<figure>
+<img src="./images/Fig03.png">
+<figcaption>図3：ドット選択状態</figcaption>
+</figure>
+</li>
+
+<li>ウィンドウ上部にある「Make item invisible」ボタンをクリックする。
+<figure>
+<img src="./images/Fig04.png">
+<figcaption>図4：ドット非表示後の状態</figcaption>
+</figure>
+</li>
+</ul>
+
+<p>　なお、すべてのドットは入力したテキスト内の音節核を構成する母音字に対応付けられているため、非表示にしても内部データとしては残っています。このため、再び表示させることも可能です。その手順は以下の通りです。</p>
+
+<ul style="list-style:lower-roman">
+<li>ウィンドウ上部にある「Make item visible again」ボタンをクリックする。
+<figure>
+<img src="./images/Fig05.png">
+<figcaption>図5：非表示ドット群のいずれかを表示状態に戻す</figcaption>
+</figure>
+</li>
+<li>消去されたドットが「青」で表示されるため、該当するドットをクリックする。</li>
+</ul>
+
+<p>　※なお、途中で処理を中止したい場合、もう1度「Make item visible again」ボタンをクリックすると通常の編集モードに戻ります。</p>
+
+<h4>(2). 音節核があると判断されなかったところにドットを追加する。</h4>
+
+<p>　その方法については音節核の判定処理と密接に関連しており、ここで使用している例文では不要のため、説明を割愛します（知りたい方は<a href="./nucleusPresumption.html#addADot" target="_blank">このページ</a>を参照してください）。</p>
+
+
+<h4>(3). 各ドットの左右位置を調整する</h4>
+
+<p>　それぞれのドットはマウスで左右にドラッグすることができます。発話のリズムに合わせて微調整してください。</p>
+
+<h4>(4). 各ドットの高さとサイズを指定していく（Part 1）</h4>
+
+<p>　ドットの高さとサイズを指定していくには、対象となるドットを選択した後、ウィンドウ上部に用意されている、サイズの異なった「●」ボタン群のいずれかをクリックします。なお、ボタンをクリックすると、自動的に次のドットが選択されます。この自動移動を抑止したい場合、Shiftキーを押しながらボタンをクリックすることもできます。</p>
+
+<p>　自動移動機能を使いながら各ドットの高さとサイズを順番に指定していく、あるいは1つずつマウスでドットを選択して高さとサイズを指定していくことも可能ですが、始点と終点の高さを指定した上で、その間にあるドットを直線上に整列させることもできます。ここではその方法を使ってみましょう。</p>
+
+<ul style="list-style:lower-roman">
+<li><span class="roman">Take</span>の音節に該当するドットを選択し、適切な高さとサイズのボタンをクリックする（例では高さ0、サイズ大にしています）。
+<figure>
+<img src="./images/Fig06.png">
+<figcaption>図6：開始ドットの高さとサイズを設定する</figcaption>
+</figure>
+</li>
+<li><span class="roman">need</span>の音節に該当するドットを選択し、適切な高さとサイズのボタンをクリックする（例では高さ8、サイズ大にしています）。
+<figure>
+<img src="./images/Fig07.png">
+<figcaption>図7：終了ドットの高さとサイズを設定する</figcaption>
+</figure>
+</li>
+<li><span class="roman">need</span>は高下降調の音調核にしたいので、尻尾を設定する。高さとサイズを指定した直後であれば、ドットが赤くない状態でも、Toneボタンのいずれかをクリックすれば、該当ドットに尻尾が設定される。直後でない場合には尻尾を付けたいドットをクリックし、赤くなっている状態でToneボタンをクリックする。
+<figure>
+<img src="./images/Fig08.png">
+<figcaption>図8：終了ドット（音調核）を高下降調にする</figcaption>
+</figure>
+<p>　※ 尻尾の横幅や長さを変えることもできます。詳細は<a href="./changingTailShape.html" target="_blank">このページ</a>を参照してください。</p>
+</li>
+<li>
+開始ドットと終了ドットの高さを指定したのであれば、開始ドットか終了ドットのいずれかをマウスでクリックし選択する。
+<figure>
+<img src="./images/Fig09.png">
+<figcaption>図9：終了ドットを選択した状態</figcaption>
+</figure>
+</li>
+<li>
+終了ドットを選択したのであれば開始ドットを、開始ドットを選択したのであれば終了ドットを「Shiftキーを押しながら」クリックする。
+<figure>
+<img src="./images/Fig10.png">
+<figcaption>図10：Shiftキーを押しながら反対側の端にあるドットを選択する</figcaption>
+</figure>
+</li>
+
+</ul>
+
+<p>　なお、ここでは説明の都合上、段階を踏んで記述していきましたが、実際には：</p>
+
+<ul style="list-style:lower-roman">
+<li>開始ドットの高さとサイズを設定する。</li>
+<li>終了ドットの高さとサイズを設定する際にShiftキーを押しながら操作する（終了ドットは赤い状態のままになる）。</li>
+<li>Shiftキーを押しながら音調核を指定する（赤い状態のままになる）。</li>
+<li>Shiftキーを押しながら開始ドットを指定する。</li>
+</ul>
+
+<p>　という流れで操作を円滑化することができます。</p>
+
+
+<h4>(5). 各ドットの高さとサイズを指定していく（Part 2）</h4>
+
+<p>　各ドットの高さが確定したところで、開始ドットと終了ドットの間にあるドット群のサイズを必要に応じて補正することになります。</p>
+
+<p>　これには変更したいドットを選択した後、Metaキー（macOSの場合はcommandキー、Windowsの場合はAltキー）を押しながら、高さとサイズの決定ボタンを押すことになります。つまり、Altキーを押下した状態であれば、どの高さのボタンを押しても高さの情報は無視され、ドットのサイズのみが変更されることになるわけです。</p>
+
+<figure>
+<img src="./images/Fig11.png">
+<figcaption>図11：<span class="roman">many</span>と<span class="roman">think</span>を中サイズのドットに変更した例</figcaption>
+</figure>
+
+
+<h3>4. 画像ファイルを出力する</h3>
+
+<p>　ウィンドウ上部の「Save Image File」と書かれたリンクをクリックすると、ファイル保存用のダイアログボックスが開くので、適切なファイル名で保存します。</p>
+
+<figure>
+<img src="./images/Fig12.png">
+<figcaption>図12：画像ファイルの出力</figcaption>
+</figure>
+
+<figure>
+<img src="./images/Fig13.jpeg">
+<figcaption>図13：画像ファイルの内容</figcaption>
+</figure>
+
+
+<h3>5. プロジェクトファイルを出力する</h3>
+
+<p>　必要に応じて、作業中のファイルを保存しておくこともできます。これにはウィンドウ上部の「Save Project File」と書かれたリンクをクリックし、ファイル保存用のダイアログボックスから適切なファイル名を指定するようにしてください。</p>
+
+<hr>
+
+<p>　これでTuneEditorを一通り使えるようになったはずです。</p>
+
+<p>　この他の設定や非標準機能の詳細については、メインメニューからリンクをたどってください。</p>
+
+</body>
+</html>

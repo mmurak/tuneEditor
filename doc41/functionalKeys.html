@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>TuneEditor - Functional Keys</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="shortcut icon" href="./PurpleKiwiBird.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h1>特殊なキー操作</h1>
+
+<a name="cursorMovementKeys"/>
+<h2>カーソル移動関係</h2>
+
+<table class="gentleTable">
+<tr><th>動作</th><th>キー入力</th><th>パラメーター上の名前</th></tr>
+<tr><td>1文字分左に移動</td><td>←</td><td>CursorLeft</td></tr>
+<tr><td>1文字分右に移動</td><td>→</td><td>CursorRight</td></tr>
+<tr><td>1行分上に移動</td><td>↑</td><td>CursorUp</td></tr>
+<tr><td>1行分下に移動</td><td>↓</td><td>CursorDown</td></tr>
+<tr><td>行頭に移動</td><td>Ctrl+q</td><td>CursorHead</td></tr>
+<tr><td>行末に移動</td><td>Shift+Ctrl+q<br/>Ctrl+w</td><td>CursorTail<br/>CursorTail2</td></tr>
+<tr><td>文書頭に移動</td><td>Meta+↑</td><td>CursorTop</td></tr>
+<tr><td>文書末に移動</td><td>Meta+↓</td><td>CursorBottom</td></tr>
+</table>
+
+<p>　※ Metaキーは、macOSでは「command」キー、Windowsでは「Alt」キーになります。</p>
+
+
+<h2>範囲選択関係</h2>
+
+<table class="gentleTable">
+<tr><th>動作</th><th>キー入力</th><th>パラメーター上の名前</th></tr>
+<tr><td>選択範囲を左に1文字分拡張</td><td>Shift+←</td><td>AnchorAndCursorLeft</td></tr>
+<tr><td>選択範囲を右に1文字分拡張</td><td>Shift+→</td><td>AnchorAndCursorRight</td></tr>
+<tr><td>選択範囲を上に1行分拡張</td><td>Shift+↑</td><td>AnchorAndCursorUp</td></tr>
+<tr><td>選択範囲を下に1行分拡張</td><td>Shift+↓</td><td>AnchorAndCursorDown</td></tr>
+<tr><td>選択範囲を1ワード分左に拡張</td><td>Shift+Ctrl+←</td><td>CursorPrevWord</td></tr>
+<tr><td>選択範囲を1ワード分右に拡張</td><td>Shift+Ctrl+→</td><td>CursorNextWord</td></tr>
+<tr><td>文書すべてを選択</td><td>Meta+a<br/>Ctrl+a</td><td>SelectAll<br/>SelectAll2</td></tr>
+</table>
+
+<p>　※ Metaキーは、macOSでは「command」キー、Windowsでは「Alt」キーになります。</p>
+
+<p>　なお、範囲選択の後、DelキーやBackspaceキー以外の入力キーを押下してもその文字が入力されるだけで選択範囲は削除されません。</p>
+
+<p>　これは下線を引くために範囲を選択している場合、<a href="./TSMentry.html#commandMenu">SUコマンド</a>を入力し損なって（例えば）SYUなどと入力した時に選択範囲が消去されてしまうという事故を避けるための仕様です（この例に従って説明すると、SYがコマンド文字と認識されるものの、そういったコマンドがないためそのまま編集モードに戻り、Uが入力文字として処理されてしまうことになります。選択範囲を入力文字で置き換えてしまうと、こういった事故につながるというわけです）。</p>
+
+
+<h2>コピー＆ペースト等の編集処理</h2>
+
+<table class="gentleTable">
+<tr><th>動作</th><th>キー入力</th><th>パラメーター上の名前</th></tr>
+<tr><td>選択範囲をアプリ内バッファーにコピー</td><td>Meta-c<br/>CtrL+c</td><td>CopyRegion<br/>CopyRegion2</td></tr>
+<tr><td>選択範囲をアプリ内バッファーにカット</td><td>Meta-x<br/>Ctrl+x</td><td>CutRegion<br/>CutRegion2</td></tr>
+<tr><td>アプリ内バッファーからカーソル位置へのペースト</td><td>Meta-v<br/>Ctrl+v</td><td>Paste<br/>Paste2</td></tr>
+</table>
+
+<p>　※ Metaキーは、macOSでは「command」キー、Windowsでは「Alt」キーになります。</p>
+
+<p>　※ TuneEditorはウェブアプリであり、現時点でのウェブ規格ではセキュリティの都合上、アプリの枠を超えたデータのやり取りに制限が加えられています。このため、他のアプリで作成したテキストをTuneEditorにペーストしたい場合には、以下の手順に従ってください。</p>
+
+<ul style="list-style:lower-roman">
+<li>他のアプリ上で、コピー（またはカット）処理を実行し、OSのクリップボードにテキストをコピーする。</li>
+<li>TuneEditorの画面上部にある水色の領域をクリックする（ピンク色に変化します）。</li>
+<li>この状態でOSのペースト処理を実行する。</li>
+</ul>
+
+<p>　なお、途中で気が変わって処理を中断したい場合、画面上の赤色以外の領域をクリックすると、通常の編集モードに戻ります。</p>
+
+
+<h2>特殊な操作</h2>
+
+<p>　MaintenanceHatchについての説明についてはまた後ほどに。</p>
+
+</body>
+</html>

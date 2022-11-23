@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>TuneEditor - A little bit of spice</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="shortcut icon" href="./PurpleKiwiBird.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h2>ちょっと便利な設定</h2>
+
+<p>　ちょっと便利な設定をいくつか紹介しておきましょう。</p>
+
+<h3>行間表示の上下線をテキストの長さに合わせる</h3>
+
+<p>　TuneEditorのデフォルト設定では、行間表示の上下線が画像ファイルの左端から右端まで（左右のマージンを除く）描画されるようになっています。</p>
+
+<p>　しかし「FullBaseline」パラメーターを「0」と指定すれば、行間表示の上下線をテキストの長さに合わせることができます。</p>
+
+<p>　設定パラメーターは、「URLパラメーター」や「設定ファイル」「パラメーター設定ダイアログボックス」から指定できますが、最も手軽なのはURLパラメーターからの指定になります。この場合、TuneEditorのURLを指定する際に、「?」に続けて「パラメーター名<strong>=</strong>値」の形式でパラメーターを指定します（パラメーター名は大／小文字を意識しますので間違わないように）。</p>
+
+<blockquote><pre>
+https://mmurak.github.io/tuneEditor/tuneEditor4.html?FullBaseline=0
+</pre></blockquote>
+
+<figure>
+<img src="./images/FullBaseline.png">
+<figcaption>FullBaselineに「0」を指定した結果</figcaption>
+</figure>
+
+
+<h3>テキストの前に話者のラベルをつける</h3>
+
+<p>　会話文を記述する場合、文の直前に話者のラベルを付け、その部分については行間表示を抑止したい場合もあるはずです。その際の方法を以下に説明します。</p>
+
+<ul style="list-style:lower-roman">
+<li>Ctrlキー+Kを押すと、「パラメーター設定ダイアログボックス」が表示されます。</li>
+<li>「sf=50」と入力し、エンターキーを押すと、行間表示エリアの左端（左マージンを除く）から50ピクセル分だけ、行間表示の上下線が表示されなくなります。</li>
+<li>話者ラベルの長さに応じ、非表示ピクセル数を変えながら、上記手順を繰り返します。</li>
+<li>長さが決まった場合、TuneEditorの次回起動時にその値をURLパラメーターから与えることで、上記の試行錯誤が不要になります（URLパラメーターを複数記述する場合、それらは「&amp;」記号で区切ります）。
+<blockquote><pre>
+https://mmurak.github.io/tuneEditor/tuneEditor4.html?FullBaseline=0&sf=75
+</pre></blockquote>
+<figure>
+<img src="./images/sf-1.png">
+<figcaption>sfコマンドの使用例（上下線の抑止）</figcaption>
+</figure>
+</li>
+<li>話者ラベル内に音節核がある場合、ドットが表示されますが、それは都度、ドットの非表示コマンドで対応してください。
+<figure>
+<img src="./images/sf-2.png">
+<figcaption>sfコマンドの使用例（話者ラベル内の音節核を非表示にする）</figcaption>
+</figure>
+</li>
+</ul>
+
+</body>
+</html>
