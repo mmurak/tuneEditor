@@ -345,7 +345,7 @@ class FullStop0 extends FullStop {
 
 class FullStop1 extends FullStop {
     constructor() {
-        super(margin, vmargi);
+        super();
     }
     draw(context, margin, vmargin, width) {
         super.draw(context, margin, vmargin, width);

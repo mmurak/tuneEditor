@@ -13,14 +13,23 @@
 
 <p>　TSM記号の入力は、コマンドメニューから行います。コマンドメニューは［esc］キーを押すことで表示できます。</p>
 
-<p>　コマンドメニューを押下すると、ウィンドウ上部からメニューが降りてきます。この状態で2文字からなるコマンドを入力することになります。また、存在しないコマンドを入力した、あるいは再度［esc］キーを入力した場合、通常の編集画面に戻ります。</p>
+<p>　コマンドメニューを押下すると、ウィンドウ上部からメニューが降りてきます。この状態では2文字からなるコマンドを入力することができます。また、存在しないコマンドを入力した、あるいは再度［esc］キーを入力した場合、通常の編集画面に戻ります。</p>
 
 <figure>
-<img src="./images/Fig11.png">
-<figcaption>図11：コマンドメニュー</figcaption>
+<img src="./images/Fig14.png">
+<figcaption>コマンドメニュー</figcaption>
 </figure>
 
+<a name="commandMenu"/>
+<h2>コマンドメニュー</h2>
+
 <p>　使用できるコマンドは以下の通りです（コマンドは大／小文字どちらでも構いません）。</p>
+
+<h3>標準記号のコマンド</h3>
+
+<figure>
+<img src="./images/StandardSymbols.png">
+</figure>
 
 <table class="gentleTable">
 <tr><th>コマンド</th><th>表示される記号</th><th>意味</th></tr>
@@ -38,17 +47,55 @@
 <tr><td>L2</td><td><img src="./images/Low2.jpg" width="50%;"></td><td>低頭／尾部の強勢(2)</td></tr>
 <tr><td>L3</td><td><img src="./images/Low3.jpg" width="50%;"></td><td>上昇頭部</td></tr>
 <tr><td>HP</td><td><img src="./images/HighPrehead.jpg" width="50%;"></td><td>高前頭部</td></tr>
-<tr><td>LP</td><td><img src="./images/LowPrehead.jpg" width="50%;"></td><td>低前頭部</td></tr>
 <tr><td>SU</td><td><img src="./images/SetUnderline.jpg" width="50%;"></td><td>下線の設定（選択されている範囲に下線が引かれます）</td></tr>
-<tr><td>CU</td><td><img src="./images/ClearUnderline.jpg" width="50%;"></td><td>下線の解除（選択されている範囲の河川が解除されます）</td></tr>
-<tr><td>IP</td><td><img src="./images/IntonationPhrase.jpg" width="50%;"></td><td>音調句の切れ目</td></tr>
+<tr><td>CU</td><td><img src="./images/ClearUnderline.jpg" width="50%;"></td><td>下線の解除（選択されている範囲の下線が解除されます）</td></tr>
+<tr><td>IP</td><td><img src="./images/IntonationPhrase.jpg" width="70%;"></td><td>音調句の切れ目</td></tr>
 <tr><td>FS</td><td><img src="./images/FullStop.jpg" width="50%;"></td><td>長めの休止</td></tr>
 </table>
 
-<a name="commandMenu"/>
-<h2>コマンドメニュー</h2>
+<p>　下線は以下の手順によって設定／解除することができます。</p>
 
-<p>　コマンドメニューには、TSM記号の入力以外にもいくつかの機能があります。それらを以下に示します。</p>
+<ul style="list-style:lower-roman">
+<li>以下のいずれかの方法で、下線を設定／解除したい部分を選択する。</li>
+    <ul>
+    <li>選択範囲の一方の端にテキストカーソルを置き、「Shift」 キーを押しながら、制御キーを押して選択範囲を広げてい く。</li>
+    <li>テキスト領域をマウスでドラッグする。</li>
+    <li>選択範囲の一方の端にテキストカーソルを置き、「Shift」 キーを押しながら、もう一方の端をマウスでクリックする。</li>
+    </ul>
+<li>「esc」キーを押し、コマンドメニューを表示させた後、設定の場合は「su」、解除の場合は「cu」と入力す る。</li>
+</ul>
+
+<h3>非標準記号のコマンド</h3>
+
+<figure>
+<img src="./images/NonStandardSymbols.png">
+</figure>
+
+<table class="gentleTable">
+<tr><th>コマンド</th><th>意味</th></tr>
+<tr><td>LP</td></td><td>低前頭部（アンダースコア "＿"）</td></tr>
+<tr><td>I0</td><td>実線の区切り線の上に赤で「0」を表示したもの</td></tr>
+<tr><td>I1</td><td>実線の区切り線の上に赤で「1」を表示したもの</td></tr>
+<tr><td>I2</td><td>実線の区切り線の上に赤で「2」を表示したもの</td></tr>
+<tr><td>I3</td><td>実線の区切り線の上に赤で「3」を表示したもの</td></tr>
+<tr><td>F0</td><td>2重線の区切り線の上に赤で「0」を表示したもの</td></tr>
+<tr><td>F1</td><td>2重線の区切り線の上に赤で「1」を表示したもの</td></tr>
+<tr><td>F2</td><td>2重線の区切り線の上に赤で「2」を表示したもの</td></tr>
+<tr><td>F3</td><td>2重線の区切り線の上に赤で「3」を表示したもの</td></tr>
+<tr><td>S1</td><td>実線の区切り線（IPと同じ）</td></tr>
+<tr><td>S2</td><td>実線の区切り線（FSと同じ）</td></tr>
+<tr><td>S3</td><td>実線の区切り線（3重線）</td></tr>
+<tr><td>S4</td><td>実線の区切り線（変則2重線）</td></tr>
+<tr><td>D1</td><td>破線の区切り線（1本線）</td></tr>
+<tr><td>D2</td><td>破線の区切り線（2重線）</td></tr>
+<tr><td>D3</td><td>破線の区切り線（3重線）</td></tr>
+<tr><td>D4</td><td>破線の区切り線（変則2重線）</td></tr>
+</table>
+
+
+<h3>その他のコマンド</h3>
+
+<p>　コマンドメニューからは、TSM記号の入力以外にもいくつかのコマンドを入力することができます。それらを以下に示します。</p>
 
 <table class="gentleTable">
 <tr><th>コマンド</th><th></th><th>意味</th></tr>
@@ -57,7 +104,9 @@
 <tr><td>SP</td><td>Save Project</td><td>プロジェクトファイルの出力（ウィンドウ上部の［Save Project File］と同機能）</td></tr>
 </table>
 
+<h3>その他の注意点</h3>
 
+<p>　テキスト行のコピー&amp;ペーストは、ブラウザー上のTuneEditorインスタンスが実行されているタブ内でしか実行できません。またその際には、TSM記号をコピーすることはできません（記号部分は空白として処理されます）。</p>
 
 </body>
 </html>
