@@ -10,15 +10,14 @@
 
 <p>　このウェブプログラムは、音声学におけるロンドン学派の方たちが使用している表記を簡単に入力するために作成したものです。 この表記法は、「発音記号」という音素の最小単位の表記だけでは語れない、超分節要素の表記法として優れていると考えており、英語のスピーキングを学習していく上で欠かせないものだと感じています。 自習用ツールとして、また教材作成の一助になれば幸いです。</p>
 
-<p>　<strong>プログラムの実行は<a href="./tuneEditor.html" target="_blank">このリンク</a>から。</strong></p>
+<p>　<strong>プログラムの実行は<a href="./tuneEditor4.html" target="_blank">このリンク</a>から。</strong></p>
 
-<p>　<strong>最新版（4.10）は<a href="./tuneEditor41.html" target="_blank">このリンクから</a>（4.07のマニュアル（PDF版）は<a href="./docs4/TuneEditor.pdf" target="_blank">ここ</a>に、、、最新版のマニュアル（現在、制作中・・・未完成）は<a href="./doc41/index.html" target="_blank">ここ</a>に）</strong></p>
+<p>　マニュアルは<a href="./doc41/index.html" target="_blank">このページ</a>にあります。</strong></p>
 
 
 <h4>画面イメージ（↓↓↓こんな感じのプログラムです）</h4>
 <img src="./Fig.png" width="600" border="1">
 
-<p>　《おまけ》 以前のプロトタイプ版作成時のあれこれに関するリンクは<a href="./prototypes/index.html" target="_blank">ここ</a>にあります。</p>
 
 <h2>動作環境（確認済みのもの）</h2>
 
@@ -27,124 +26,6 @@
 <li>横幅900ピクセルの表示が可能なディスプレイ（900ピクセル未満だと、画面上部に隠してあるメニュー画面が顔を出してしまいます）</li>
 </ul>
 
-
-<h2>使い方--概要</h2>
-
-<p>　テキストを入力すると、画面下部の緑カーソルが点滅している部分にテキストが表示されていきます。 基本はこれだけです。 カーソル移動等、使用可能な特殊キーの操作については<a href="./usersManual/SpecialKeyboardSeqsJ.html" target="_blank">このページ</a>を参照してください。</p>
-
-<p>　なお、テキスト上に表記するトーン／ストレス記号（や縦線類）の入力には「esc」キーを使用します。</p>
-
-<h2>トーン／ストレス記号の入力方法</h2>
-
-<p>　記号を入力したい位置までカーソルを移動させ、「esc」キーを押すと、メニュー画面が表示されるため、メニューのガイドに従って2文字からなるコマンドを入力します。 2文字目を入力するとメニューが消え、コマンドが実行されます（コマンドにない2文字の組み合わせを入力する、あるいは再度「esc」を入力するとキャンセル扱いとなり、メニューは消去されます）。</p>
-
-</p>　サポートしているコマンドとその意味については以下の通りです。</p>
-
-<table border="1">
-<tr><th>コマンド</th><th>適用位置（参考）</th><th>意味</th></tr>
-<tr><td align="center">HR</td><td align="center">音調核</td><td>高上昇調（High-Rise）</td></tr>
-<tr><td align="center">LR</td><td align="center">　〃　</td><td>低上昇調（Low-Rise）</td></tr>
-<tr><td align="center">HF</td><td align="center">　〃　</td><td>高下降調（High-Fall）</td></tr>
-<tr><td align="center">LF</td><td align="center">　〃　</td><td>低下降調（Low-Fall）</td></tr>
-<tr><td align="center">FR</td><td align="center">　〃　</td><td>下降上昇調（Fall-Rise）</td></tr>
-<tr><td align="center">RF</td><td align="center">　〃　</td><td>上昇下降調（Rise-Fall）</td></tr>
-<tr><td align="center">ML</td><td align="center">　〃　</td><td>平坦調（Mid-Level）</td></tr>
-<tr><td align="center">SU</td><td align="center">　〃　</td><td>下線設定（Set Underline：あらかじめ範囲の選択が必要[*1]）</td></tr>
-<tr><td align="center">CU</td><td align="center">　〃　</td><td>下線解除（Clear Underline：あらかじめ範囲の選択が必要[*1]）</td></tr>
-<tr><td align="center">H1</td><td align="center">頭部、尾部</td><td>高強勢（High Head）</td></tr>
-<tr><td align="center">H2</td><td align="center">　　〃　　</td><td>高強勢（High-rhythmic stress）</td></tr>
-<tr><td align="center">H3</td><td align="center">　　〃　　</td><td>高下降調（High falling head）</td></tr>
-<tr><td align="center">L1</td><td align="center">　　〃　　</td><td>低強勢（Low level head）</td></tr>
-<tr><td align="center">L2</td><td align="center">　　〃　　</td><td>低強勢2（Low rhythmic stress）</td></tr>
-<tr><td align="center">L3</td><td align="center">　　〃　　</td><td>低上昇調（Low rising head）</td></tr>
-<tr><td align="center">HP</td><td align="center">前頭部</td><td>前頭部高音節（High-preHead）</td></tr>
-<tr><td align="center">LP</td><td align="center">　〃　</td><td>前頭部低音節（Low-preHead）</td></tr>
-<tr><td align="center">IP</td><td align="center">IPの切れ目</td><td>単縦線（Intonation Phrase）</td></tr>
-<tr><td align="center">FS</td><td align="center">文章の切れ目</td><td>複縦線（Full Stop）</td></tr>
-<tr><td align="center">AA</td><td align="center">子音の間</td><td>トーンノート（●）の挿入（音節主音的子音で使用）</td></tr>
-</table>
-  
-  
-<p>[*1] 下線を引く、あるいは解除するには、メニューを開く前に適用範囲を選択しておく必要があります。 テキスト範囲の選択には、以下のいずれかの方法が使用できます。
-<ol>
-<li>マウスを使ってテキスト部分をドラッグする</li>
-<li>shiftキーを押したまま、マウスで終点をクリックする</li>
-<li>shiftキーを押したまま、カーソルキーを使ってカーソルを移動させる</li>
-</ol>
-</p>
-
-
-
-
-<h2>テキスト下に表示されるトーンノート類の編集方法</h2>
-
-<h4>・ノートの高さ／強さ、音調核パターンを設定する</h4>
-
-<p>　各ノートの高さ／強さと、音調核の場合のパターン設定は以下の手順で行います。
-<ol>
-<li>設定したいトーンをクリックする。<br/>
-→これによりトーン表示が赤く変化します。</li>
-<li>適切な高さ／強さのボタンをクリックする。<br/>
-→これにより高さ／強さが設定され、次のトーンにフォーカスが移動します（なお、フォーカスを移動してほしくない場合には、shiftキーを押しながらクリックします）。</li>
-<li>音調核の場合には、引き続き音調核のパターン設定ボタンをクリックする。<br/>
-→次のトーンにフォーカスが当たっていますが（次のトーンが赤く表示されている）、高さ／強さボタンのクリック直後は、直前に設定したトーンにパターンが設定されます。</li>
-</ol>
-</p>
-
-<p>　なお、不適切な高さ／強さのボタンを押してしまい、やり直したいという場合には、Ctrl+Zを押下するか、「◀」ボタンをクリックしてください（これは、いわゆるUndo操作ではないのですが、フォーカスをすぐ左のトーンに戻すため、設定をやり直すことができるはずです）。</p>
-
-
-<h4>・ノートの表示／非表示を設定する</h4>
-
-<p>　テキストを入力すると自動的に、音節候補として強勢の置かれていない低いトーン（●）が表示されていきます。</p>
-
-<p>　なお、本アプリでは「aeiouy」という音節核候補文字が1つ以上連続しているところにトーンを追加するようになっているため、takeの「e」等、本来音節のない部分にもトーンが表示されます。 こういった場合、マウスで不要なトーンをクリックして選択し（赤く表示されます）、「Make item invisible」ボタンを押してください。</p>
-
-<p>　また、非表示にしたトーンを表示状態に戻したい場合、「Make item visible again」ボタンを押して「非表示アイテム選択モード」にした上で、非表示になっているモノ（青で表示されています）をクリックします。</p>
-
-<p>　さらに、「aeiouy」といった文字の存在しない音節（音節主音的子音）がある場合、テキストの該当位置で「esc」キーを押した後、「aa」と入力すると、その部分に「目に見えない（＝幅がゼロの）音節核候補文字」が挿入され、トーンが表示されます（このことはつまり、カーソルキーを用いてカーソルを移動させた場合、そこで1回足踏みすることを意味しています）。
-
-
-<h4>・縦棒（IPセパレータ）を追加する、または非表示／再表示を設定する</h4>
-
-<p>　縦棒の追加は画面の「Separator」ボタンを押し（ボタンが青くなり、縦棒挿入モードになります。キャンセルするにはもう一度ボタンを押してください）、追加したい場所をクリックします。
-</p>
-
-<p>　非表示にする方法は、トーンの非表示方法と同じです。不要な縦棒をクリックして選択し（赤く表示されます）、「Make item invisible」ボタンを押します。</p>
-
-<p>　再表示する方法も、トーンの再表示方法と同じです。「Make item visible again」ボタンを押して「非表示アイテム選択モード」にした上で、非表示になっている縦棒（青で表示されています）をクリックします。</p>
-
-<h4>・各グラフィック要素の位置調整</h4>
-
-<p>トーンや縦棒はマウスのドラッグで左右位置を調整することができます。テキストの発話リズムに応じて適宜調整してください。</p>
-
-
-<h2>編集結果の出力方法</h2>
-
-<p>　編集結果は画像ファイルとして出力可能です。 画面上部の「Save Image」リンクをクリックすると、テキスト領域とグラフィック領域をセットにしたJPEG形式のファイルが出力できます。 また「（upper half only）」のリンクをクリックすると、テキスト領域のみのJPEG形式ファイルが出力できます。</p>
-
-<h2>その他の機能</h2>
-
-<p>　ここまでで、説明していない機能は以下の通りです。</p>
-
-<ul>
-<li>画面左上の「Clear all」はすべての入力を消去するボタンです。</li>
-<li>画面右上の「Canvas width」ドロップダウンボックスは、描画領域の幅を設定するものです。 必要に応じて適宜設定してください。</li>
-<li>「◀」と「▶」はトーンのフォーカスをそれぞれ左と右に移動させるボタンです。</li>
-<li>画面右上の「Centreline」チェックボックスにチェックを入れると、トーン表記エリアの上の線と下の線のちょうど中間に点線を表示します（久保岳夫先生経由で頂いた長瀬慶来先生のコメントを反映したものです。謝辞にも書いていますが、書いても書き足りないので（^^;）ここでもお礼申し上げます）。</li>
-</ul>
-
-<h2>各種初期設定の変更</h2>
-
-<p>　URLパラーメータを指定することで、起動時にいくつかの設定を自分好みのものにすることができます。詳細は<a href="./usersManual/URLparametersJ.html" target="_blank">このページ</a>を参照してください。</p>
-
-<h2>コンパニオンツール</h2>
-
-<p>　TuneEditorで作成した画像ファイルを縦方向に並べていく簡単なツールを用意しています。　使い方は、画面左上の「ファイルを選択」ボタンから画像ファイルを次々と指定していき、最後に「Save Image」リンクをクリックするだけです。画像の幅は指定した画像ファイル群のうち、最大長のものが選択されます。　また「Delete Last Entry」ボタンを押すと最後に追加したファイルを削除できます。</p>
-
-<ul>
-<li><a href="./stacker.html" target="_blank">Stackerツール</a></li>
-</ul>
 
 <h2>謝辞</h2>
 
