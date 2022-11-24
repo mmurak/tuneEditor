@@ -1,0 +1,115 @@
+<html>
+<head>
+    <title>TuneEditor - Parameter Summary</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="shortcut icon" href="./PurpleKiwiBird.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h2>各種パラメーター（まとめ）</h2>
+
+<p>　描画領域全体から見たパラメーターの関係図は以下の通りです。</p>
+
+<figure>
+<img src="./images/TuneEditorCanvasParms.jpg" style="width:100%;">
+</figure>
+
+
+<h3>全体レイアウトに関するパラメーター</h3>
+
+<table class="gentleTable">
+<tr><th>パラメーター名</th><th>意味</th><th>デフォルト値</th></tr>
+<tr><td>CanvasMinWidth</td><td>最小限の描画領域の幅（ピクセル単位）</td><td>1000</td></tr>
+<tr><td>CanvasMinHeight</td><td>最小限の描画領域の高さ（ピクセル単位）</td><td>240</td></tr>
+<tr><td>CanvasTopMargin</td><td>全体画像の上部余白（ピクセル単位）</td><td>30</td></tr>
+<tr><td>CanvasBottomMargin</td><td>全体画像の下部余白（ピクセル単位）</td><td>30</td></tr>
+<tr><td>CanvasLeftMargin</td><td>全体画像の左余白（ピクセル単位）</td><td>30</td></tr>
+<tr><td>CanvasRightMargin</td><td>全体画像の右余白（ピクセル単位）</td><td>30</td></tr>
+</table>
+
+<h3>TSM領域に関するパラメーター</h3>
+
+<table class="gentleTable">
+<tr><th>パラメーター名</th><th>意味</th><th>デフォルト値</th></tr>
+<tr><td>TSMHeight</td><td>TSM領域の高さ（ピクセル単位）</td><td>55</td></tr>
+<tr><td>TSMBaseLineOffset</td><td>該当行のTSM領域の最上部から見た文字のベースラインの位置（ピクセル単位）</td><td>40</td></tr>
+<tr><td>FontName</td><td>フォント名称</td><td>Times New Roman</td></tr>
+<tr><td>FontSize</td><td>フォントサイズ（ただし、使用は非推奨--このパラメーターは通常の文字のサイズを指定するものであり、現時点ではTSM記号のサイズは変更されないため、極端な値での使用により文字とTSM記号のサイズのバランスが崩れてしまう）</td><td>27</td></tr>
+</table>
+
+<h3>行間表示領域に関するパラメーター</h3>
+
+<table class="gentleTable">
+<tr><th>パラメーター名</th><th>意味</th><th>デフォルト値</th></tr>
+<tr><td>DotsSwitch</td><td>行間表示の要／不要（「0」は不要、「1」は要）</td><td>1</td></tr>
+<tr><td>DotsAreaHeight</td><td>行間表示の高さ（ピクセル単位）</td><td>130</td></tr>
+<tr><td>TopLineOffset</td><td>行間表示開始位置と上限線のオフセット（ピクセル単位）</td><td>10</td></tr>
+<tr><td>BottomLineOffset</td><td>行間表示開始位置と下限線のオフセット（ピクセル単位）</td><td>98</td></tr>
+<tr><td>DotSSize</td><td>最小サイズのドット径（ピクセル単位）</td><td>5</td></tr>
+<tr><td>DotMSize</td><td>中サイズのドット径（ピクセル単位）</td><td>8</td></tr>
+<tr><td>DotLSize</td><td>最大サイズのドット径（ピクセル単位）</td><td>12</td></tr>
+<tr><td>GlideMagFactor</td><td>尻尾の倍率係数（実数）--現在未使用</td><td>1.00</td></tr>
+<tr><td>DotDistributionPattern</td><td>ドット分布パターン（0〜2）</td><td>2</td></tr>
+<tr><td>CentrelineSwitch</td><td>センターラインの要／不要（0は不要、1は要）</td><td>1</td></tr>
+<tr><td>FullBaseline</td><td>上下線とテキストの長さを合わせる（0は「合わせる」、1は「描画領域全体にわたって上下線を描画する」）</td><td>1</td></tr>
+<tr><td>sf</td><td>左端マージンから上下線の描画を抑止するピクセル数</td><td>0</td></tr>
+</table>
+
+
+<h3>一般機能に関するキーボード割り当てパラメーター</h3>
+
+<table class="gentleTable">
+<tr><th>パラメーター名</th><th>意味</th><th>デフォルト値</th></tr>
+<tr><td>CursorLeft</td><td>テキストカーソルを1文字分左に移動</td><td>ArrowLeft</td></tr>
+<tr><td>CursorRight</td><td>テキストカーソルを1文字分右に移動</td><td>ArrowRight</td></tr>
+<tr><td>AnchorAndCursorLeft</td><td>テキスト選択範囲を左に1文字分拡張</td><td>Shift+ArrowLeft</td></tr>
+<tr><td>AnchorAndCursorRight</td><td>テキスト選択範囲を右に1文字分拡張</td><td>Shift+ArrowRight</td></tr>
+<tr><td>CursorUp</td><td>テキストカーソルを1行上に</td><td>ArrowUp</td></tr>
+<tr><td>CursorDown</td><td>テキストカーソルを1行下に</td><td>ArrowDown</td></tr>
+<tr><td>AnchorAndCursorUp</td><td>テキスト選択範囲の1行上に拡張</td><td>Shift+ArrowUp</td></tr>
+<tr><td>AnchorAndCursorDown</td><td>テキスト選択範囲の1行下に拡張</td><tdShift+ArrowDown></td></tr>
+<tr><td>CursorHead</td><td>テキストカーソルを行頭に</td><td>Ctrl+q</td></tr>
+<tr><td>CursorTail</td><td>テキストカーソルを行末に</td><td>Shift+Ctrl+q</td></tr>
+<tr><td>CursorTail2</td><td>〃</td><td>Ctrl+w</td></tr>
+<tr><td>CursorTop</td><td>テキストカーソルを文書頭に</td><td>Meta+ArrowUp</td></tr>
+<tr><td>CursorBottom</td><td>テキストカーソルを文書末に</td><td>Meta+ArrowDown</td></tr>
+<tr><td>CursorPrevWord</td><td>テキスト選択範囲を1ワード分前に</td><td>Shift+Ctrl+ArrowLeft</td></tr>
+<tr><td>CursorNextWord</td><td>テキスト選択範囲を1ワード分後に</td><td>Shift+Ctrl+ArrowRight</td></tr>
+<tr><td>Backspace</td><td>テキストカーソルの直前1文字を削除</td><td>Backspace</td></tr>
+<tr><td>DeleteChar</td><td>テキストカーソルの直後1文字を削除</td><td>Delete</td></tr>
+<tr><td>CopyRegion</td><td>選択範囲をアプリ内のバッファにコピー</td><td>Meta+c</td></tr>
+<tr><td>CopyRegion2</td><td>〃</td><td>Ctrl+c</td></tr>
+<tr><td>CutRegion</td><td>選択範囲をアプリ内のバッファにコピーしカット</td><td>Meta+x</td></tr>
+<tr><td>CutRegion2</td><td>〃</td><td>Ctrl+x</td></tr>
+<tr><td>Paste</td><td>アプリ内のバッファからペースト</td><td>Meta+v</td></tr>
+<tr><td>Paste2</td><td>〃</td><td>Ctrl+v</td></tr>
+<tr><td>SelectAll</td><td>テキスト全体を選択</td><td>Meta+a</td></tr>
+<tr><td>SelectAll2</td><td>〃</td><td>Ctrl+a</td></tr>
+<tr><td>MaintenanceHatch</td><td>パラメーター設定ダイアログボックスのオープン</td><td>Ctrl+k</td></tr>
+</table>
+
+
+<h3>ドット操作に関するキーボード割り当てパラメーター</h3>
+
+<table class="gentleTable">
+<tr><th>パラメーター名</th><th>意味</th><th>デフォルト値</th></tr>
+<tr><td>StopAutoMove</td><td>ドットの自動移動を抑止するキー</td><td>Shift</td></tr>
+<tr><td>WiderToneTail</td><td>ドットの尻尾の幅を拡大する</td><td>Shift+Meta+ArrowRight</td></tr>
+<tr><td>WiderToneTail2</td><td>〃</td><td>Ctrl+ArrowRight</td></tr>
+<tr><td>NarrowerToneTail</td><td>ドットの尻尾の幅を縮小する</td><td>Shift+Meta+ArrowLeft</td></tr>
+<tr><td>NarrowerToneTail2</td><td>〃</td><td>Ctrl+ArrowLeft</td></tr>
+<tr><td>RaiseToneTail</td><td>ドットの尻尾の高さを拡大する</td><td>Shift+Meta+ArrowUp</td></tr>
+<tr><td>RaiseToneTail2</td><td>〃</td><td>Ctrl+ArrowUp</td></tr>
+<tr><td>LowerToneTail</td><td>ドットの尻尾の高さを縮小する</td><td>Shift+Meta+ArrowDown</td></tr>
+<tr><td>LowerToneTail2</td><td>〃</td><td>Ctrl+ArrowDown</td></tr>
+<tr><td>RaiseToneTailEnd</td><td>ドットの尻尾末尾の高さを上げる</td><td>Shift+Ctrl+Meta+ArrowUp</td></tr>
+<tr><td>LowerToneTailEnd</td><td>ドットの尻尾末尾の高さを下げる</td><td>Shift+Ctrl+Meta+ArrowDown</td></tr>
+<tr><td>NextTone</td><td>次のドットにフォーカスを移す</td><td>Shift+Meta+z</td></tr>
+<tr><td>NextTone2</td><td>〃</td><td>Shift+Ctrl+Z</td></tr>
+<tr><td>PrevTone</td><td>前のドットにフォーカスを移す</td><td>Meta+z</td></tr>
+<tr><td>PrevTone2</td><td>〃</td><td>Shift+Ctrl+Z</td></tr>
+</table>
+
+</body>
+</html>

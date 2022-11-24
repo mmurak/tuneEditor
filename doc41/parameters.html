@@ -1,0 +1,151 @@
+<html>
+<head>
+    <title>TuneEditor - Parameters</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <link rel="shortcut icon" href="./PurpleKiwiBird.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<h1>パラメーターの設定</h1>
+
+<h2>概要</h2>
+
+<p>　TuneEditorは出力イメージ(jpegファイル)のレイアウトや文字/ドットの設定、キーボード割り当てなど、さまざまな設定項目を変更できるようになっています。</p>
+
+<h2>パラメーターの設定方法</h2>
+
+<p>　パラメーターを設定する方法は3種類あり、それぞれ以下のような特徴を有しています。</p>
+
+<table class="gentleTable">
+<tr><th>設定方法</th><th>長所</th><th>短所</th></tr>
+<tr><td>アクセスURLからの設定</td><td>パラメーターごとブックマークしておくことが可能。</td><td>実行中に変更できない（ページの再ロードが必要）。</td></tr>
+<tr><td>メンテナンス用ダイアログボックスからの設定</td><td>実行中に変更することが可能。</td><td>1つずつしか設定できない。<br/>ページを再ロードした時にこのダイアログボックスを使って1つずつ再設定する必要がある。</td></tr>
+<tr><td>.cfgファイルからの設定</td><td>複数の設定をまとめておくことが可能。</td><td>ページを再ロードした時に設定ファイルを読み込み直す必要がある。</td></tr>
+</table>
+
+<h3>アクセスURLからの設定</h3>
+
+<p>　TuneEditorにアクセスするためのURLの直後に複数のパラメーターを指定することができます。その形式は以下のようになっています。</p>
+
+<blockquote>
+http://〜TuneEditorへのアクセスアドレス〜<span class="emphasis">?</span>キーワード<span class="emphasis">=</span>値<span class="emphasis">&</span>キーワード<span class="emphasis">=</span>値・・・
+</blockquote>
+
+<p>　つまり、URLと最初のパラメーターの間は疑問符（<span class="emphasis">?</span>）で区切り、パラメーター自体は「キーワード<span class="emphasis">=</span>値」という形式をとり、複数のパラメーターを指定する場合にはパラメーター設定間をアンパサンド（<span class="emphasis">&</span>）で区切るというものです。また、パラメーターに空白が含まれる場合、空白を「<span class="emphasis">%20</span>」に置き換えてください。</p>
+
+<p>　※ なお、パラメーターのキーワードは大・小文字を区別するので、指定時には間違わないようにしてください。</p>
+
+<p>　例：</p>
+<blockquote>
+<pre>
+https://mmurak.github.io/tuneEditor/tuneEditor4.html?FullBaseline=0&sf=75
+</pre>
+</blockquote>
+
+<h3>メンテナンス用ダイアログボックスからの設定</h3>
+
+<p>　TuneEditorの実行中に、Ctrlキー+Kを入力することで、メンテナンス用ダイアログボックスが開きます。この画面から「キーワード<span class="emphasis">=</span>値」という形式でパラメーターを指定することができます。</p>
+
+<p>　この方法で設定したパラメーターは、ブラウザーのタブをクローズ／再ロードするまで有効となります。</p>
+
+<p>　※ なお、パラメーターのキーワードは大・小文字を区別するので、指定時には間違わないようにしてください。</p>
+
+<h3>.cfgファイルからの設定</h3>
+
+<p>　ファイル入力ボタンから.cfg形式のファイルを読み込み、複数のパラメーターを一度に設定することができます。この設定はブラウザーのタブをクローズ／再ロードするまで有効となります。</p>
+
+<p>　この方法ではまず、テキストエディターを使用してパラメーター設定ファイルを作成します。ファイルの拡張子は「.cfg」とし、その形式は以下の通りです。</p>
+
+<p>　例：</p>
+<blockquote>
+<pre>
+FullBaseline=0
+sf=75
+　・
+　・
+　・
+</pre>
+</blockquote>
+
+<p>　※ なお、パラメーターのキーワードは大・小文字を区別するので、指定時には間違わないようにしてください。</p>
+
+<h2>パラメーターの設定内容</h2>
+
+<h3>描画領域全体のレイアウト</h3>
+
+<p>　TuneEditorは出力イメージを作成するにあたり、最小の幅（CanvasMinWidth）と最小の高さ（CanvasMinHeight）という設定値から最小限の描画領域を作成し、その上下左右に余白（CanvasTopMargin, CanvasBottomMargin, CanvasLeftMargin, CanvasRightMargin）を確保するようになっています。</p>
+
+<p>　なお、この最小限の描画領域の幅は、入力された行が長くなっていくと必要に応じて自動拡張されます。また、高さも改行が入力されるたびに、TSM行の高さ（TSMHeight）と、行間表記を使う場合にはその高さ（DotsAreaHeight）が加味されて自動的に拡張していくようになっています。</p>
+
+<p>　指定できるパラメーターとそのデフォルト値は、<a href="./summary.html" target="_blank">このページにまとめています。</p>
+
+
+<h3>TSM領域に関するパラメーター</h3>
+
+<p>　TSM領域に関するパラメーターは以下の通りです。</p>
+
+<table class="gentleTable">
+<tr><th>パラメーター名</th><th>意味</th></tr>
+<tr><td>TSMHeight</td><td>TSM領域の高さをピクセル単位で指定します。</td></tr>
+<tr><td>TSMBaseLineOffset</td><td>該当行のTSM領域の最上部から見た文字のベースラインの位置をピクセル単位で指定します。</td></tr>
+<tr><td>FontName</td><td>フォント名称を指定します。</td></tr>
+<tr><td>FontSize</td><td>フォントサイズを指定します。なお、この使用は非推奨 です（このパラメーターは通常の文字のサイズを指定するものであり、現時点ではTSM記号のサイズは変更されません--つまり使用すると文字とTSM記号のサイズのバランスが崩れてしまうのです）。</td></tr>
+</table>
+
+<h3>行間表示領域に関するパラメーター</h3>
+
+<p>　行間表示領域に関するパラメーターは以下の通りです。</p>
+
+<table class="gentleTable">
+<tr><th>パラメーター名</th><th>意味</th></tr>
+<tr><td>DotsSwitch</td><td>行間表示の使用有無を「0」か「1」で指定します。</td></tr>
+<tr><td>DotsAreaHeight</td><td>行間表示領域の高さをピクセル単位で指定します。</td></tr>
+<tr><td>TopLineOffset</td><td>該当行の行間表示領域の最上部から見た上限ラインの位置をピクセル単位で指定します。</td></tr>
+<tr><td>BottomLineOffset</td><td>該当行の行間表示領域の最上部から見た下限ラインの位置をピクセル単位で指定します。</td></tr>
+<tr><td>DotSSize</td><td>最小サイズのドット径をピクセル単位で指定します。</td></tr>
+<tr><td>DotMSize</td><td>中サイズのドット径をピクセル単位で指定します。</td></tr>
+<tr><td>DotLSize</td><td>最大サイズのドット径をピクセル単位で指定します。</td></tr>
+<tr><td>GlideMagFactor</td><td>現在未使用。</td></tr>
+<tr><td>DotDistributionPattern</td><td>ドットの分布パターンを「0」〜「2」で指定します（詳細は後述）。</td></tr>
+<tr><td>CentrelineSwitch</td><td>センターラインの描画有無を「0」か「1」で指定します。</td></tr>
+</table>
+
+<h4>ドットの配置パターン（DotDistributionPattern）について</h4>
+
+<p>　上下線の間にサイズの異なるドットを縦方向に配分しようとした場合、 いくつかのパターンが考えられます。</p>
+
+<ul>
+<li><strong>設定「0」：</strong>ドットの外周が上下線に接する位置を大/中/小のドットごとに計算し、中間の音は均等割りで配置する。
+<figure>
+<img src="./images/dd0.png">
+</figure>
+<p><strong>デメリット：</strong>この場合、同じ高さの音でもドットのサイズが異なっている場合、音が高くなればなるほど、あるいは低くなればなるほど中心の高さが異なって見える。</p>
+</li>
+
+<li><strong>設定「1」：</strong>最大のドットの外周が上下線に接する際のドットの中心位置を算出し、すべてのサイズのドットでその中心位置を使用するようにする。なお中間の音は均等割りで配置する。
+<figure>
+<img src="./images/dd1.png">
+</figure>
+<p><strong>デメリット：</strong>この場合、大サイズ以外のドットの外周は上下線に接 することがなくなる。</p>
+</li>
+
+<li><strong>設定「2」：</strong>ドットの高さが最低/最高の場合にドットの外周が上下線に接するようにし、それ以外の場合には設定「1」を採用する。
+<figure>
+<img src="./images/dd2.png">
+</figure>
+<p><strong>デメリット：</strong>この場合、上昇調/下降調でドットを並べた場合、大 サイズ以外のドットが直線上に並ばないケースが出てくる。</p>
+</li>
+</ul>
+
+<p>　なお、TuneEditorではこれら3つの戦略を起動時に選択することが可能になっています。</p>
+
+
+<h3>キーボード割り当て</h3>
+
+<p>　各種のキーボード割り当ても変更することができますが、OSが規定しているキーボードショートカットと衝突しないようなかたちで指定する必要があります。衝突させてしまうと、思いがけない副作用に頭を抱えることになるかもしれません。</p>
+
+<p>　詳細はまとめのページを参照してください。</p>
+
+</body>
+</html>
