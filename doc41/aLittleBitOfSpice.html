@@ -11,6 +11,7 @@
 
 <p>　ちょっと便利な設定をいくつか紹介しておきましょう。</p>
 
+<a name="fullBaseline"/>
 <h3>行間表示の上下線をテキストの長さに合わせる</h3>
 
 <p>　TuneEditorのデフォルト設定では、行間表示の上下線が画像ファイルの左端から右端まで（左右のマージンを除く）描画されるようになっています。</p>
@@ -28,8 +29,13 @@ https://mmurak.github.io/tuneEditor/tuneEditor4.html?FullBaseline=0
 <figcaption>FullBaselineに「0」を指定した結果</figcaption>
 </figure>
 
+<hr>
+<input type="button" value="閉じる" onclick="javascript:window.close()"/>
+<hr>
 
-<h3>テキストの前に話者のラベルをつける</h3>
+
+<a name="speakerField"/>
+<h3>テキストの行頭に話者のラベルをつける</h3>
 
 <p>　会話文を記述する場合、文の直前に話者のラベルを付け、その部分については行間表示を抑止したい場合もあるはずです。その際の方法を以下に説明します。</p>
 
@@ -53,6 +59,45 @@ https://mmurak.github.io/tuneEditor/tuneEditor4.html?FullBaseline=0&sf=75
 </figure>
 </li>
 </ul>
+
+<hr>
+<input type="button" value="閉じる" onclick="javascript:window.close()"/>
+<hr>
+
+
+<a name="linearise"/>
+<h3>ドット群を直線状に並べる</h3>
+
+<p>　TuneEditorではドットの高さを9段階までとしているため、上昇／下降調を構成する音節数が多い場合、ドットがなめらかに並ばない場合も出てきます。</p>
+
+<figure>
+<img src="./images/HeadNotStraight.jpeg">
+<figcaption>上昇調がなめらかに並ばないケース</figcaption>
+</figure>
+
+<p>　こういった場合に備え、開始ドットと終了ドットの間にあるドット群を（高さの段階を無視して）整列させることが可能になっています。その方法は以下の通りです。</p>
+
+<ul style="list-style:lower-roman">
+<li>開始（または終了）ドットを選択する（選択されたドットは赤くなります）。</li>
+<li>Shiftキーを押しながら、終了（または開始）ドットをクリックします。</li>
+</ul>
+
+<p>　この操作によって、開始ドットと終了ドットの間にあるドットは適切な高さに変更されます。</p>
+
+<figure>
+<img src="./images/HeadStraight.jpeg">
+<figcaption>開始ドットと終了ドットの間の高さを平滑化する</figcaption>
+</figure>
+
+
+<p>　なお、これらドットのいずれかを選択し「高さとサイズの設定ボタン」を押すと、押したボタンに応じてその高さが9段階に再設定されてしまいます。</p>
+
+<p>　このため、サイズのみを変更したいという場合には、Altキーを押しながら「高さとサイズの設定ボタン」を押すようにしてください。これにより、該当ボタンのサイズ指定のみが適用されるようになります。</p>
+
+
+
+<hr>
+<input type="button" value="閉じる" onclick="javascript:window.close()"/>
 
 </body>
 </html>
