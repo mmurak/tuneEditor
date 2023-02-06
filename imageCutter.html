@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <title>Image cutter</title>
+        <link rel="shortcut icon" href="PurpleKiwiBird.png">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+        <style>
+            #header{
+                position: sticky;
+                background-color: white;
+                top: 0;
+            }
+        </style>
+    </head>
+    <body style="user-select: none;">
+        <div id="header">
+            <input type="file" onChange="readImage(this.files)" onclick="this.value=null;" accept=".jpg,.jpeg,.png,.gif"/>
+            <br/>
+            Start X: <input type="number" id="inX" min="0" max="3000" value="0" onchange="xModified(this.value);">
+            Width: <input type="number" id="inWidth" min="0" max="3000" value="0" onchange="wModified(this.value);">
+            Thickness: <input type="number" id="inThickness" min="0" max="5" value="1" onchange="tModified(this.value);">
+            <br/>
+            Start Y: <input type="number" id="inY" min="0" max="100" value="0" onchange="yModified(this.value);">
+            Height: <input type="number" id="inHeight" min="0" max="3000" value="0" onchange="hModified(this.value);">
+            <br/>
+            <a id="download" href="#" download="clippedImage.jpg" onclick="saveImage();">Save Image</a><br>
+            <hr>
+        </div>
+        <canvas id="canvasArea"></canvas>
+
+        <script>
+        const canvasArea = document.getElementById("canvasArea");
+        const inX = document.getElementById("inX");
+        const inWidth = document.getElementById("inWidth");
+        const inY = document.getElementById("inY");
+        const inHeight = document.getElementById("inHeight");
+        let xx = 0;
+        let ww = 0;
+        let yy = 0;
+        let hh = 0;
+        let tt = 1;
+        let content;
+        let isDrag = false;
+        let startX = 0;
+        let startY = 0;
+        canvasArea.addEventListener("mousedown", (evt) => {
+            isDrag = true;
+            let ans = getXY(evt);
+            xx = inX.value = startX = ans[0];
+            yy = inY.value = startY = ans[1];
+            drawCanvas();
+        });
+        canvasArea.addEventListener("mousemove", (evt) => {
+            if (isDrag) {
+                let ans = getXY(evt);
+                setWH(ans[0], ans[1]);
+                drawCanvas();
+            }
+        });
+        canvasArea.addEventListener("mouseup", (evt) => {
+            isDrag = false;
+            let ans = getXY(evt);
+            setWH(ans[0], ans[1]);
+            drawCanvas();
+        });
+        function setWH(x, y)  {
+            if ((x < startX) || (y < startY)) {
+                x = startX;
+                y = startY;
+            }
+            ww = inWidth.value = x - startX;
+            hh = inHeight.value = y - startY;
+        }
+        function getXY(evt) {
+            let rect = evt.target.getBoundingClientRect();
+            let x =Math.floor(evt.clientX - rect.left);
+            let y = Math.floor(evt.clientY - rect.top);
+            return [x, y];
+        }
+        function readImage(files) {
+            let reader = new FileReader();
+            reader.onload = function(evt) {
+                let anImage = new Image();
+                anImage.onload = function() {
+                    content = anImage;
+                    drawCanvas();
+                }
+                anImage.src = event.target.result;
+            }
+            reader.readAsDataURL(files[0]);
+        }
+
+        function drawCanvas() {
+            if (!content) return;
+            canvasArea.width = content.width;
+            canvasArea.height = content.height;
+            let ctx = canvasArea.getContext('2d');
+            ctx.fillStyle = "rgb(255, 255, 255)";
+            ctx.fillRect(0, 0, canvasArea.width, canvasArea.height);
+            ctx.drawImage(content, 0, 0);
+            if ((tt == 0) || (Number(canvasArea.width) < xx+ww+(tt/2.0)) || (Number(canvasArea.height)) < yy+hh+(tt/2.0)) {
+                return;
+            }
+            ctx.lineWidth = tt;
+            ctx.strokeRect(xx+(tt/2.0), yy+(tt/2.0), ww - tt, hh - tt);
+        }
+
+        function xModified(val) {
+            xx = Number(val);
+            drawCanvas();
+        }
+
+        function wModified(val) {
+            ww = Number(val);
+            drawCanvas();
+        }
+
+        function yModified(val) {
+            yy = Number(val);
+            drawCanvas();
+        }
+
+        function hModified(val) {
+            hh = Number(val);
+            drawCanvas();
+        }
+
+        function tModified(val) {
+            tt = Number(val);
+            drawCanvas();
+        }
+
+        function saveImage() {
+            let clippedImage = document.createElement("canvas");
+            clippedImage.width = ww;
+            clippedImage.height = hh;
+            let ctx2 = clippedImage.getContext("2d");
+            ctx2.fillStyle = "rgba(255, 255, 255, 0.0)";
+            ctx2.fillRect(0, 0, ww, hh);
+            ctx2.fillStyle = "rgb(0, 0, 0)";
+            ctx2.drawImage(canvasArea, xx, yy, ww, hh, 0, 0, ww, hh);
+            let base64 = clippedImage.toDataURL("image/jpeg");
+            document.getElementById("download").href = base64;
+        }
+
+        </script>
+    </body>
+</html>

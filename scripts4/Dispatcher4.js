@@ -127,9 +127,13 @@ class Dispatcher {
                     if (command in this.mtable) {
                         this.model.selPtr = G.iap = G.NotSelected;
                         this.mtable[command].apply(this.model);  // this is tricky... sort of.
+                        this._menuClose();
+                        G.patternTemplate.process(command);
+                    } else {
+                        alert("'" + this.menuBuffer + "' command: Not recognised.");
+                        this.menuBuffer = "";
+                        G.miniDisplay.innerText = "";
                     }
-                    this._menuClose();
-                    G.patternTemplate.process(command);
                 }
             }
         } else {
