@@ -130,7 +130,7 @@ class Dispatcher {
                         this._menuClose();
                         G.patternTemplate.process(command);
                     } else {
-                        beep();
+                        alert("'" + this.menuBuffer + "' command not found.");
                         this.menuBuffer = "";
                         G.miniDisplay.innerText = "";
                     }
