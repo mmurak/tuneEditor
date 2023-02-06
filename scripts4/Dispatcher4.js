@@ -130,7 +130,7 @@ class Dispatcher {
                         this._menuClose();
                         G.patternTemplate.process(command);
                     } else {
-                        alert("'" + this.menuBuffer + "' command: Not recognised.");
+                        beep();
                         this.menuBuffer = "";
                         G.miniDisplay.innerText = "";
                     }
