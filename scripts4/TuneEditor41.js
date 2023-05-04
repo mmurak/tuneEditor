@@ -129,26 +129,26 @@ G.aView.ccanvas.addEventListener("mousedown", function(evt) {
     } else if (G.separator1.checked) {   // put a separator 
         G.separator1.checked = false;
         if (evt.shiftKey && evt.altKey) {
-            G.aModel.tnm.separatorArray.push(new Separator4(ci[0], ci[2]));
+            G.aModel.tnm.separatorArray.push(new Separator4(ci[0], ci[2], true));
         } else if (evt.shiftKey) {
-            G.aModel.tnm.separatorArray.push(new Separator2(ci[0], ci[2]));
+            G.aModel.tnm.separatorArray.push(new Separator2(ci[0], ci[2], true));
         } else if (evt.altKey) {
-            G.aModel.tnm.separatorArray.push(new Separator3(ci[0], ci[2]));
+            G.aModel.tnm.separatorArray.push(new Separator3(ci[0], ci[2], true));
         } else {
-            G.aModel.tnm.separatorArray.push(new Separator1(ci[0], ci[2]));
+            G.aModel.tnm.separatorArray.push(new Separator1(ci[0], ci[2], true));
         }
         G.aModel.selPtr = G.NotSelected;
         G.aModel.separatorPtr = G.NotSelected;
     } else if (G.separator2.checked) {   // put a Dashed separator 
         G.separator2.checked = false;
         if (evt.shiftKey && evt.altKey) {
-            G.aModel.tnm.separatorArray.push(new SeparatorDL4(ci[0], ci[2]));
+            G.aModel.tnm.separatorArray.push(new SeparatorDL4(ci[0], ci[2], true));
         } else if (evt.shiftKey) {
-            G.aModel.tnm.separatorArray.push(new SeparatorDL2(ci[0], ci[2]));
+            G.aModel.tnm.separatorArray.push(new SeparatorDL2(ci[0], ci[2], true));
         } else if (evt.altKey) {
-            G.aModel.tnm.separatorArray.push(new SeparatorDL3(ci[0], ci[2]));
+            G.aModel.tnm.separatorArray.push(new SeparatorDL3(ci[0], ci[2], true));
         } else {
-            G.aModel.tnm.separatorArray.push(new SeparatorDL1(ci[0], ci[2]));
+            G.aModel.tnm.separatorArray.push(new SeparatorDL1(ci[0], ci[2], true));
         }
         G.aModel.selPtr = G.NotSelected;
         G.aModel.separatorPtr = G.NotSelected;
