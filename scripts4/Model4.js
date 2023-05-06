@@ -664,7 +664,7 @@ class Model {
     }
 
     saveInternalStruct() {
-        saveInternalStructure();
+        G.download2.click();
     }
 
     loadInternalStruct() {
